@@ -1,0 +1,463 @@
+Sending build context to Docker daemon 7.168 kB
+Step 1/5 : FROM omicsclass/biocontainer-base:latest
+ ---> 3501aa40f5a7
+Step 2/5 : LABEL base.image "omicsclass/biocontainer-base:latest" version "v3.3.0" software "isoseq3" software.version "20200317" about.summary "pacbio isoseq3" about.home "www.omicsclass.com" about.documentation "https://github.com/PacificBiosciences/IsoSeq_SA3nUP/wiki/Tutorial:-Installing-and-Running-Iso-Seq-3-using-Conda" license "  " about.tags "Genomics,Proteomics,Transcriptomics,General,Metabolomics"
+ ---> Using cache
+ ---> e9c7423730b0
+Step 3/5 : MAINTAINER huangls <huang2002003@qq.com>
+ ---> Using cache
+ ---> 2c469e6aa5fe
+Step 4/5 : RUN conda create -y -n anaCogent5.2 python=2.7 && source activate anaCogent5.2 && conda install -y -n anaCogent5.2 biopython 	&& conda install -y -n anaCogent5.2  -c http://conda.anaconda.org/cgat bx-python 	&& conda install -y -n anaCogent5.2 isoseq3=3.3.0  	&& conda install -y -n anaCogent5.2 pbccs=4.2.0 	&& conda install -y -n anaCogent5.2 pbcoretools 	&& conda install -y -n anaCogent5.2 bamtools 	&& conda install -y -n anaCogent5.2 pysam 	&& echo "conda activate anaCogent5.2" >>/biosoft/miniconda/etc/profile.d/conda.sh
+ ---> Running in afef1c7a492a
+
+[91m[0mCollecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /biosoft/miniconda/envs/anaCogent5.2
+
+  added / updated specs:
+    - python=2.7
+
+
+The following packages will be downloaded:
+
+    package                    |            build
+    ---------------------------|-----------------
+    _libgcc_mutex-0.1          |      conda_forge           3 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    _openmp_mutex-4.5          |            0_gnu         435 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    ca-certificates-2019.11.28 |       hecc5488_0         145 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    certifi-2019.11.28         |   py27h8c360ce_1         149 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    ld_impl_linux-64-2.33.1    |       h53a641e_8         589 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    libffi-3.2.1               |    he1b5a44_1006          46 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    libgcc-ng-9.2.0            |       h24d8f2e_2         8.2 MB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    libgomp-9.2.0              |       h24d8f2e_2         816 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    libstdcxx-ng-9.2.0         |       hdf63c60_2         4.5 MB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    ncurses-6.1                |    hf484d3e_1002         1.3 MB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    openssl-1.1.1d             |       h516909a_0         2.1 MB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    pip-20.0.2                 |             py_2         1.0 MB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    python-2.7.15              |h5a48372_1011_cpython        12.2 MB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    python_abi-2.7             |         1_cp27mu           4 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    readline-8.0               |       hf8c457e_0         441 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    setuptools-44.0.0          |           py27_0         663 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    sqlite-3.30.1              |       hcee41ef_0         2.0 MB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    tk-8.6.10                  |       hed695b0_0         3.2 MB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    wheel-0.34.2               |             py_1          24 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    zlib-1.2.11                |    h516909a_1006         105 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    ------------------------------------------------------------
+                                           Total:        37.8 MB
+
+The following NEW packages will be INSTALLED:
+
+  _libgcc_mutex      anaconda/cloud/conda-forge/linux-64::_libgcc_mutex-0.1-conda_forge
+  _openmp_mutex      anaconda/cloud/conda-forge/linux-64::_openmp_mutex-4.5-0_gnu
+  ca-certificates    anaconda/cloud/conda-forge/linux-64::ca-certificates-2019.11.28-hecc5488_0
+  certifi            anaconda/cloud/conda-forge/linux-64::certifi-2019.11.28-py27h8c360ce_1
+  ld_impl_linux-64   anaconda/cloud/conda-forge/linux-64::ld_impl_linux-64-2.33.1-h53a641e_8
+  libffi             anaconda/cloud/conda-forge/linux-64::libffi-3.2.1-he1b5a44_1006
+  libgcc-ng          anaconda/cloud/conda-forge/linux-64::libgcc-ng-9.2.0-h24d8f2e_2
+  libgomp            anaconda/cloud/conda-forge/linux-64::libgomp-9.2.0-h24d8f2e_2
+  libstdcxx-ng       anaconda/cloud/conda-forge/linux-64::libstdcxx-ng-9.2.0-hdf63c60_2
+  ncurses            anaconda/cloud/conda-forge/linux-64::ncurses-6.1-hf484d3e_1002
+  openssl            anaconda/cloud/conda-forge/linux-64::openssl-1.1.1d-h516909a_0
+  pip                anaconda/cloud/conda-forge/noarch::pip-20.0.2-py_2
+  python             anaconda/cloud/conda-forge/linux-64::python-2.7.15-h5a48372_1011_cpython
+  python_abi         anaconda/cloud/conda-forge/linux-64::python_abi-2.7-1_cp27mu
+  readline           anaconda/cloud/conda-forge/linux-64::readline-8.0-hf8c457e_0
+  setuptools         anaconda/cloud/conda-forge/linux-64::setuptools-44.0.0-py27_0
+  sqlite             anaconda/cloud/conda-forge/linux-64::sqlite-3.30.1-hcee41ef_0
+  tk                 anaconda/cloud/conda-forge/linux-64::tk-8.6.10-hed695b0_0
+  wheel              anaconda/cloud/conda-forge/noarch::wheel-0.34.2-py_1
+  zlib               anaconda/cloud/conda-forge/linux-64::zlib-1.2.11-h516909a_1006
+
+
+
+Downloading and Extracting Packages
+python_abi-2.7       | 4 KB      |            |   0% python_abi-2.7       | 4 KB      | ########## | 100% 
+pip-20.0.2           | 1.0 MB    |            |   0% pip-20.0.2           | 1.0 MB    | 1          |   2% pip-20.0.2           | 1.0 MB    | #          |  11% pip-20.0.2           | 1.0 MB    | ##9        |  29% pip-20.0.2           | 1.0 MB    | ########9  |  89% pip-20.0.2           | 1.0 MB    | ########## | 100% 
+ld_impl_linux-64-2.3 | 589 KB    |            |   0% ld_impl_linux-64-2.3 | 589 KB    | ########## | 100% 
+setuptools-44.0.0    | 663 KB    |            |   0% setuptools-44.0.0    | 663 KB    | 2          |   2% setuptools-44.0.0    | 663 KB    | ########## | 100% 
+sqlite-3.30.1        | 2.0 MB    |            |   0% sqlite-3.30.1        | 2.0 MB    | #####1     |  52% sqlite-3.30.1        | 2.0 MB    | ######7    |  68% sqlite-3.30.1        | 2.0 MB    | #########3 |  93% sqlite-3.30.1        | 2.0 MB    | ########## | 100% 
+readline-8.0         | 441 KB    |            |   0% readline-8.0         | 441 KB    | 3          |   4% readline-8.0         | 441 KB    | ########## | 100% 
+libffi-3.2.1         | 46 KB     |            |   0% libffi-3.2.1         | 46 KB     | ########## | 100% 
+_libgcc_mutex-0.1    | 3 KB      |            |   0% _libgcc_mutex-0.1    | 3 KB      | ########## | 100% 
+openssl-1.1.1d       | 2.1 MB    |            |   0% openssl-1.1.1d       | 2.1 MB    |            |   1% openssl-1.1.1d       | 2.1 MB    | #########5 |  95% openssl-1.1.1d       | 2.1 MB    | ########## | 100% 
+wheel-0.34.2         | 24 KB     |            |   0% wheel-0.34.2         | 24 KB     | ########## | 100% 
+ncurses-6.1          | 1.3 MB    |            |   0% ncurses-6.1          | 1.3 MB    | ########2  |  82% ncurses-6.1          | 1.3 MB    | ########## | 100% 
+libgcc-ng-9.2.0      | 8.2 MB    |            |   0% libgcc-ng-9.2.0      | 8.2 MB    |            |   0% libgcc-ng-9.2.0      | 8.2 MB    | ###6       |  36% libgcc-ng-9.2.0      | 8.2 MB    | #######2   |  72% libgcc-ng-9.2.0      | 8.2 MB    | ########## | 100% 
+certifi-2019.11.28   | 149 KB    |            |   0% certifi-2019.11.28   | 149 KB    | ########## | 100% 
+libstdcxx-ng-9.2.0   | 4.5 MB    |            |   0% libstdcxx-ng-9.2.0   | 4.5 MB    | ##5        |  26% libstdcxx-ng-9.2.0   | 4.5 MB    | ########4  |  85% libstdcxx-ng-9.2.0   | 4.5 MB    | ########## | 100% 
+python-2.7.15        | 12.2 MB   |            |   0% python-2.7.15        | 12.2 MB   |            |   0% python-2.7.15        | 12.2 MB   | ##2        |  23% python-2.7.15        | 12.2 MB   | ##9        |  29% python-2.7.15        | 12.2 MB   | ###6       |  37% python-2.7.15        | 12.2 MB   | #####5     |  56% python-2.7.15        | 12.2 MB   | ######5    |  65% python-2.7.15        | 12.2 MB   | #######    |  71% python-2.7.15        | 12.2 MB   | #######8   |  78% python-2.7.15        | 12.2 MB   | #########7 |  98% python-2.7.15        | 12.2 MB   | ########## | 100% 
+libgomp-9.2.0        | 816 KB    |            |   0% libgomp-9.2.0        | 816 KB    | 1          |   2% libgomp-9.2.0        | 816 KB    | ########## | 100% 
+_openmp_mutex-4.5    | 435 KB    |            |   0% _openmp_mutex-4.5    | 435 KB    | 3          |   4% _openmp_mutex-4.5    | 435 KB    | ########## | 100% 
+zlib-1.2.11          | 105 KB    |            |   0% zlib-1.2.11          | 105 KB    | #5         |  15% zlib-1.2.11          | 105 KB    | ########## | 100% 
+ca-certificates-2019 | 145 KB    |            |   0% ca-certificates-2019 | 145 KB    | ########## | 100% 
+tk-8.6.10            | 3.2 MB    |            |   0% tk-8.6.10            | 3.2 MB    | ###4       |  35% tk-8.6.10            | 3.2 MB    | ########## | 100% 
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+#
+# To activate this environment, use
+#
+#     $ conda activate anaCogent5.2
+#
+# To deactivate an active environment, use
+#
+#     $ conda deactivate
+
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /biosoft/miniconda/envs/anaCogent5.2
+
+  added / updated specs:
+    - biopython
+
+
+The following packages will be downloaded:
+
+    package                    |            build
+    ---------------------------|-----------------
+    biopython-1.70             |      np112py27_1         2.5 MB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/bioconda
+    blas-1.0                   |              mkl           6 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+    freetype-2.10.0            |       he983fc9_1         884 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    giflib-5.2.1               |       h516909a_2          80 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    intel-openmp-2019.4        |              243         729 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+    jpeg-9c                    |    h14c3975_1001         251 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    libgfortran-ng-7.3.0       |       hdf63c60_5         1.7 MB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    libpng-1.6.37              |       hed695b0_0         343 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    libtiff-4.1.0              |       hc7e4089_4         657 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    libwebp-1.1.0              |       h56121f0_2          86 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    libwebp-base-1.1.0         |                2         832 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    lz4-c-1.8.3                |    he1b5a44_1001         187 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    mkl-2018.0.3               |                1       126.9 MB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+    mmtf-python-1.0.2          |           py27_0          34 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/bioconda
+    msgpack-python-1.0.0       |   py27h9e3301b_1          28 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    numpy-1.12.1               |   py27h9378851_1         3.0 MB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main
+    olefile-0.46               |             py_0          31 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    pillow-6.2.1               |   py27hd70f55b_1         625 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    reportlab-3.5.32           |   py27h7d98c4e_0         2.4 MB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    xz-5.2.4                   |    h14c3975_1001         366 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    zstd-1.4.4                 |       h3b9ef0a_1         989 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    ------------------------------------------------------------
+                                           Total:       142.5 MB
+
+The following NEW packages will be INSTALLED:
+
+  biopython          anaconda/cloud/bioconda/linux-64::biopython-1.70-np112py27_1
+  blas               anaconda/pkgs/main/linux-64::blas-1.0-mkl
+  freetype           anaconda/cloud/conda-forge/linux-64::freetype-2.10.0-he983fc9_1
+  giflib             anaconda/cloud/conda-forge/linux-64::giflib-5.2.1-h516909a_2
+  intel-openmp       anaconda/pkgs/main/linux-64::intel-openmp-2019.4-243
+  jpeg               anaconda/cloud/conda-forge/linux-64::jpeg-9c-h14c3975_1001
+  libgfortran-ng     anaconda/cloud/conda-forge/linux-64::libgfortran-ng-7.3.0-hdf63c60_5
+  libpng             anaconda/cloud/conda-forge/linux-64::libpng-1.6.37-hed695b0_0
+  libtiff            anaconda/cloud/conda-forge/linux-64::libtiff-4.1.0-hc7e4089_4
+  libwebp            anaconda/cloud/conda-forge/linux-64::libwebp-1.1.0-h56121f0_2
+  libwebp-base       anaconda/cloud/conda-forge/linux-64::libwebp-base-1.1.0-2
+  lz4-c              anaconda/cloud/conda-forge/linux-64::lz4-c-1.8.3-he1b5a44_1001
+  mkl                anaconda/pkgs/main/linux-64::mkl-2018.0.3-1
+  mmtf-python        anaconda/cloud/bioconda/linux-64::mmtf-python-1.0.2-py27_0
+  msgpack-python     anaconda/cloud/conda-forge/linux-64::msgpack-python-1.0.0-py27h9e3301b_1
+  numpy              anaconda/pkgs/main/linux-64::numpy-1.12.1-py27h9378851_1
+  olefile            anaconda/cloud/conda-forge/noarch::olefile-0.46-py_0
+  pillow             anaconda/cloud/conda-forge/linux-64::pillow-6.2.1-py27hd70f55b_1
+  reportlab          anaconda/cloud/conda-forge/linux-64::reportlab-3.5.32-py27h7d98c4e_0
+  xz                 anaconda/cloud/conda-forge/linux-64::xz-5.2.4-h14c3975_1001
+  zstd               anaconda/cloud/conda-forge/linux-64::zstd-1.4.4-h3b9ef0a_1
+
+
+
+Downloading and Extracting Packages
+giflib-5.2.1         | 80 KB     |            |   0% giflib-5.2.1         | 80 KB     | ##         |  20% giflib-5.2.1         | 80 KB     | ########## | 100% 
+intel-openmp-2019.4  | 729 KB    |            |   0% intel-openmp-2019.4  | 729 KB    | 4          |   4% intel-openmp-2019.4  | 729 KB    | ###9       |  40% intel-openmp-2019.4  | 729 KB    | #####4     |  55% intel-openmp-2019.4  | 729 KB    | ########## | 100% 
+xz-5.2.4             | 366 KB    |            |   0% xz-5.2.4             | 366 KB    | 4          |   4% xz-5.2.4             | 366 KB    | ########## | 100% 
+blas-1.0             | 6 KB      |            |   0% blas-1.0             | 6 KB      | ########## | 100% 
+libwebp-base-1.1.0   | 832 KB    |            |   0% libwebp-base-1.1.0   | 832 KB    | 1          |   2% libwebp-base-1.1.0   | 832 KB    | ########## | 100% 
+numpy-1.12.1         | 3.0 MB    |            |   0% numpy-1.12.1         | 3.0 MB    |            |   1% numpy-1.12.1         | 3.0 MB    | #3         |  13% numpy-1.12.1         | 3.0 MB    | #7         |  17% numpy-1.12.1         | 3.0 MB    | ###8       |  38% numpy-1.12.1         | 3.0 MB    | #########2 |  92% numpy-1.12.1         | 3.0 MB    | #########9 | 100% numpy-1.12.1         | 3.0 MB    | ########## | 100% 
+olefile-0.46         | 31 KB     |            |   0% olefile-0.46         | 31 KB     | #####2     |  52% olefile-0.46         | 31 KB     | ########## | 100% 
+libpng-1.6.37        | 343 KB    |            |   0% libpng-1.6.37        | 343 KB    | ########## | 100% 
+mmtf-python-1.0.2    | 34 KB     |            |   0% mmtf-python-1.0.2    | 34 KB     | ########## | 100% 
+mkl-2018.0.3         | 126.9 MB  |            |   0% mkl-2018.0.3         | 126.9 MB  |            |   0% mkl-2018.0.3         | 126.9 MB  |            |   0% mkl-2018.0.3         | 126.9 MB  |            |   0% mkl-2018.0.3         | 126.9 MB  |            |   1% mkl-2018.0.3         | 126.9 MB  | 1          |   1% mkl-2018.0.3         | 126.9 MB  | 1          |   1% mkl-2018.0.3         | 126.9 MB  | 1          |   1% mkl-2018.0.3         | 126.9 MB  | 1          |   1% mkl-2018.0.3         | 126.9 MB  | 1          |   2% mkl-2018.0.3         | 126.9 MB  | 1          |   2% mkl-2018.0.3         | 126.9 MB  | 2          |   2% mkl-2018.0.3         | 126.9 MB  | 2          |   2% mkl-2018.0.3         | 126.9 MB  | 2          |   3% mkl-2018.0.3         | 126.9 MB  | 3          |   3% mkl-2018.0.3         | 126.9 MB  | 3          |   4% mkl-2018.0.3         | 126.9 MB  | 4          |   4% mkl-2018.0.3         | 126.9 MB  | 4          |   5% mkl-2018.0.3         | 126.9 MB  | 5          |   6% mkl-2018.0.3         | 126.9 MB  | 6          |   7% mkl-2018.0.3         | 126.9 MB  | 8          |   8% mkl-2018.0.3         | 126.9 MB  | #          |  10% mkl-2018.0.3         | 126.9 MB  | #2         |  13% mkl-2018.0.3         | 126.9 MB  | #4         |  15% mkl-2018.0.3         | 126.9 MB  | #7         |  17% mkl-2018.0.3         | 126.9 MB  | #9         |  19% mkl-2018.0.3         | 126.9 MB  | ##1        |  22% mkl-2018.0.3         | 126.9 MB  | ##3        |  23% mkl-2018.0.3         | 126.9 MB  | ##5        |  26% mkl-2018.0.3         | 126.9 MB  | ##8        |  28% mkl-2018.0.3         | 126.9 MB  | ##9        |  30% mkl-2018.0.3         | 126.9 MB  | ###        |  31% mkl-2018.0.3         | 126.9 MB  | ###1       |  32% mkl-2018.0.3         | 126.9 MB  | ###2       |  33% mkl-2018.0.3         | 126.9 MB  | ###5       |  35% mkl-2018.0.3         | 126.9 MB  | ###7       |  38% mkl-2018.0.3         | 126.9 MB  | ###9       |  39% mkl-2018.0.3         | 126.9 MB  | ####1      |  41% mkl-2018.0.3         | 126.9 MB  | ####3      |  44% mkl-2018.0.3         | 126.9 MB  | ####6      |  46% mkl-2018.0.3         | 126.9 MB  | ####8      |  49% mkl-2018.0.3         | 126.9 MB  | #####      |  51% mkl-2018.0.3         | 126.9 MB  | #####2     |  52% mkl-2018.0.3         | 126.9 MB  | #####4     |  54% mkl-2018.0.3         | 126.9 MB  | #####5     |  55% mkl-2018.0.3         | 126.9 MB  | #####7     |  58% mkl-2018.0.3         | 126.9 MB  | #####9     |  60% mkl-2018.0.3         | 126.9 MB  | ######1    |  62% mkl-2018.0.3         | 126.9 MB  | ######4    |  64% mkl-2018.0.3         | 126.9 MB  | ######5    |  66% mkl-2018.0.3         | 126.9 MB  | ######7    |  67% mkl-2018.0.3         | 126.9 MB  | ######9    |  70% mkl-2018.0.3         | 126.9 MB  | #######1   |  71% mkl-2018.0.3         | 126.9 MB  | #######3   |  74% mkl-2018.0.3         | 126.9 MB  | #######5   |  76% mkl-2018.0.3         | 126.9 MB  | #######7   |  78% mkl-2018.0.3         | 126.9 MB  | #######9   |  80% mkl-2018.0.3         | 126.9 MB  | ########1  |  81% mkl-2018.0.3         | 126.9 MB  | ########3  |  84% mkl-2018.0.3         | 126.9 MB  | ########5  |  85% mkl-2018.0.3         | 126.9 MB  | ########6  |  87% mkl-2018.0.3         | 126.9 MB  | ########7  |  88% mkl-2018.0.3         | 126.9 MB  | #########  |  90% mkl-2018.0.3         | 126.9 MB  | #########2 |  93% mkl-2018.0.3         | 126.9 MB  | #########4 |  94% mkl-2018.0.3         | 126.9 MB  | #########5 |  96% mkl-2018.0.3         | 126.9 MB  | #########6 |  97% mkl-2018.0.3         | 126.9 MB  | #########9 |  99% mkl-2018.0.3         | 126.9 MB  | ########## | 100% 
+pillow-6.2.1         | 625 KB    |            |   0% pillow-6.2.1         | 625 KB    | 2          |   3% pillow-6.2.1         | 625 KB    | ##3        |  23% pillow-6.2.1         | 625 KB    | ########## | 100% 
+libgfortran-ng-7.3.0 | 1.7 MB    |            |   0% libgfortran-ng-7.3.0 | 1.7 MB    | ########1  |  81% libgfortran-ng-7.3.0 | 1.7 MB    | ########## | 100% 
+freetype-2.10.0      | 884 KB    |            |   0% freetype-2.10.0      | 884 KB    | 1          |   2% freetype-2.10.0      | 884 KB    | 7          |   7% freetype-2.10.0      | 884 KB    | ##3        |  24% freetype-2.10.0      | 884 KB    | ######5    |  65% freetype-2.10.0      | 884 KB    | ########## | 100% 
+reportlab-3.5.32     | 2.4 MB    |            |   0% reportlab-3.5.32     | 2.4 MB    |            |   1% reportlab-3.5.32     | 2.4 MB    | #6         |  16% reportlab-3.5.32     | 2.4 MB    | ###1       |  32% reportlab-3.5.32     | 2.4 MB    | ####7      |  47% reportlab-3.5.32     | 2.4 MB    | #######4   |  74% reportlab-3.5.32     | 2.4 MB    | ########## | 100% 
+libwebp-1.1.0        | 86 KB     |            |   0% libwebp-1.1.0        | 86 KB     | #8         |  19% libwebp-1.1.0        | 86 KB     | ########## | 100% 
+zstd-1.4.4           | 989 KB    |            |   0% zstd-1.4.4           | 989 KB    | 1          |   2% zstd-1.4.4           | 989 KB    | ########## | 100% 
+msgpack-python-1.0.0 | 28 KB     |            |   0% msgpack-python-1.0.0 | 28 KB     | #####8     |  58% msgpack-python-1.0.0 | 28 KB     | ########## | 100% 
+lz4-c-1.8.3          | 187 KB    |            |   0% lz4-c-1.8.3          | 187 KB    | 8          |   9% lz4-c-1.8.3          | 187 KB    | ########## | 100% 
+libtiff-4.1.0        | 657 KB    |            |   0% libtiff-4.1.0        | 657 KB    | #######7   |  78% libtiff-4.1.0        | 657 KB    | ########## | 100% 
+biopython-1.70       | 2.5 MB    |            |   0% biopython-1.70       | 2.5 MB    |            |   1% biopython-1.70       | 2.5 MB    | 5          |   6% biopython-1.70       | 2.5 MB    | ##         |  20% biopython-1.70       | 2.5 MB    | ###5       |  35% biopython-1.70       | 2.5 MB    | #####5     |  55% biopython-1.70       | 2.5 MB    | #########  |  91% biopython-1.70       | 2.5 MB    | ########## | 100% 
+jpeg-9c              | 251 KB    |            |   0% jpeg-9c              | 251 KB    | ########## | 100% 
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /biosoft/miniconda/envs/anaCogent5.2
+
+  added / updated specs:
+    - bx-python
+
+
+The following packages will be downloaded:
+
+    package                    |            build
+    ---------------------------|-----------------
+    bx-python-0.8.8            |   py27h9449cc1_0         1.1 MB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/bioconda
+    lzo-2.10                   |    h14c3975_1000         319 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    python-lzo-1.12            |py27h3753786_1000          18 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    six-1.14.0                 |             py_1          13 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    ------------------------------------------------------------
+                                           Total:         1.4 MB
+
+The following NEW packages will be INSTALLED:
+
+  bx-python          anaconda/cloud/bioconda/linux-64::bx-python-0.8.8-py27h9449cc1_0
+  lzo                anaconda/cloud/conda-forge/linux-64::lzo-2.10-h14c3975_1000
+  python-lzo         anaconda/cloud/conda-forge/linux-64::python-lzo-1.12-py27h3753786_1000
+  six                anaconda/cloud/conda-forge/noarch::six-1.14.0-py_1
+
+
+
+Downloading and Extracting Packages
+lzo-2.10             | 319 KB    |            |   0% lzo-2.10             | 319 KB    | 5          |   5% lzo-2.10             | 319 KB    | ###5       |  35% lzo-2.10             | 319 KB    | ########## | 100% 
+bx-python-0.8.8      | 1.1 MB    |            |   0% bx-python-0.8.8      | 1.1 MB    | 1          |   1% bx-python-0.8.8      | 1.1 MB    | #3         |  13% bx-python-0.8.8      | 1.1 MB    | ####8      |  48% bx-python-0.8.8      | 1.1 MB    | ########## | 100% 
+python-lzo-1.12      | 18 KB     |            |   0% python-lzo-1.12      | 18 KB     | ########7  |  88% python-lzo-1.12      | 18 KB     | ########## | 100% 
+six-1.14.0           | 13 KB     |            |   0% six-1.14.0           | 13 KB     | ########## | 100% 
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /biosoft/miniconda/envs/anaCogent5.2
+
+  added / updated specs:
+    - isoseq3=3.3.0
+
+
+The following packages will be downloaded:
+
+    package                    |            build
+    ---------------------------|-----------------
+    isoseq3-3.3.0              |                0         3.0 MB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/bioconda
+    ------------------------------------------------------------
+                                           Total:         3.0 MB
+
+The following NEW packages will be INSTALLED:
+
+  isoseq3            anaconda/cloud/bioconda/linux-64::isoseq3-3.3.0-0
+
+
+
+Downloading and Extracting Packages
+isoseq3-3.3.0        | 3.0 MB    |            |   0% isoseq3-3.3.0        | 3.0 MB    |            |   1% isoseq3-3.3.0        | 3.0 MB    | 3          |   4% isoseq3-3.3.0        | 3.0 MB    | #3         |  13% isoseq3-3.3.0        | 3.0 MB    | ###3       |  34% isoseq3-3.3.0        | 3.0 MB    | ########   |  81% isoseq3-3.3.0        | 3.0 MB    | ########## | 100% 
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... b'\n##############################################################################\n#                                                                            #\n# PacBio(R) tools distributed via Bioconda are: pre-release versions, not    #\n# necessarily ISO compliant, intended for Research Use Only and not for use  #\n# in diagnostic procedures, intended only for command-line users, and        #\n# possibly newer than the currently available SMRT(R) Analysis builds. While #\n# efforts have been made to ensure that releases on Bioconda live up to the  #\n# quality that PacBio strives for, we make no warranty regarding any         #\n# Bioconda release.                                                          #\n#                                                                            #\n# As PacBio tools distributed via Bioconda are not covered by any service    #\n# level agreement or the like, please *do not* contact a PacBio Field        #\n# Applications Scientist or PacBio Customer Service for assistance with any  #\n# Bioconda release. We instead provide an issue tracker for you to report    #\n# issues to us at:                                                           #\n#                                                                            #\n#   https://github.com/PacificBiosciences/pbbioconda                         #\n#                                                                            #\n# We make no warranty that any such issue will be addressed,                 #\n# to any extent or within any time frame.                                    #\n#                                                                            #\n# BSD 3-Clause Clear License                                                 #\n#                                                                            #\n# Please see https://github.com/PacificBiosciences/pbbioconda for            #\n# information on License, Copyright and Disclaimer                           #\n#                                                                            #\n##############################################################################\n'
+done
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /biosoft/miniconda/envs/anaCogent5.2
+
+  added / updated specs:
+    - pbccs=4.2.0
+
+
+The following packages will be downloaded:
+
+    package                    |            build
+    ---------------------------|-----------------
+    pbccs-4.2.0                |                0         1.7 MB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/bioconda
+    ------------------------------------------------------------
+                                           Total:         1.7 MB
+
+The following NEW packages will be INSTALLED:
+
+  pbccs              anaconda/cloud/bioconda/linux-64::pbccs-4.2.0-0
+
+
+
+Downloading and Extracting Packages
+pbccs-4.2.0          | 1.7 MB    |            |   0% pbccs-4.2.0          | 1.7 MB    |            |   1% pbccs-4.2.0          | 1.7 MB    | 5          |   5% pbccs-4.2.0          | 1.7 MB    | ##1        |  21% pbccs-4.2.0          | 1.7 MB    | ########2  |  82% pbccs-4.2.0          | 1.7 MB    | ########## | 100% 
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... b'\n##############################################################################\n#                                                                            #\n# PacBio(R) tools distributed via Bioconda are: pre-release versions, not    #\n# necessarily ISO compliant, intended for Research Use Only and not for use  #\n# in diagnostic procedures, intended only for command-line users, and        #\n# possibly newer than the currently available SMRT(R) Analysis builds. While #\n# efforts have been made to ensure that releases on Bioconda live up to the  #\n# quality that PacBio strives for, we make no warranty regarding any         #\n# Bioconda release.                                                          #\n#                                                                            #\n# As PacBio tools distributed via Bioconda are not covered by any service    #\n# level agreement or the like, please *do not* contact a PacBio Field        #\n# Applications Scientist or PacBio Customer Service for assistance with any  #\n# Bioconda release. We instead provide an issue tracker for you to report    #\n# issues to us at:                                                           #\n#                                                                            #\n#   https://github.com/PacificBiosciences/pbbioconda                         #\n#                                                                            #\n# We make no warranty that any such issue will be addressed,                 #\n# to any extent or within any time frame.                                    #\n#                                                                            #\n# PacBio tool ccs, distributed via Bioconda, is licensed under               #\n#                                                                            #\n#   BSD-3 Clause Clear                                                       #\n#                                                                            #\n# and statically links GNU C Library v2.29 licensed under LGPL.              #\n# Per LPGL 2.1 subsection 6c, you are entitled to request the complete       #\n# machine-readable work that uses glibc in object code.                      #\n#                                                                            #\n# Please see https://github.com/PacificBiosciences/pbbioconda for            #\n# information on License, Copyright and Disclaimer                           #\n#                                                                            #\n##############################################################################\n'
+done
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /biosoft/miniconda/envs/anaCogent5.2
+
+  added / updated specs:
+    - pbcoretools
+
+
+The following packages will be downloaded:
+
+    package                    |            build
+    ---------------------------|-----------------
+    avro-1.8.0                 |           py27_0          74 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/bioconda
+    bzip2-1.0.8                |       h516909a_2         396 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    cffi-1.14.0                |   py27hd463f26_0         217 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    chardet-3.0.4              |py27h8c360ce_1006         180 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    cryptography-2.8           |   py27h2c19f6a_2         609 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    curl-7.68.0                |       hf8cf82a_0         137 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    cython-0.29.15             |   py27haf22ab1_1         2.1 MB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    enum34-1.1.10              |   py27h8c360ce_1          49 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    h5py-2.9.0                 |nompi_py27hf008753_1102         1.1 MB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    hdf5-1.10.4                |nompi_h3c11f04_1106         5.3 MB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    idna-2.9                   |             py_1          52 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    ipaddress-1.0.23           |             py_0          19 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    iso8601-0.1.12             |             py_1           9 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    krb5-1.16.4                |       h2fd8d38_0         1.4 MB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    libcurl-7.68.0             |       hda55be3_0         564 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    libdeflate-1.0             |       h14c3975_1          43 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/bioconda
+    libedit-3.1.20170329       |    hf8c457e_1001         172 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    libssh2-1.8.2              |       h22169c7_2         257 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    linecache2-1.0.0           |             py_1          13 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    pbcommand-1.1.1            |   py27h24bf2e0_1         193 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/bioconda
+    pbcore-1.5.1               |           py27_1         9.7 MB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/bioconda
+    pbcoretools-0.2.4          |           py27_1         134 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/bioconda
+    pycparser-2.20             |             py_0          89 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    pyopenssl-19.1.0           |             py_1          47 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    pysam-0.15.3               |   py27hda2845c_1         2.6 MB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/bioconda
+    pysocks-1.7.1              |   py27h8c360ce_1          26 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    pytz-2019.3                |             py_0         237 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    requests-2.23.0            |     pyh8c360ce_2          47 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    traceback2-1.4.0           |           py27_0          28 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    unittest2-1.1.0            |             py_0          68 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    urllib3-1.25.7             |   py27h8c360ce_1         158 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    ------------------------------------------------------------
+                                           Total:        26.0 MB
+
+The following NEW packages will be INSTALLED:
+
+  avro               anaconda/cloud/bioconda/linux-64::avro-1.8.0-py27_0
+  bzip2              anaconda/cloud/conda-forge/linux-64::bzip2-1.0.8-h516909a_2
+  cffi               anaconda/cloud/conda-forge/linux-64::cffi-1.14.0-py27hd463f26_0
+  chardet            anaconda/cloud/conda-forge/linux-64::chardet-3.0.4-py27h8c360ce_1006
+  cryptography       anaconda/cloud/conda-forge/linux-64::cryptography-2.8-py27h2c19f6a_2
+  curl               anaconda/cloud/conda-forge/linux-64::curl-7.68.0-hf8cf82a_0
+  cython             anaconda/cloud/conda-forge/linux-64::cython-0.29.15-py27haf22ab1_1
+  enum34             anaconda/cloud/conda-forge/linux-64::enum34-1.1.10-py27h8c360ce_1
+  h5py               anaconda/cloud/conda-forge/linux-64::h5py-2.9.0-nompi_py27hf008753_1102
+  hdf5               anaconda/cloud/conda-forge/linux-64::hdf5-1.10.4-nompi_h3c11f04_1106
+  idna               anaconda/cloud/conda-forge/noarch::idna-2.9-py_1
+  ipaddress          anaconda/cloud/conda-forge/noarch::ipaddress-1.0.23-py_0
+  iso8601            anaconda/cloud/conda-forge/noarch::iso8601-0.1.12-py_1
+  krb5               anaconda/cloud/conda-forge/linux-64::krb5-1.16.4-h2fd8d38_0
+  libcurl            anaconda/cloud/conda-forge/linux-64::libcurl-7.68.0-hda55be3_0
+  libdeflate         anaconda/cloud/bioconda/linux-64::libdeflate-1.0-h14c3975_1
+  libedit            anaconda/cloud/conda-forge/linux-64::libedit-3.1.20170329-hf8c457e_1001
+  libssh2            anaconda/cloud/conda-forge/linux-64::libssh2-1.8.2-h22169c7_2
+  linecache2         anaconda/cloud/conda-forge/noarch::linecache2-1.0.0-py_1
+  pbcommand          anaconda/cloud/bioconda/linux-64::pbcommand-1.1.1-py27h24bf2e0_1
+  pbcore             anaconda/cloud/bioconda/linux-64::pbcore-1.5.1-py27_1
+  pbcoretools        anaconda/cloud/bioconda/linux-64::pbcoretools-0.2.4-py27_1
+  pycparser          anaconda/cloud/conda-forge/noarch::pycparser-2.20-py_0
+  pyopenssl          anaconda/cloud/conda-forge/noarch::pyopenssl-19.1.0-py_1
+  pysam              anaconda/cloud/bioconda/linux-64::pysam-0.15.3-py27hda2845c_1
+  pysocks            anaconda/cloud/conda-forge/linux-64::pysocks-1.7.1-py27h8c360ce_1
+  pytz               anaconda/cloud/conda-forge/noarch::pytz-2019.3-py_0
+  requests           anaconda/cloud/conda-forge/noarch::requests-2.23.0-pyh8c360ce_2
+  traceback2         anaconda/cloud/conda-forge/linux-64::traceback2-1.4.0-py27_0
+  unittest2          anaconda/cloud/conda-forge/noarch::unittest2-1.1.0-py_0
+  urllib3            anaconda/cloud/conda-forge/linux-64::urllib3-1.25.7-py27h8c360ce_1
+
+
+
+Downloading and Extracting Packages
+avro-1.8.0           | 74 KB     |            |   0% avro-1.8.0           | 74 KB     | ##1        |  22% avro-1.8.0           | 74 KB     | ########## | 100% 
+hdf5-1.10.4          | 5.3 MB    |            |   0% hdf5-1.10.4          | 5.3 MB    |            |   0% hdf5-1.10.4          | 5.3 MB    | 4          |   4% hdf5-1.10.4          | 5.3 MB    | 9          |  10% hdf5-1.10.4          | 5.3 MB    | ##7        |  27% hdf5-1.10.4          | 5.3 MB    | ###2       |  33% hdf5-1.10.4          | 5.3 MB    | #######1   |  72% hdf5-1.10.4          | 5.3 MB    | ########## | 100% 
+unittest2-1.1.0      | 68 KB     |            |   0% unittest2-1.1.0      | 68 KB     | ##3        |  24% unittest2-1.1.0      | 68 KB     | ########## | 100% 
+pycparser-2.20       | 89 KB     |            |   0% pycparser-2.20       | 89 KB     | #8         |  18% pycparser-2.20       | 89 KB     | ########## | 100% 
+pytz-2019.3          | 237 KB    |            |   0% pytz-2019.3          | 237 KB    | ########## | 100% 
+idna-2.9             | 52 KB     |            |   0% idna-2.9             | 52 KB     | ###        |  31% idna-2.9             | 52 KB     | ########## | 100% 
+urllib3-1.25.7       | 158 KB    |            |   0% urllib3-1.25.7       | 158 KB    | #          |  10% urllib3-1.25.7       | 158 KB    | #########1 |  91% urllib3-1.25.7       | 158 KB    | ########## | 100% 
+pbcoretools-0.2.4    | 134 KB    |            |   0% pbcoretools-0.2.4    | 134 KB    | #1         |  12% pbcoretools-0.2.4    | 134 KB    | ########## | 100% 
+libedit-3.1.20170329 | 172 KB    |            |   0% libedit-3.1.20170329 | 172 KB    | 9          |   9% libedit-3.1.20170329 | 172 KB    | ########## | 100% 
+pyopenssl-19.1.0     | 47 KB     |            |   0% pyopenssl-19.1.0     | 47 KB     | ########## | 100% 
+requests-2.23.0      | 47 KB     |            |   0% requests-2.23.0      | 47 KB     | ###4       |  34% requests-2.23.0      | 47 KB     | ########## | 100% 
+libssh2-1.8.2        | 257 KB    |            |   0% libssh2-1.8.2        | 257 KB    | 6          |   6% libssh2-1.8.2        | 257 KB    | ########## | 100% 
+pbcommand-1.1.1      | 193 KB    |            |   0% pbcommand-1.1.1      | 193 KB    | 8          |   8% pbcommand-1.1.1      | 193 KB    | ########## | 100% 
+curl-7.68.0          | 137 KB    |            |   0% curl-7.68.0          | 137 KB    | ########## | 100% 
+cryptography-2.8     | 609 KB    |            |   0% cryptography-2.8     | 609 KB    | 2          |   3% cryptography-2.8     | 609 KB    | ####4      |  45% cryptography-2.8     | 609 KB    | ########## | 100% 
+cffi-1.14.0          | 217 KB    |            |   0% cffi-1.14.0          | 217 KB    | 7          |   7% cffi-1.14.0          | 217 KB    | ########## | 100% 
+pysocks-1.7.1        | 26 KB     |            |   0% pysocks-1.7.1        | 26 KB     | ######     |  61% pysocks-1.7.1        | 26 KB     | ########## | 100% 
+krb5-1.16.4          | 1.4 MB    |            |   0% krb5-1.16.4          | 1.4 MB    | 1          |   1% krb5-1.16.4          | 1.4 MB    | ########## | 100% 
+chardet-3.0.4        | 180 KB    |            |   0% chardet-3.0.4        | 180 KB    | 8          |   9% chardet-3.0.4        | 180 KB    | ########## | 100% 
+linecache2-1.0.0     | 13 KB     |            |   0% linecache2-1.0.0     | 13 KB     | ########## | 100% 
+pysam-0.15.3         | 2.6 MB    |            |   0% pysam-0.15.3         | 2.6 MB    |            |   1% pysam-0.15.3         | 2.6 MB    | #####5     |  55% pysam-0.15.3         | 2.6 MB    | ########## | 100% 
+cython-0.29.15       | 2.1 MB    |            |   0% cython-0.29.15       | 2.1 MB    |            |   1% cython-0.29.15       | 2.1 MB    | 6          |   7% cython-0.29.15       | 2.1 MB    | #8         |  18% cython-0.29.15       | 2.1 MB    | ###5       |  36% cython-0.29.15       | 2.1 MB    | ########## | 100% 
+h5py-2.9.0           | 1.1 MB    |            |   0% h5py-2.9.0           | 1.1 MB    | 1          |   1% h5py-2.9.0           | 1.1 MB    | ####6      |  46% h5py-2.9.0           | 1.1 MB    | #####8     |  59% h5py-2.9.0           | 1.1 MB    | ########## | 100% 
+enum34-1.1.10        | 49 KB     |            |   0% enum34-1.1.10        | 49 KB     | ###2       |  33% enum34-1.1.10        | 49 KB     | ########## | 100% 
+libdeflate-1.0       | 43 KB     |            |   0% libdeflate-1.0       | 43 KB     | ###6       |  37% libdeflate-1.0       | 43 KB     | ########## | 100% 
+traceback2-1.4.0     | 28 KB     |            |   0% traceback2-1.4.0     | 28 KB     | #####8     |  58% traceback2-1.4.0     | 28 KB     | ########## | 100% 
+bzip2-1.0.8          | 396 KB    |            |   0% bzip2-1.0.8          | 396 KB    | 4          |   4% bzip2-1.0.8          | 396 KB    | ########## | 100% 
+pbcore-1.5.1         | 9.7 MB    |            |   0% pbcore-1.5.1         | 9.7 MB    |            |   0% pbcore-1.5.1         | 9.7 MB    | 5          |   5% pbcore-1.5.1         | 9.7 MB    | 9          |   9% pbcore-1.5.1         | 9.7 MB    | ####       |  40% pbcore-1.5.1         | 9.7 MB    | #####      |  50% pbcore-1.5.1         | 9.7 MB    | ########1  |  81% pbcore-1.5.1         | 9.7 MB    | ########## | 100% 
+iso8601-0.1.12       | 9 KB      |            |   0% iso8601-0.1.12       | 9 KB      | ########## | 100% 
+ipaddress-1.0.23     | 19 KB     |            |   0% ipaddress-1.0.23     | 19 KB     | ########2  |  82% ipaddress-1.0.23     | 19 KB     | ########## | 100% 
+libcurl-7.68.0       | 564 KB    |            |   0% libcurl-7.68.0       | 564 KB    | 2          |   3% libcurl-7.68.0       | 564 KB    | ########## | 100% 
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... b'\n##############################################################################\n#                                                                            #\n# PacBio(R) tools distributed via Bioconda are: pre-release versions, not    #\n# necessarily ISO compliant, intended for Research Use Only and not for use  #\n# in diagnostic procedures, intended only for command-line users, and        #\n# possibly newer than the currently available SMRT(R) Analysis builds. While #\n# efforts have been made to ensure that releases on Bioconda live up to the  #\n# quality that PacBio strives for, we make no warranty regarding any         #\n# Bioconda release.                                                          #\n#                                                                            #\n# As PacBio tools distributed via Bioconda are not covered by any service    #\n# level agreement or the like, please *do not* contact a PacBio Field        #\n# Applications Scientist or PacBio Customer Service for assistance with any  #\n# Bioconda release. We instead provide an issue tracker for you to report    #\n# issues to us at:                                                           #\n#                                                                            #\n#   https://github.com/PacificBiosciences/pbbioconda                         #\n#                                                                            #\n# We make no warranty that any such issue will be addressed,                 #\n# to any extent or within any time frame.                                    #\n#                                                                            #\n# BSD 3-Clause Clear License                                                 #\n#                                                                            #\n# Please see https://github.com/PacificBiosciences/pbbioconda for            #\n# information on License, Copyright and Disclaimer                           #\n#                                                                            #\n##############################################################################\n'
+b'\n##############################################################################\n#                                                                            #\n# PacBio(R) tools distributed via Bioconda are: pre-release versions, not    #\n# necessarily ISO compliant, intended for Research Use Only and not for use  #\n# in diagnostic procedures, intended only for command-line users, and        #\n# possibly newer than the currently available SMRT(R) Analysis builds. While #\n# efforts have been made to ensure that releases on Bioconda live up to the  #\n# quality that PacBio strives for, we make no warranty regarding any         #\n# Bioconda release.                                                          #\n#                                                                            #\n# As PacBio tools distributed via Bioconda are not covered by any service    #\n# level agreement or the like, please *do not* contact a PacBio Field        #\n# Applications Scientist or PacBio Customer Service for assistance with any  #\n# Bioconda release. We instead provide an issue tracker for you to report    #\n# issues to us at:                                                           #\n#                                                                            #\n#   https://github.com/PacificBiosciences/pbbioconda                         #\n#                                                                            #\n# We make no warranty that any such issue will be addressed,                 #\n# to any extent or within any time frame.                                    #\n#                                                                            #\n# BSD 3-Clause Clear License                                                 #\n#                                                                            #\n# Please see https://github.com/PacificBiosciences/pbbioconda for            #\n# information on License, Copyright and Disclaimer                           #\n#                                                                            #\n##############################################################################\n'
+b'\n##############################################################################\n#                                                                            #\n# PacBio(R) tools distributed via Bioconda are: pre-release versions, not    #\n# necessarily ISO compliant, intended for Research Use Only and not for use  #\n# in diagnostic procedures, intended only for command-line users, and        #\n# possibly newer than the currently available SMRT(R) Analysis builds. While #\n# efforts have been made to ensure that releases on Bioconda live up to the  #\n# quality that PacBio strives for, we make no warranty regarding any         #\n# Bioconda release.                                                          #\n#                                                                            #\n# As PacBio tools distributed via Bioconda are not covered by any service    #\n# level agreement or the like, please *do not* contact a PacBio Field        #\n# Applications Scientist or PacBio Customer Service for assistance with any  #\n# Bioconda release. We instead provide an issue tracker for you to report    #\n# issues to us at:                                                           #\n#                                                                            #\n#   https://github.com/PacificBiosciences/pbbioconda                         #\n#                                                                            #\n# We make no warranty that any such issue will be addressed,                 #\n# to any extent or within any time frame.                                    #\n#                                                                            #\n# BSD 3-Clause Clear License                                                 #\n#                                                                            #\n# Please see https://github.com/PacificBiosciences/pbbioconda for            #\n# information on License, Copyright and Disclaimer                           #\n#                                                                            #\n##############################################################################\n'
+done
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /biosoft/miniconda/envs/anaCogent5.2
+
+  added / updated specs:
+    - bamtools
+
+
+The following packages will be downloaded:
+
+    package                    |            build
+    ---------------------------|-----------------
+    bamtools-2.5.1             |       he860b03_5         1.1 MB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/bioconda
+    ------------------------------------------------------------
+                                           Total:         1.1 MB
+
+The following NEW packages will be INSTALLED:
+
+  bamtools           anaconda/cloud/bioconda/linux-64::bamtools-2.5.1-he860b03_5
+
+
+
+Downloading and Extracting Packages
+bamtools-2.5.1       | 1.1 MB    |            |   0% bamtools-2.5.1       | 1.1 MB    | 1          |   1% bamtools-2.5.1       | 1.1 MB    | 8          |   9% bamtools-2.5.1       | 1.1 MB    | ###5       |  35% bamtools-2.5.1       | 1.1 MB    | ########## | 100% 
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+Collecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... done
+
+# All requested packages already installed.
+
+ ---> e38affa94f2d
+Removing intermediate container afef1c7a492a
+Step 5/5 : WORKDIR /work
+ ---> cebd646cb441
+Removing intermediate container 061c1bc2384b
+Successfully built cebd646cb441

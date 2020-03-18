@@ -1,0 +1,85 @@
+Sending build context to Docker daemon 6.144 kB
+Step 1/5 : FROM omicsclass/biocontainer-base:latest
+ ---> 3501aa40f5a7
+Step 2/5 : LABEL base.image "omicsclass/biocontainer-base:latest" version "0.7.17" software "bwa" software.version "20200316" about.summary "BWA is a software package for mapping low-divergent sequences against a large reference genome, such as the human genome." about.home "www.omicsclass.com" about.documentation "http://bio-bwa.sourceforge.net/" license "  " about.tags "Genomics,Proteomics,Transcriptomics,General,Metabolomics"
+ ---> Running in bd45227836a8
+ ---> 2b0068a60262
+Removing intermediate container bd45227836a8
+Step 3/5 : MAINTAINER huangls <huang2002003@qq.com>
+ ---> Running in f571bd834339
+ ---> 8d55b739f556
+Removing intermediate container f571bd834339
+Step 4/5 : RUN conda install bwa=0.7.17
+ ---> Running in 1d9e5fbe2c71
+
+[91m[0mCollecting package metadata (current_repodata.json): ...working... done
+Solving environment: ...working... done
+
+## Package Plan ##
+
+  environment location: /biosoft/miniconda
+
+  added / updated specs:
+    - bwa=0.7.17
+
+
+The following packages will be downloaded:
+
+    package                    |            build
+    ---------------------------|-----------------
+    bwa-0.7.17                 |       hed695b0_7         523 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/bioconda
+    ca-certificates-2019.11.28 |       hecc5488_0         145 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    certifi-2019.11.28         |   py37hc8dfbb8_1         149 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    conda-4.8.3                |   py37hc8dfbb8_0         3.0 MB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    openssl-1.1.1d             |       h516909a_0         2.1 MB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    perl-5.26.2                |    h516909a_1006        15.4 MB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    python_abi-3.7             |          1_cp37m           4 KB  http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge
+    ------------------------------------------------------------
+                                           Total:        21.3 MB
+
+The following NEW packages will be INSTALLED:
+
+  bwa                anaconda/cloud/bioconda/linux-64::bwa-0.7.17-hed695b0_7
+  perl               anaconda/cloud/conda-forge/linux-64::perl-5.26.2-h516909a_1006
+  python_abi         anaconda/cloud/conda-forge/linux-64::python_abi-3.7-1_cp37m
+
+The following packages will be UPDATED:
+
+  certifi              pkgs/main::certifi-2019.11.28-py37_0 --> anaconda/cloud/conda-forge::certifi-2019.11.28-py37hc8dfbb8_1
+  conda                       pkgs/main::conda-4.8.2-py37_0 --> anaconda/cloud/conda-forge::conda-4.8.3-py37hc8dfbb8_0
+
+The following packages will be SUPERSEDED by a higher-priority channel:
+
+  ca-certificates     pkgs/main::ca-certificates-2020.1.1-0 --> anaconda/cloud/conda-forge::ca-certificates-2019.11.28-hecc5488_0
+  openssl              pkgs/main::openssl-1.1.1d-h7b6447c_4 --> anaconda/cloud/conda-forge::openssl-1.1.1d-h516909a_0
+
+
+Proceed ([y]/n)? 
+
+Downloading and Extracting Packages
+perl-5.26.2          | 15.4 MB   |            |   0% perl-5.26.2          | 15.4 MB   |            |   0% perl-5.26.2          | 15.4 MB   |            |   1% perl-5.26.2          | 15.4 MB   | 2          |   2% perl-5.26.2          | 15.4 MB   | 8          |   9% perl-5.26.2          | 15.4 MB   | ##7        |  27% perl-5.26.2          | 15.4 MB   | ####6      |  47% perl-5.26.2          | 15.4 MB   | ######5    |  65% perl-5.26.2          | 15.4 MB   | ########4  |  84% perl-5.26.2          | 15.4 MB   | #########9 |  99% perl-5.26.2          | 15.4 MB   | ########## | 100% 
+python_abi-3.7       | 4 KB      |            |   0% python_abi-3.7       | 4 KB      | ########## | 100% 
+bwa-0.7.17           | 523 KB    |            |   0% bwa-0.7.17           | 523 KB    | ########## | 100% 
+certifi-2019.11.28   | 149 KB    |            |   0% certifi-2019.11.28   | 149 KB    | ########## | 100% 
+openssl-1.1.1d       | 2.1 MB    |            |   0% openssl-1.1.1d       | 2.1 MB    | ######8    |  68% openssl-1.1.1d       | 2.1 MB    | ########## | 100% 
+conda-4.8.3          | 3.0 MB    |            |   0% conda-4.8.3          | 3.0 MB    |            |   1% conda-4.8.3          | 3.0 MB    | #########9 | 100% conda-4.8.3          | 3.0 MB    | ########## | 100% 
+ca-certificates-2019 | 145 KB    |            |   0% ca-certificates-2019 | 145 KB    | #1         |  11% ca-certificates-2019 | 145 KB    | ########## | 100% 
+Preparing transaction: ...working... done
+Verifying transaction: ...working... done
+Executing transaction: ...working... done
+ ---> d125bfd0511e
+Removing intermediate container 1d9e5fbe2c71
+Step 5/5 : WORKDIR /work
+ ---> 21d75ee161fa
+Removing intermediate container fd2b6ae6f7af
+Successfully built 21d75ee161fa
+The push refers to a repository [docker.io/omicsclass/bwa]
+fb9e31ee0d5a: Preparing
+dc3c91661071: Preparing
+0d1d7ad70a1b: Preparing
+77b174a6a187: Preparing
+0d1d7ad70a1b: Mounted from omicsclass/samtools
+77b174a6a187: Mounted from omicsclass/samtools
+dc3c91661071: Mounted from omicsclass/samtools
+fb9e31ee0d5a: Pushed
+latest: digest: sha256:9cd795edae88b96a62be57fd81cd50b71012130e3ea3c77b7413d2d94dc29658 size: 1162
