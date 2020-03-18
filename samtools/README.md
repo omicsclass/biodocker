@@ -23,7 +23,8 @@ total 24
 -rw-rw-r-- 1 biosoft biosoft   70 Mar 16 17:30 t.fa
 -rw-r--r-- 1 root    root      14 Mar 16 17:55 t.fa.fai
 ```
-## 3.总结是不是很好用，不用安装软件，直接使用samtools，彻底解决安装软件时间；
+## 3.总结
+是不是很好用，不用安装软件，直接使用samtools，跳过繁琐的软件安装过程；
 
 
 docker学习笔记：https://www.omicsclass.com/article/1181
