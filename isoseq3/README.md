@@ -3,7 +3,6 @@
 ## 1.查询镜像：
 ```
 $ docker search omicsclass
-$ docker search omicsclass
 INDEX       NAME                                     DESCRIPTION                           STARS     OFFICIAL   AUTOMATED
 docker.io   docker.io/omicsclass/biocontainer-base   Biocontainers base Image              0
 docker.io   docker.io/omicsclass/bwa                 BWA v0.7.17 build by omicsclass       0
