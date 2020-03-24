@@ -19,10 +19,10 @@ MAINTAINER huangls <huang2002003@qq.com>
 #ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 ENV PATH /biosoft/miniconda/bin:$PATH
 
-RUN yum -y update && yum upgrade -y \
+RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && yum -y update && yum upgrade -y \
     && yum -y install  bzip2 openssl openssh-clients\
                 cmake zlib  libpng libpng12 libtiff  libjpeg boost \
-                wget   zip    which  less  tree \
+                wget   zip    which  less  tree unzip gcc-c++ java-1.8.0-openjdk-devel-debug.x86_64 \
     && yum clean all \
         && mkdir -p  /biosoft/miniconda  \
         && wget https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /tmp/miniconda.sh \
@@ -46,8 +46,7 @@ RUN yum -y update && yum upgrade -y \
         && conda config --add channels http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/bioconda/  \
         && conda config --set show_channel_urls yes \
         && conda config --set ssl_verify no \
-        && conda clean --all --yes
-#RUN    conda update conda -y  && conda upgrade conda -y \
+        && conda clean --all --yes && conda update -y -n base -c defaults conda
 
 
 
