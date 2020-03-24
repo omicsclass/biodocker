@@ -46,7 +46,7 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && yum -y update && 
         && conda config --add channels http://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/bioconda/  \
         && conda config --set show_channel_urls yes \
         && conda config --set ssl_verify no \
-        && conda clean --all --yes && conda update -y -n base -c defaults conda
+        && conda update -y -n base -c defaults conda && conda clean --all --yes 
 
 
 
