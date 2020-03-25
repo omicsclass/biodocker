@@ -30,13 +30,7 @@ RUN 	 cd /biosoft && wget -qO- https://download.asperasoft.com/download/sw/conne
 	&& conda install -y  htseq=0.11.3 \
 	&& conda install -y  stringtie=2.1.1 \
 	&& conda clean --all --yes \
-	&& R -e 'install.packages("BiocManager")' \
-	&& R -e 'install.packages("tidyverse")' \
-	&& R -e 'install.packages("getopt")' \
-	&& R -e 'BiocManager::install("DESeq2")' \
-	&& R -e 'BiocManager::install("clusterProfiler")' \
-	&& R -e 'BiocManager::install("EBSeq")' \
-	&& R -e 'BiocManager::install("edgeR")' \
-	&& echo "conda activate genefamilyenv" >>/biosoft/miniconda/etc/profile.d/conda.sh
+	&& R -e "install.packages(c('BiocManager', 'RColorBrewer','tidyverse', 'getopt','reshape2','pheatmap','cowplot'),dependencies=TRUE,repos='http://cran.rstudio.com/')" \
+	&& R -e "BiocManager::install(c('DESeq2','clusterProfiler','EBSeq','edgeR','R.utils','topGO','pathview'))" 
 WORKDIR /work
 
