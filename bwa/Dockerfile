@@ -19,6 +19,6 @@ MAINTAINER huangls <huang2002003@qq.com>
 #ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 
 
-RUN conda install bwa=0.7.17
+RUN conda install bwa=0.7.17 &&  conda clean --all --yes
 WORKDIR /work
 
