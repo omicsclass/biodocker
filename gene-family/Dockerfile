@@ -10,7 +10,7 @@ LABEL base.image="omicsclass/biocontainer-base:latest" \
       about.home="www.omicsclass.com" \
       about.documentation="https://www.omicsclass.com/article/525" \
       license="  " \
-      about.tags="Genomics,Proteomics,Transcriptomics,General,Metabolomics,gene_family"
+      about.tags="Genomics,Transcriptomics,General,gene_family"
 
 ################## MAINTAINER ######################
 MAINTAINER huangls <huang2002003@qq.com>
