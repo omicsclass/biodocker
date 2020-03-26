@@ -17,7 +17,7 @@ MAINTAINER huangls <huang2002003@qq.com>
 
 #COPY Miniconda3-latest-Linux-x86_64.sh /tmp/miniconda.sh
 #ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
-
+ENV PATH /biosoft/miniconda/envs/anaCogent5.2/bin:$PATH
 
 RUN conda create -y -n anaCogent5.2 python=2.7 && source activate anaCogent5.2 && conda install -y -n anaCogent5.2 biopython \
 	&& conda install -y -n anaCogent5.2  -c http://conda.anaconda.org/cgat bx-python \
