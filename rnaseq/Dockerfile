@@ -28,7 +28,7 @@ RUN 	 cd /biosoft && wget -qO- https://download.asperasoft.com/download/sw/conne
 	&& conda install -y  rseqc=3.0.1 \
 	&& conda install -y  r=3.6 \
 	&& conda install -y  htseq=0.11.3 \
-	&& conda install -y  bowtie2=2.4.1 \
+	&& conda install -y  bowtie2=2.3.5.1 \
 	&& conda install -y  bowtie=1.2.3 \
 	&& conda install -y  stringtie=2.1.1 \
 	&& conda install -y  fastqc=0.11.9 \
