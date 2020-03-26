@@ -4,18 +4,19 @@ circos，meme，bioperl等等
 
 更多可观看视频课程：[基因家族](https://study.163.com/course/introduction/1209048893.htm?share=1&shareId=1030291076)
 # 软件列表
-
-python=2.7
-jcvi=1.0.5
-circos=0.69.8
-perl-bioperl=1.7.2
-blast=2.9.0
-hmmer=3.3
-clustalw=2.1
-meme=5.1.0
-samtools=1.10
-MCScanX
-KaKs_Calculator2.0
+|软件|版本|
+|---|---|
+|python|2.7|
+|jcvi|1.0.5|
+|circos|0.69.8|
+|perl-bioperl|1.7.2|
+|blast|2.9.0|
+|hmmer|3.3|
+|clustalw|2.1|
+|meme|5.1.0|
+|samtools|1.10|
+|MCScanX||
+|KaKs_Calculator|2.0
 
 # 使用方法
 
