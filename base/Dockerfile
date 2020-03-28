@@ -22,13 +22,13 @@ RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && yum -y update && 
     && yum -y install  bzip2 openssl openssh-clients\
                 cmake zlib  libpng libpng12 libtiff  libjpeg boost \
          fuse fuse-devel wget   zip    which  less  tree unzip gcc-c++ java-1.8.0-openjdk-devel-debug.x86_64 \
-    && yum clean all \
+    && yum clean all 
 
 RUN mkdir -p  /biosoft/miniconda /work  \
     && wget https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /tmp/miniconda.sh \
     && bash /tmp/miniconda.sh -bfp /biosoft/miniconda \
     && rm -rf /tmp/miniconda.sh \
-    && ln -s /biosoft/miniconda/etc/profile.d/conda.sh /etc/profile.d/conda.sh  \
+    && ln -s /biosoft/miniconda/etc/profile.d/conda.sh /etc/profile.d/conda.sh
 
 
 RUN groupadd fuse && \
