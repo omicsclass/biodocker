@@ -17,39 +17,26 @@ MAINTAINER huangls <huang2002003@qq.com>
 
 #COPY Miniconda3-latest-Linux-x86_64.sh /tmp/miniconda.sh
 #ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
-
-RUN ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && yum -y update && yum upgrade -y \
-    && yum -y install  bzip2 openssl openssh-clients\
-                cmake zlib  libpng libpng12 libtiff  libjpeg boost \
-         fuse fuse-devel wget   zip    which  less  tree unzip gcc-c++ java-1.8.0-openjdk-devel-debug.x86_64 \
-    && yum clean all 
-
-RUN mkdir -p  /biosoft/miniconda /work  \
-    && wget https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /tmp/miniconda.sh \
-    && bash /tmp/miniconda.sh -bfp /biosoft/miniconda \
-    && rm -rf /tmp/miniconda.sh \
-    && ln -s /biosoft/miniconda/etc/profile.d/conda.sh /etc/profile.d/conda.sh
-
-
-RUN groupadd fuse && \
-    useradd --create-home --shell /bin/bash --user-group --uid 1000 --groups sudo,fuse omicsclass && \
-    echo "omicsgene" | passwd --stdin omicsclass && \
-    chown omicsclass:omicsclass /work && \
-    chown -R omicsclass:omicsclass /biosoft && \
-    chmod 777 -R /biosoft/miniconda
-
-# Change user
-USER omicsclass
-
 ENV PATH /biosoft/miniconda/bin:$PATH
-ENV HOME=/home/omicsclass
-RUN     echo "alias e=\"less -S \"" >> ~/.bashrc \
+
+RUN	ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && yum -y update && yum upgrade -y \
+	&& yum -y install  bzip2 openssl openssh-clients\
+                cmake zlib  libpng libpng12 libtiff  libjpeg boost \
+                wget   zip    which  less  tree unzip gcc-c++ java-1.8.0-openjdk-devel-debug.x86_64 \
+	&& yum clean all 
+
+RUN	mkdir -p  /biosoft/miniconda  \
+        && wget https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /tmp/miniconda.sh \
+    	&& bash /tmp/miniconda.sh -bfp /biosoft/miniconda \
+    	&& rm -rf /tmp/miniconda.sh \
+        && ln -s /biosoft/miniconda/etc/profile.d/conda.sh /etc/profile.d/conda.sh  \
+    	&& echo ". /biosoft/miniconda/etc/profile.d/conda.sh" >> ~/.bashrc  \
+        && echo "alias e=\"less -S \"" >> ~/.bashrc \
         && echo "alias ee=\"less -SN \"" >> ~/.bashrc \
         && echo "alias l=\"ls -lhtr"\" >> ~/.bashrc \
         && echo "alias ll=\"ls -lh\"" >> ~/.bashrc \
         && echo "export PS1=\"\[\e[32m\][\[\e[35m\]\u\[\e[m\]@\[\e[36m\]\h \[\e[31m\] \t \w\[\e[32m\]]\[\e[36m\]#\[\e[m\]\"" >> ~/.bashrc \
-        && echo ". /biosoft/miniconda/etc/profile.d/conda.sh" >> ~/.bashrc  \
-	#&& conda config --add channels bioconda \
+        #&& conda config --add channels bioconda \
         #&& conda config --add channels conda-forge \
         #&& conda config --add channels genomedk \
         && conda config --add channels http://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/  \
