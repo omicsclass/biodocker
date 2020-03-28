@@ -34,10 +34,9 @@ RUN mkdir -p  /biosoft/miniconda /work  \
 RUN groupadd fuse && \
     useradd --create-home --shell /bin/bash --user-group --uid 1000 --groups sudo,fuse omicsclass && \
     echo "omicsgene" | passwd --stdin omicsclass && \
-    chown omicsclass:omicsclass /work
-    chown -R omicsclass:omicsclass /biosoft
-
-RUN chmod 777 -R /biosoft/miniconda
+    chown omicsclass:omicsclass /work && \
+    chown -R omicsclass:omicsclass /biosoft && \
+    chmod 777 -R /biosoft/miniconda
 
 # Change user
 USER omicsclass
