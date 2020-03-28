@@ -20,8 +20,9 @@ MAINTAINER huangls <huang2002003@qq.com>
 
 ENV PATH ~/.aspera/connect/bin/:$PATH
 RUN 	 cd /biosoft && wget -qO- https://download.asperasoft.com/download/sw/connect/3.9.9/ibm-aspera-connect-3.9.9.177872-linux-g2.12-64.tar.gz |tar xvz \
-	&& chmod +x ibm-aspera-connect-3.9.9.177872-linux-g2.12-64.sh && ./ibm-aspera-connect-3.9.9.177872-linux-g2.12-64.sh && rm ibm-aspera-connect-3.9.9.177872-linux-g2.12-64.sh \
-	&& conda update -y -n base -c defaults conda \
+	&& chmod +x ibm-aspera-connect-3.9.9.177872-linux-g2.12-64.sh && ./ibm-aspera-connect-3.9.9.177872-linux-g2.12-64.sh && rm ibm-aspera-connect-3.9.9.177872-linux-g2.12-64.sh 
+
+RUN	 conda update -y -n base -c defaults conda \
 	&& conda install -y  samtools=1.10 \
 	&& conda install -y  sra-tools=2.10.3 \
 	&& conda install -y  hisat2=2.2.0 \
@@ -47,8 +48,9 @@ RUN 	 cd /biosoft && wget -qO- https://download.asperasoft.com/download/sw/conne
 	#&& conda install -y  blast=2.9.0 \
 	#&& conda install -y  hmmer=3.3 \
 	#&& pip install tmhmm.py \
-	&& conda clean --all --yes \
-	&& R -e "install.packages(c('BiocManager', 'devtools','dplyr','gplots','RColorBrewer','tidyverse', 'getopt','reshape2','pheatmap','cowplot'),dependencies=TRUE,repos='http://cran.rstudio.com/')" \
+	&& conda clean --all --yes 
+
+RUN	R -e "install.packages(c('BiocManager', 'devtools','dplyr','gplots','RColorBrewer','tidyverse', 'getopt','reshape2','pheatmap','cowplot'),dependencies=TRUE,repos='http://cran.rstudio.com/')" \
 	&& R -e "BiocManager::install(c('DESeq2','GenomicRanges','genefilter','ballgown','biomaRt','rhdf5','clusterProfiler','EBSeq','edgeR','R.utils','topGO','pathview'))" 
 WORKDIR /work
 

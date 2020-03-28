@@ -18,7 +18,7 @@ MAINTAINER huangls <huang2002003@qq.com>
 #COPY Miniconda3-latest-Linux-x86_64.sh /tmp/miniconda.sh
 #ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 
-RUN 	&& mkdir /biosoft/MCScanX && wget http://chibba.pgml.uga.edu/mcscan2/MCScanX.zip -O /biosoft/MCScanX/MCScanX.zip && cd /biosoft/MCScanX \
+RUN 	 mkdir /biosoft/MCScanX && wget http://chibba.pgml.uga.edu/mcscan2/MCScanX.zip -O /biosoft/MCScanX/MCScanX.zip && cd /biosoft/MCScanX \
 	&& unzip MCScanX.zip && cd MCScanX && sed -i '1i#include <unistd.h>' msa.h && sed -i '1i#include <unistd.h>' detect_collinear_tandem_arrays.h && sed -i '1i#include <unistd.h>' dissect_multiple_alignment.h \
 	&& make && rm -f /biosoft/MCScanX/MCScanX.zip && rm -rf /biosoft/MCScanX/MCScanX/data \
 	&& wget https://netcologne.dl.sourceforge.net/project/kakscalculator2/KaKs_Calculator2.0.tar.gz -O /biosoft/KaKs_Calculator2.0.tar.gz \

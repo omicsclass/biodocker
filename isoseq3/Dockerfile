@@ -27,7 +27,7 @@ RUN conda create -y -n anaCogent5.2 python=2.7 && source activate anaCogent5.2 &
 	&& conda install -y -n anaCogent5.2 bamtools=2.5.1 \
 	&& conda install -y -n anaCogent5.2 pysam=0.15.3 \
 	&& conda install -y -n anaCogent5.2 lima=1.11.0 \
-	&&  conda clean --all --yes \
+	&& conda clean --all --yes \
 	&& echo "conda activate anaCogent5.2" >>/biosoft/miniconda/etc/profile.d/conda.sh 
 WORKDIR /work
 
