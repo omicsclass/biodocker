@@ -24,7 +24,7 @@ RUN 	 mkdir /biosoft/MCScanX && wget http://chibba.pgml.uga.edu/mcscan2/MCScanX.
 	&& wget https://netcologne.dl.sourceforge.net/project/kakscalculator2/KaKs_Calculator2.0.tar.gz -O /biosoft/KaKs_Calculator2.0.tar.gz \
 	&& cd /biosoft/ && tar -zxvf KaKs_Calculator2.0.tar.gz && cd  /biosoft/KaKs_Calculator2.0/src && sed -i '/#include<time.h>/a#include<string.h>' base.h \
 	&& make && chmod a+x /biosoft/KaKs_Calculator2.0/src/AXTConvertor /biosoft/KaKs_Calculator2.0/bin/Linux/KaKs_Calculator \
-	&& rm -rf /biosoft/KaKs_Calculator2.0.tar.gz /biosoft/KaKs_Calculator2.0/examples /biosoft/KaKs_Calculator2.0/bin/Windows \
+	&& rm -rf /biosoft/KaKs_Calculator2.0.tar.gz /biosoft/KaKs_Calculator2.0/examples /biosoft/KaKs_Calculator2.0/bin/Windows 
 	
 ENV PATH /biosoft/miniconda/envs/genefamilyenv/bin:/biosoft/MCScanX/MCScanX:/biosoft/KaKs_Calculator2.0/src/:/biosoft/KaKs_Calculator2.0/bin/Linux/:$PATH
 
