@@ -28,7 +28,7 @@ RUN 	 mkdir /biosoft/MCScanX && wget http://chibba.pgml.uga.edu/mcscan2/MCScanX.
 	
 ENV PATH /biosoft/miniconda/envs/genefamilyenv/bin:/biosoft/MCScanX/MCScanX:/biosoft/KaKs_Calculator2.0/src/:/biosoft/KaKs_Calculator2.0/bin/Linux/:$PATH
 
-RUN	conda update -y -n base -c defaults conda && conda install -y -n genefamilyenv jcvi=1.0.5  \
+RUN	conda update -y -n base -c defaults conda && conda create -y -n genefamilyenv python=2.7 && source activate genefamilyenv && conda install -y -n genefamilyenv jcvi=1.0.5  \
 	&& conda install -y  -n genefamilyenv circos=0.69.8 &&  conda install  -n genefamilyenv -y perl-bioperl=1.7.2 \
 	&& conda install -y  -n genefamilyenv blast=2.9.0  \
 	&& conda install -y  -n genefamilyenv hmmer=3.3 \
