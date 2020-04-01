@@ -41,6 +41,10 @@ RUN	 conda update -y -n base -c defaults conda \
 	&& conda install -y  flexbar=3.5.0 \
 	&& conda install -y  cutadapt=2.9 \
 	&& conda install -y  regtools=0.5.2 \
+	&& conda install -y  bedops=2.4.37 \
+	&& conda install -y  ucsc-gff3togenepred=377 \
+	&& conda install -y  ucsc-gtftogenepred=377 \
+	&& conda install -y  ucsc-bedtogenepred=377 \
 	#&& conda install -y  trinity=2.9.1 \
 	#&& conda install -y  star=2.7.3a \
 	#&& conda install -y  rsem=1.3.3 \
