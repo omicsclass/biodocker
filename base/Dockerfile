@@ -20,9 +20,9 @@ MAINTAINER huangls <huang2002003@qq.com>
 ENV PATH /biosoft/miniconda/bin:$PATH
 
 RUN	ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && yum -y update && yum upgrade -y \
-	&& yum -y install  bzip2 openssl openssh-clients\
-                cmake zlib  libpng libpng12 libtiff  libjpeg boost \
-                wget   zip    which  less  tree unzip gcc-c++ java-1.8.0-openjdk-devel-debug.x86_64 \
+	&& yum -y install  bzip2 bzip2-devel openssl openssh-clients\
+                cmake zlib zlib-devel libpng libpng12 libtiff  libjpeg boost xz-devel xz libpng-devel libjpeg-devel libtiff-devel  cairo pango-devel gcc-gfortran\
+                wget   zip    which  less  tree unzip gcc-c++ gcc gdb java-1.8.0-openjdk-devel-debug.x86_64 \
 	&& yum clean all 
 
 RUN	mkdir -p  /biosoft/miniconda  \
