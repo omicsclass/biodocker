@@ -6,11 +6,11 @@ LABEL base.image="omicsclass/biocontainer-base:latest" \
       version="v0.0.1" \
       software="rnaseq" \
       software.version="20200324" \
-      about.summary="rnaset analysis software packages" \
+      about.summary="rnaseq analysis software packages" \
       about.home="www.omicsclass.com" \
       about.documentation="" \
       license="  " \
-      about.tags="Genomics,Proteomics,Transcriptomics,General,Metabolomics,gene_family"
+      about.tags="Genomics,Proteomics,Transcriptomics,General,Metabolomics"
 
 ################## MAINTAINER ######################
 MAINTAINER huangls <huang2002003@qq.com>
