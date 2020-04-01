@@ -24,6 +24,7 @@ RUN 	 cd /biosoft && wget -qO- https://download.asperasoft.com/download/sw/conne
 
 RUN	 conda update -y -n base -c defaults conda \
 	&& conda install -y  samtools=1.10 \
+	&& conda install -y  bamtools=2.5.1 \
 	&& conda install -y  sra-tools=2.10.3 \
 	&& conda install -y  hisat2=2.2.0 \
 	&& conda install -y  rseqc=3.0.1 \
@@ -41,7 +42,9 @@ RUN	 conda update -y -n base -c defaults conda \
 	&& conda install -y  flexbar=3.5.0 \
 	&& conda install -y  cutadapt=2.9 \
 	&& conda install -y  regtools=0.5.2 \
-	&& conda install -y  bedops=2.4.37 \
+	#&& conda install -y  bedops=2.4.37 \
+	#&& conda install -y  gffutils=0.10.1 \
+	#&& conda install -y  ea-utils=1.1.2.779 \
 	&& conda install -y  ucsc-gff3togenepred=377 \
 	&& conda install -y  ucsc-gtftogenepred=377 \
 	&& conda install -y  ucsc-bedtogenepred=377 \
