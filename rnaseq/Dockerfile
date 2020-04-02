@@ -36,12 +36,11 @@ RUN	 conda update -y -n base -c defaults conda \
 	&& conda install -y  fastqc=0.11.9 \
 	&& conda install -y  fastp=0.20.0 \
 	&& conda install -y  cutadapt=2.9 \
-	&& conda install -y  trim-galore=0.6.5 \
-	&& conda install -y  gffcompare=0.11.2 \
+	#&& conda install -y  trim-galore=0.6.5 \
+	#&& conda install -y  gffcompare=0.11.2 \
 	&& conda install -y  picard=2.22.1 \
-	&& conda install -y  flexbar=3.5.0 \
-	&& conda install -y  cutadapt=2.9 \
-	&& conda install -y  regtools=0.5.2 \
+	#&& conda install -y  flexbar=3.5.0 \
+	#&& conda install -y  regtools=0.5.2 \
 	#&& conda install -y  bedops=2.4.37 \
 	#&& conda install -y  gffutils=0.10.1 \
 	#&& conda install -y  ea-utils=1.1.2.779 \
