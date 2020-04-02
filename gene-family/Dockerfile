@@ -24,13 +24,13 @@ RUN 	 mkdir /biosoft/MCScanX && wget http://chibba.pgml.uga.edu/mcscan2/MCScanX.
 	&& wget https://netcologne.dl.sourceforge.net/project/kakscalculator2/KaKs_Calculator2.0.tar.gz -O /biosoft/KaKs_Calculator2.0.tar.gz \
 	&& cd /biosoft/ && tar -zxvf KaKs_Calculator2.0.tar.gz && cd  /biosoft/KaKs_Calculator2.0/src && sed -i '/#include<time.h>/a#include<string.h>' base.h \
 	&& make && chmod a+x /biosoft/KaKs_Calculator2.0/src/AXTConvertor /biosoft/KaKs_Calculator2.0/bin/Linux/KaKs_Calculator \
-	&& rm -rf /biosoft/KaKs_Calculator2.0.tar.gz /biosoft/KaKs_Calculator2.0/examples /biosoft/KaKs_Calculator2.0/bin/Windows 
-	
-ENV PATH /biosoft/miniconda/envs/genefamilyenv/bin:/biosoft/MCScanX/MCScanX:/biosoft/KaKs_Calculator2.0/src/:/biosoft/KaKs_Calculator2.0/bin/Linux/:$PATH
+	&& rm -rf /biosoft/KaKs_Calculator2.0.tar.gz /biosoft/KaKs_Calculator2.0/examples /biosoft/KaKs_Calculator2.0/bin/Windows \
+	&& cd /biosoft && wget  -qO- https://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/2.2.26/ncbi-blast-2.2.26+-x64-linux.tar.gz  | tar xvz
+ENV PATH /biosoft/miniconda/envs/genefamilyenv/bin:/biosoft/MCScanX/MCScanX:/biosoft/KaKs_Calculator2.0/src/:/biosoft/KaKs_Calculator2.0/bin/Linux/:/biosoft/ncbi-blast-2.2.26+/bin:$PATH
 
 RUN	conda update -y -n base -c defaults conda && conda create -y -n genefamilyenv python=2.7 && source activate genefamilyenv && conda install -y -n genefamilyenv jcvi=1.0.5  \
 	&& conda install -y  -n genefamilyenv circos=0.69.8 &&  conda install  -n genefamilyenv -y perl-bioperl=1.7.2 \
-	&& conda install -y  -n genefamilyenv blast=2.9.0  \
+	#&& conda install -y  -n genefamilyenv blast=2.9.0  \
 	&& conda install -y  -n genefamilyenv hmmer=3.3 \
 	&& conda install -y  -n genefamilyenv clustalw=2.1 \
 	&& conda install -y  -n genefamilyenv meme=5.1.0 \
