@@ -24,7 +24,7 @@ RUN 	 cd /biosoft && wget -qO- https://download.asperasoft.com/download/sw/conne
 	&& wget -qO- http://ccb.jhu.edu/software/stringtie/dl/gffread-0.11.8.Linux_x86_64.tar.gz|tar xvz \
 	&& wget -qO- http://ccb.jhu.edu/software/stringtie/dl/gffcompare-0.11.5.Linux_x86_64.tar.gz |tar xvz \
 	&& cd /biosoft/biotools && wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/gtfToGenePred && chmod a+x gtfToGenePred \
-	&& wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/gtfToGenePred && chmod a+x gtfToGenePred
+	&& wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/gff3ToGenePred && chmod a+x gff3ToGenePred
 
 RUN	 conda update -y -n base -c defaults conda \
 	&& conda install -y  samtools=1.10 \
