@@ -26,7 +26,8 @@ RUN	ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && yum -y update && 
 	&& yum clean all 
 
 RUN	mkdir -p  /biosoft/miniconda  && mkdir -p  /biosoft/biotools \
-        && wget https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /tmp/miniconda.sh \
+        #&& wget https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /tmp/miniconda.sh \
+        && wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /tmp/miniconda.sh \
     	&& bash /tmp/miniconda.sh -bfp /biosoft/miniconda \
     	&& rm -rf /tmp/miniconda.sh \
         && ln -s /biosoft/miniconda/etc/profile.d/conda.sh /etc/profile.d/conda.sh  \
