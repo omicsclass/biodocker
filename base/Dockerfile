@@ -17,7 +17,7 @@ MAINTAINER huangls <huang2002003@qq.com>
 
 #COPY Miniconda3-latest-Linux-x86_64.sh /tmp/miniconda.sh
 #ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
-ENV PATH /biosoft/miniconda/bin:$PATH
+ENV PATH /biosoft/miniconda/bin:/biosoft/biotools:$PATH
 
 RUN	ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && yum -y update && yum upgrade -y \
 	&& yum -y install  bzip2 bzip2-devel openssl openssh-clients\
@@ -25,7 +25,7 @@ RUN	ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && yum -y update && 
                 gsl gsl-devel wget   zip    which  less  tree unzip gcc-c++ gcc gdb java-1.8.0-openjdk-devel-debug.x86_64 \
 	&& yum clean all 
 
-RUN	mkdir -p  /biosoft/miniconda  \
+RUN	mkdir -p  /biosoft/miniconda  && mkdir -p  /biosoft/biotools \
         && wget https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /tmp/miniconda.sh \
     	&& bash /tmp/miniconda.sh -bfp /biosoft/miniconda \
     	&& rm -rf /tmp/miniconda.sh \
