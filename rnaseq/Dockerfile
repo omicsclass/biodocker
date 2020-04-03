@@ -18,13 +18,17 @@ MAINTAINER huangls <huang2002003@qq.com>
 #COPY Miniconda3-latest-Linux-x86_64.sh /tmp/miniconda.sh
 #ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 
-ENV PATH ~/.aspera/connect/bin/:$PATH
+ENV PATH ~/.aspera/connect/bin/:/biosoft/gffread-0.11.8.Linux_x86_64/:/biosoft/gffcompare-0.11.5.Linux_x86_64/:$PATH
 RUN 	 cd /biosoft && wget -qO- https://download.asperasoft.com/download/sw/connect/3.9.9/ibm-aspera-connect-3.9.9.177872-linux-g2.12-64.tar.gz |tar xvz \
-	&& chmod +x ibm-aspera-connect-3.9.9.177872-linux-g2.12-64.sh && ./ibm-aspera-connect-3.9.9.177872-linux-g2.12-64.sh && rm ibm-aspera-connect-3.9.9.177872-linux-g2.12-64.sh 
+	&& chmod +x ibm-aspera-connect-3.9.9.177872-linux-g2.12-64.sh && ./ibm-aspera-connect-3.9.9.177872-linux-g2.12-64.sh && rm ibm-aspera-connect-3.9.9.177872-linux-g2.12-64.sh \
+	&& wget -qO- http://ccb.jhu.edu/software/stringtie/dl/gffread-0.11.8.Linux_x86_64.tar.gz|tar xvz \
+	&& wget -qO- http://ccb.jhu.edu/software/stringtie/dl/gffcompare-0.11.5.Linux_x86_64.tar.gz |tar xvz \
+	&& cd /biosoft/biotools && wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/gtfToGenePred && chmod a+x gtfToGenePred \
+	&& wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/gtfToGenePred && chmod a+x gtfToGenePred
 
 RUN	 conda update -y -n base -c defaults conda \
 	&& conda install -y  samtools=1.10 \
-	#&& conda install -y  bamtools=2.5.1 \
+	&& conda install -y  bamtools=2.5.1 \
 	&& conda install -y  sra-tools=2.10.3 \
 	&& conda install -y  matplotlib=3.2.1 \
 	&& conda install -y  hisat2=2.2.0 \
@@ -39,15 +43,16 @@ RUN	 conda update -y -n base -c defaults conda \
 	#&& conda install -y  cutadapt=2.9 \
 	#&& conda install -y  trim-galore=0.6.5 \
 	#&& conda install -y  gffcompare=0.11.2 \
+	#&& conda install -y  gffread=0.11.7 \
 	#&& conda install -y  picard=2.22.1 \
 	#&& conda install -y  flexbar=3.5.0 \
 	#&& conda install -y  regtools=0.5.2 \
 	#&& conda install -y  bedops=2.4.37 \
 	#&& conda install -y  gffutils=0.10.1 \
 	#&& conda install -y  ea-utils=1.1.2.779 \
-	&& conda install -y  ucsc-gff3togenepred=377 \
-	&& conda install -y  ucsc-gtftogenepred=377 \
-	&& conda install -y  ucsc-bedtogenepred=377 \
+	#&& conda install -y  ucsc-gff3togenepred=377 \
+	#&& conda install -y  ucsc-gtftogenepred=377 \
+	#&& conda install -y  ucsc-bedtogenepred=377 \
 	#&& conda install -y  trinity=2.9.1 \
 	#&& conda install -y  star=2.7.3a \
 	#&& conda install -y  rsem=1.3.3 \
