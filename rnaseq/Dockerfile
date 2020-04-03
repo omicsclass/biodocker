@@ -24,18 +24,18 @@ RUN 	 cd /biosoft && wget -qO- https://download.asperasoft.com/download/sw/conne
 
 RUN	 conda update -y -n base -c defaults conda \
 	&& conda install -y  samtools=1.10 \
-	&& conda install -y  bamtools=2.5.1 \
+	#&& conda install -y  bamtools=2.5.1 \
 	&& conda install -y  sra-tools=2.10.3 \
 	&& conda install -y  hisat2=2.2.0 \
 	&& conda install -y  rseqc=3.0.1 \
 	&& conda install -y  r=3.6 \
 	&& conda install -y  htseq=0.11.3 \
 	&& conda install -y  bowtie2=2.3.5.1 \
-	&& conda install -y  bowtie=1.2.3 \
+	#&& conda install -y  bowtie=1.2.3 \
 	&& conda install -y  stringtie=2.1.1 \
 	&& conda install -y  fastqc=0.11.9 \
 	&& conda install -y  fastp=0.20.0 \
-	&& conda install -y  cutadapt=2.9 \
+	#&& conda install -y  cutadapt=2.9 \
 	#&& conda install -y  trim-galore=0.6.5 \
 	#&& conda install -y  gffcompare=0.11.2 \
 	&& conda install -y  picard=2.22.1 \
