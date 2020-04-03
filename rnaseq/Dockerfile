@@ -26,6 +26,7 @@ RUN	 conda update -y -n base -c defaults conda \
 	&& conda install -y  samtools=1.10 \
 	#&& conda install -y  bamtools=2.5.1 \
 	&& conda install -y  sra-tools=2.10.3 \
+	&& conda install -y  matplotlib=3.2.1 \
 	&& conda install -y  hisat2=2.2.0 \
 	&& conda install -y  rseqc=3.0.1 \
 	&& conda install -y  r=3.6 \
@@ -38,7 +39,7 @@ RUN	 conda update -y -n base -c defaults conda \
 	#&& conda install -y  cutadapt=2.9 \
 	#&& conda install -y  trim-galore=0.6.5 \
 	#&& conda install -y  gffcompare=0.11.2 \
-	&& conda install -y  picard=2.22.1 \
+	#&& conda install -y  picard=2.22.1 \
 	#&& conda install -y  flexbar=3.5.0 \
 	#&& conda install -y  regtools=0.5.2 \
 	#&& conda install -y  bedops=2.4.37 \
