@@ -30,7 +30,8 @@ RUN	 conda update -y -n base -c defaults conda \
 	&& conda install -y  samtools=1.10 \
 	&& conda install -y  bamtools=2.5.1 \
 	&& conda install -y  sra-tools=2.10.3 \
-	&& conda install -y  matplotlib=3.2.1 \
+	&& conda install -y  matplotlib \
+	&& conda install -y  pandas \
 	&& conda install -y  hisat2=2.2.0 \
 	&& conda install -y  rseqc=3.0.1 \
 	&& conda install -y  r=3.6 \
