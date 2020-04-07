@@ -37,6 +37,7 @@ RUN	conda update -y -n base -c defaults conda && conda create -y -n genefamilyen
 	&& conda install -y  -n genefamilyenv meme=5.1.0 \
 	&& conda install -y  -n genefamilyenv samtools=1.10 \
 	&& conda install -y  -n genefamilyenv last=1021 \
+	&& conda install -y  -n genefamilyenv scipy \
 	&&  conda clean --all --yes \
 	&& echo "conda activate genefamilyenv" >>/biosoft/miniconda/etc/profile.d/conda.sh
 WORKDIR /work
