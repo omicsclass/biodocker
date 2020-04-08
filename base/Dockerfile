@@ -44,12 +44,12 @@ RUN	mkdir -p  /biosoft/miniconda  && mkdir -p  /biosoft/biotools \
         && conda config --add channels conda-forge \
         && conda config --add channels genomedk \
 	&& conda config --add channels defaults \
-        && conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/  \
-        && conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r/  \
-        && conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/mro/  \
-        && conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/  \
-        && conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/  \
-        && conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/bioconda/  \
+        #&& conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/  \
+        #&& conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r/  \
+        #&& conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/mro/  \
+        #&& conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/  \
+        #&& conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/  \
+        #&& conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/bioconda/  \
         && conda config --set show_channel_urls yes \
         && conda config --set ssl_verify no \
         && conda update -y -n base -c defaults conda && conda clean --all --yes 
