@@ -39,11 +39,11 @@ RUN	mkdir -p  /biosoft/miniconda  && mkdir -p  /biosoft/biotools \
         && echo "export LESSCHARSET=utf-8" >> ~/.bashrc \
         && echo -e "set fileencodings=ucs-bom,utf-8,gbk,gb2312,cp936,gb18030,big5,latin-1\nset encoding=utf-8\nset termencoding=utf-8\nset fileencoding=utf-8\n" >> /etc/virc \
         && echo "export PS1=\"\[\e[32m\][\[\e[35m\]\u\[\e[m\]@\[\e[36m\]\h \[\e[31m\] \t \w\[\e[32m\]]\[\e[36m\]#\[\e[m\]\"" >> ~/.bashrc \
-        && conda config --add channels bioconda \
+	&& conda config --add channels defaults \
+        && conda config --add channels genomedk \
         && conda config --add channels r \
         && conda config --add channels conda-forge \
-        && conda config --add channels genomedk \
-	&& conda config --add channels defaults \
+	&& conda config --add channels bioconda \
         #&& conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/  \
         #&& conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r/  \
         #&& conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/mro/  \
