@@ -38,7 +38,8 @@ RUN	mkdir -p  /biosoft/miniconda  && mkdir -p  /biosoft/biotools \
         && echo "alias ll=\"ls -lh\"" >> ~/.bashrc \
         && echo "export LESSCHARSET=utf-8" >> ~/.bashrc \
         && echo -e "set fileencodings=ucs-bom,utf-8,gbk,gb2312,cp936,gb18030,big5,latin-1\nset encoding=utf-8\nset termencoding=utf-8\nset fileencoding=utf-8\n" >> /etc/virc \
-        && echo "export PS1=\"\[\e[32m\][\[\e[35m\]\u\[\e[m\]@\[\e[36m\]\h \[\e[31m\] \t \w\[\e[32m\]]\[\e[36m\]#\[\e[m\]\"" >> ~/.bashrc \
+        #&& echo "export PS1=\"\[\e[32m\][\[\e[35m\]\u\[\e[m\]@\[\e[36m\]\h \[\e[31m\] \t \w\[\e[32m\]]\[\e[36m\]#\[\e[m\]\"" >> ~/.bashrc \
+        && echo "export PS1='\[\e[32;1m\][\[\e[35;1m\]\u\[\e[31;1m\]@\[\e[35;1m\]\h \[\e[31m\] \t \[\e[31;1m\]\w\[\e[32;1m\]]\[\e[33;1m\]# \[\e[0m\]'" >> ~/.bashrc \
 	&& conda config --add channels defaults \
         && conda config --add channels genomedk \
         && conda config --add channels r \
