@@ -76,6 +76,10 @@ RUN	 conda install -y -c r r-essentials \
 	&& conda install -y bioconductor-ballgown \
 	&& conda install -y bioconductor-genefilter \
 	&& conda install -y bioconductor-genomicranges \
+	&& conda install -y bioconductor-annotationhub \
+	&& conda install -y bioconductor-gseabase \
+	&& conda install -y bioconductor-enrichplot \
+	&& conda install -y bioconductor-org.hs.eg.db \
 	&& conda install -y r-devtools \
 	&& conda install -y r-dplyr \
 	&& conda install -y r-gplots \
