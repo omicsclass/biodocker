@@ -34,7 +34,7 @@ RUN	 conda update -y -n base -c defaults conda \
 	&& conda install -y  pandas \
 	&& conda install -y  hisat2=2.2.0 \
 	&& conda install -y  rseqc=3.0.1 \
-	&& conda install -y  -c r r-essentials r-base \
+	#&& conda install -y  -c r r-essentials r-base \
 	&& conda install -y  htseq=0.11.3 \
 	&& conda install -y  bowtie2=2.3.5.1 \
 	#&& conda install -y  bowtie=1.2.3 \
