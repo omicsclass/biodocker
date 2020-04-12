@@ -63,34 +63,20 @@ RUN	 conda update -y -n base -c defaults conda \
 	#&& pip install tmhmm.py \
 	&& conda clean --all --yes 
 
-RUN	 conda install -y -c r r-essentials \
-	&& conda install -y bioconductor-deseq2 \
-	&& conda install -y bioconductor-edger \
-	&& conda install -y r-r.utils \
-	&& conda install -y bioconductor-ebseq \
-	&& conda install -y bioconductor-clusterProfiler \
-	&& conda install -y bioconductor-topgo \
-	&& conda install -y bioconductor-pathview \
-	&& conda install -y bioconductor-rhdf5 \
-	&& conda install -y bioconductor-biomart \
-	&& conda install -y bioconductor-ballgown \
-	&& conda install -y bioconductor-genefilter \
-	&& conda install -y bioconductor-genomicranges \
-	&& conda install -y bioconductor-annotationhub \
-	&& conda install -y bioconductor-gseabase \
-	&& conda install -y bioconductor-enrichplot \
-	&& conda install -y bioconductor-org.hs.eg.db \
-	&& conda install -y r-devtools \
-	&& conda install -y r-dplyr \
-	&& conda install -y r-gplots \
-	&& conda install -y r-rcolorbrewer \
-	&& conda install -y r-tidyverse \
-	&& conda install -y r-getopt \
-	&& conda install -y r-reshape2\
-	&& conda install -y r-pheatmap \
-	&& conda install -y r-cowplot \
-	&& conda clean --all --yes
-#RUN	R -e "install.packages(c('BiocManager', 'devtools','dplyr','gplots','RColorBrewer','tidyverse', 'getopt','reshape2','pheatmap','cowplot'),dependencies=TRUE,repos='http://cran.rstudio.com/')" \
-#	&& R -e "BiocManager::install(c('DESeq2','GenomicRanges','genefilter','ballgown','biomaRt','rhdf5','clusterProfiler','EBSeq','edgeR','R.utils','topGO','pathview'))" 
+ARG R_VERSION=3.6.3
+ARG OS_IDENTIFIER=centos-7
+
+RUN wget https://cdn.rstudio.com/r/${OS_IDENTIFIER}/pkgs/R-${R_VERSION}-1-1.x86_64.rpm && \
+    yum -y install epel-release && \
+    yum -y install ./R-${R_VERSION}-1-1.x86_64.rpm && \
+    ln -s /opt/R/${R_VERSION}/bin/R /usr/bin/R && \
+    ln -s /opt/R/${R_VERSION}/bin/Rscript /usr/bin/Rscript && \
+    ln -s /opt/R/${R_VERSION}/lib/R /usr/lib/R && \
+    rm R-${R_VERSION}-1-1.x86_64.rpm && \
+    yum -y remove epel-release && \
+    yum clean all
+
+RUN	R -e "install.packages(c('BiocManager', 'devtools','dplyr','gplots','RColorBrewer','ggplot2', 'getopt','reshape2','pheatmap','cowplot'),dependencies=TRUE,repos='http://cran.rstudio.com/')" \
+	&& R -e "BiocManager::install(c('DESeq2','GenomicRanges','genefilter','ballgown','biomaRt','rhdf5','clusterProfiler','EBSeq','edgeR','R.utils','topGO','pathview'))" 
 WORKDIR /work
 
