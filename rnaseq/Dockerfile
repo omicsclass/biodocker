@@ -76,7 +76,8 @@ RUN wget https://cdn.rstudio.com/r/${OS_IDENTIFIER}/pkgs/R-${R_VERSION}-1-1.x86_
     yum -y remove epel-release && \
     yum clean all
 
-RUN	R -e "install.packages(c('BiocManager', 'devtools','dplyr','gplots','RColorBrewer','ggplot2', 'getopt','reshape2','pheatmap','cowplot'),dependencies=TRUE,repos='http://cran.rstudio.com/')" \
-	&& R -e "BiocManager::install(c('DESeq2','GenomicRanges','genefilter','ballgown','biomaRt','rhdf5','clusterProfiler','EBSeq','edgeR','R.utils','topGO','pathview'))" 
+#RUN	R -e "install.packages(c('BiocManager', 'devtools','dplyr','gplots','RColorBrewer','ggplot2', 'getopt','reshape2','pheatmap','cowplot'),dependencies=TRUE,repos='http://cran.rstudio.com/')" \
+RUN	R -e "install.packages(c('BiocManager', 'devtools','dplyr','gplots','RColorBrewer','ggplot2', 'getopt','reshape2','pheatmap','cowplot','R.utils'),dependencies=TRUE)" \
+	&& R -e "BiocManager::install(c('DESeq2','GenomicRanges','genefilter','ballgown','biomaRt','rhdf5','clusterProfiler','EBSeq','edgeR','topGO','pathview'))" 
 WORKDIR /work
 
