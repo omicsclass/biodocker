@@ -20,7 +20,7 @@ MAINTAINER huangls <huang2002003@qq.com>
 ENV PATH /biosoft/miniconda/bin:/biosoft/biotools:$PATH
 
 RUN	ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && yum -y update && yum upgrade -y \
-	&& yum -y install  bzip2 bzip2-devel libxml2-devel openssl openssh-clients readline-devel pcre-devel \
+	&& yum -y install  bzip2 bzip2-devel curl-devel libxml2-devel openssl openssh-clients readline-devel pcre-devel \
           libX11-devel libXt-devel blas blas-devel lapack  lapack-devel cmake zlib zlib-devel libpng libpng12 libtiff  libjpeg boost boost-devel xz-devel xz libpng-devel libjpeg-devel libtiff-devel  cairo pbicu-devel  texinfo qpdf valgrind pango-devel gcc-gfortran \
          texlive texlive-*.noarch  gsl gsl-devel wget   zip    which  less  tree unzip gcc-c++ gcc gdb java-1.8.0-openjdk-devel-debug.x86_64 \
 	&& yum clean all 
