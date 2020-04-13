@@ -63,21 +63,15 @@ RUN	 conda update -y -n base -c defaults conda \
 	#&& pip install tmhmm.py \
 	&& conda clean --all --yes 
 
-ARG R_VERSION=3.6.3
-ARG OS_IDENTIFIER=centos-7
 
-RUN wget https://cdn.rstudio.com/r/${OS_IDENTIFIER}/pkgs/R-${R_VERSION}-1-1.x86_64.rpm && \
-    yum -y install epel-release && \
-    yum -y install ./R-${R_VERSION}-1-1.x86_64.rpm && \
-    ln -s /opt/R/${R_VERSION}/bin/R /usr/bin/R && \
-    ln -s /opt/R/${R_VERSION}/bin/Rscript /usr/bin/Rscript && \
-    ln -s /opt/R/${R_VERSION}/lib/R /usr/lib/R && \
-    rm R-${R_VERSION}-1-1.x86_64.rpm && \
+RUN   yum -y install epel-release && \
+    yum -y install R && \
     yum -y remove epel-release && \
     yum clean all
 
 #RUN	R -e "install.packages(c('BiocManager', 'devtools','dplyr','gplots','RColorBrewer','ggplot2', 'getopt','reshape2','pheatmap','cowplot'),dependencies=TRUE,repos='http://cran.rstudio.com/')" \
-RUN	R -e "install.packages(c('BiocManager', 'devtools','dplyr','gplots','RColorBrewer','ggplot2', 'getopt','reshape2','pheatmap','cowplot','R.utils'),dependencies=TRUE)" \
+RUN	echo 'options(repos = c(CRAN="https://cloud.r-project.org", BioCsoft="https://bioconductor.org/packages/3.5/bioc", BioCann="https://bioconductor.org/packages/3.5/data/annotation", BioCexp="https://bioconductor.org/packages/3.5/data/experiment", BioCextra="https://bioconductor.org/packages/3.5/extra"))' > ~/.Rprofile \
+	&& R -e "install.packages(c('BiocManager', 'ggplot2','devtools','dplyr','gplots','RColorBrewer', 'getopt','reshape2','pheatmap','cowplot','R.utils'),dependencies=TRUE)" \
 	&& R -e "BiocManager::install(c('DESeq2','GenomicRanges','genefilter','ballgown','biomaRt','rhdf5','clusterProfiler','EBSeq','edgeR','topGO','pathview'))" 
 WORKDIR /work
 
