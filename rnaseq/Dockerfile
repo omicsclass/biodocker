@@ -26,6 +26,15 @@ RUN 	 cd /biosoft && wget -qO- https://download.asperasoft.com/download/sw/conne
 	&& cd /biosoft/biotools && wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/gtfToGenePred && chmod a+x gtfToGenePred \
 	&& wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/gff3ToGenePred && chmod a+x gff3ToGenePred
 
+RUN   yum -y install epel-release && \
+    yum -y install R && \
+    yum -y remove epel-release && \
+    yum clean all
+COPY .Rprofile ~
+RUN     R -e "install.packages(c('BiocManager', 'ggplot2','devtools','dplyr','gplots','RColorBrewer', 'getopt','reshape2','pheatmap','cowplot','R.utils'),dependencies=TRUE,repos='http://cran.wustl.edu/')" \
+        && R -e "BiocManager::install(c('DESeq2','GenomicRanges','genefilter','ballgown','biomaRt','rhdf5','clusterProfiler','EBSeq','edgeR','topGO','pathview'))"
+
+
 RUN	 conda update -y -n base -c defaults conda \
 	&& conda install -y  samtools=1.10 \
 	&& conda install -y  bamtools=2.5.1 \
@@ -64,13 +73,5 @@ RUN	 conda update -y -n base -c defaults conda \
 	&& conda clean --all --yes 
 
 
-RUN   yum -y install epel-release && \
-    yum -y install R && \
-    yum -y remove epel-release && \
-    yum clean all
-COPY .Rprofile ~
-#RUN	R -e "install.packages(c('BiocManager', 'devtools','dplyr','gplots','RColorBrewer','ggplot2', 'getopt','reshape2','pheatmap','cowplot'),dependencies=TRUE,repos='http://cran.rstudio.com/')" \
-RUN	R -e "install.packages(c('BiocManager', 'ggplot2','devtools','dplyr','gplots','RColorBrewer', 'getopt','reshape2','pheatmap','cowplot','R.utils'),dependencies=TRUE,repos='http://cran.wustl.edu/')" \
-	&& R -e "BiocManager::install(c('DESeq2','GenomicRanges','genefilter','ballgown','biomaRt','rhdf5','clusterProfiler','EBSeq','edgeR','topGO','pathview'))" 
 WORKDIR /work
 
