@@ -24,7 +24,7 @@ RUN	ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && yum -y update && 
           libX11-devel libXt-devel blas blas-devel lapack  lapack-devel cmake make zlib zlib-devel libpng libpng12 libtiff  libjpeg boost boost-devel xz-devel xz libpng-devel libjpeg-devel libtiff-devel  cairo pbicu-devel  texinfo qpdf valgrind pango-devel gcc-gfortran \
          texlive texlive-*.noarch  gsl gsl-devel wget   zip    which  less  tree unzip gcc-c++ gcc gdb java-1.8.0-openjdk-devel-debug.x86_64 \
 	&& yum clean all 
-
+COPY .welcome.sh  ~/
 RUN	mkdir -p  /biosoft/miniconda  && mkdir -p  /biosoft/biotools \
         #&& wget https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /tmp/miniconda.sh \
         && wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /tmp/miniconda.sh \
@@ -40,6 +40,7 @@ RUN	mkdir -p  /biosoft/miniconda  && mkdir -p  /biosoft/biotools \
         && echo -e "set fileencodings=ucs-bom,utf-8,gbk,gb2312,cp936,gb18030,big5,latin-1\nset encoding=utf-8\nset termencoding=utf-8\nset fileencoding=utf-8\n" >> /etc/virc \
         #&& echo "export PS1=\"\[\e[32m\][\[\e[35m\]\u\[\e[m\]@\[\e[36m\]\h \[\e[31m\] \t \w\[\e[32m\]]\[\e[36m\]#\[\e[m\]\"" >> ~/.bashrc \
         && echo "export PS1='\[\e[32;1m\][\[\e[35;1m\]\u\[\e[31;1m\]@\[\e[35;1m\]\h \[\e[31m\] \t \[\e[31;1m\]\w\[\e[32;1m\]]\[\e[33;1m\]# \[\e[0m\]'" >> ~/.bashrc \
+        && echo "sh ~/.welcome.sh" >> ~/.bashrc \
 	&& conda config --add channels defaults \
         && conda config --add channels genomedk \
         && conda config --add channels r \
