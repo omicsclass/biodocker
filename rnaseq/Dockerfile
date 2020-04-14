@@ -32,7 +32,7 @@ RUN   yum -y install epel-release && \
     yum -y install R && \
     yum -y remove epel-release && \
     yum clean all
-COPY .Rprofile /root
+#COPY .Rprofile /root
 RUN     R -e "install.packages(c('BiocManager', 'ggplot2','devtools','dplyr','gplots','RColorBrewer', 'getopt','reshape2','pheatmap','cowplot','R.utils'),dependencies=TRUE,repos='http://cran.wustl.edu/')" \
         && R -e "BiocManager::install(c('DESeq2','GenomicRanges','genefilter','ballgown','biomaRt','rhdf5','clusterProfiler','EBSeq','edgeR','topGO','pathview'))"
 
