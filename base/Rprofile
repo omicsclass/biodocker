@@ -25,6 +25,8 @@ q <- function (save="no", ...) {
 }
  
 auto.loads <-c("dplyr", "ggplot2")
-message("--> Successfully loaded .Rprofile. Q&A for bioinformatics, please visit the website: www.omicsclass.com ***n")
-message("--> Recommended to learn R language: https://study.163.com/course/introduction/1209073807.htm?share=1&shareId=1030291076")
+
+message("--> Q&A for bioinformatics, please visit the website: www.omicsclass.com")
+message("--> Recommended to learn R language: ")
+message("--> https://study.163.com/course/introduction/1209073807.htm?share=1&shareId=1030291076")
 
