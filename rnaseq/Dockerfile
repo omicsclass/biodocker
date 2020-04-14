@@ -18,19 +18,21 @@ MAINTAINER huangls <huang2002003@qq.com>
 #COPY Miniconda3-latest-Linux-x86_64.sh /tmp/miniconda.sh
 #ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 
-ENV PATH ~/.aspera/connect/bin/:/biosoft/gffread-0.11.8.Linux_x86_64/:/biosoft/gffcompare-0.11.5.Linux_x86_64/:$PATH
+ENV PATH /biosoft/hisat2-2.1.0:/biosoft/stringtie-2.1.1.Linux_x86_64:~/.aspera/connect/bin/:/biosoft/gffread-0.11.8.Linux_x86_64/:/biosoft/gffcompare-0.11.5.Linux_x86_64/:$PATH
 RUN 	 cd /biosoft && wget -qO- https://download.asperasoft.com/download/sw/connect/3.9.9/ibm-aspera-connect-3.9.9.177872-linux-g2.12-64.tar.gz |tar xvz \
 	&& chmod +x ibm-aspera-connect-3.9.9.177872-linux-g2.12-64.sh && ./ibm-aspera-connect-3.9.9.177872-linux-g2.12-64.sh && rm ibm-aspera-connect-3.9.9.177872-linux-g2.12-64.sh \
 	&& wget -qO- http://ccb.jhu.edu/software/stringtie/dl/gffread-0.11.8.Linux_x86_64.tar.gz|tar xvz \
 	&& wget -qO- http://ccb.jhu.edu/software/stringtie/dl/gffcompare-0.11.5.Linux_x86_64.tar.gz |tar xvz \
 	&& cd /biosoft/biotools && wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/gtfToGenePred && chmod a+x gtfToGenePred \
-	&& wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/gff3ToGenePred && chmod a+x gff3ToGenePred
+	&& wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/gff3ToGenePred && chmod a+x gff3ToGenePred \
+	&& wget -qO- http://ccb.jhu.edu/software/stringtie/dl/stringtie-2.1.1.Linux_x86_64.tar.gz |tar zvx \
+	&& wget ftp://ftp.ccb.jhu.edu/pub/infphilo/hisat2/downloads/hisat2-2.1.0-Linux_x86_64.zip && unzip hisat2-2.1.0-Linux_x86_64.zip && rm hisat2-2.1.0-Linux_x86_64.zip 
 
 RUN   yum -y install epel-release && \
     yum -y install R && \
     yum -y remove epel-release && \
     yum clean all
-COPY .Rprofile ~
+COPY .Rprofile /root
 RUN     R -e "install.packages(c('BiocManager', 'ggplot2','devtools','dplyr','gplots','RColorBrewer', 'getopt','reshape2','pheatmap','cowplot','R.utils'),dependencies=TRUE,repos='http://cran.wustl.edu/')" \
         && R -e "BiocManager::install(c('DESeq2','GenomicRanges','genefilter','ballgown','biomaRt','rhdf5','clusterProfiler','EBSeq','edgeR','topGO','pathview'))"
 
@@ -41,13 +43,13 @@ RUN	 conda update -y -n base -c defaults conda \
 	&& conda install -y  sra-tools=2.10.3 \
 	&& conda install -y  matplotlib \
 	&& conda install -y  pandas \
-	&& conda install -y  hisat2=2.2.0 \
+	#&& conda install -y  hisat2=2.2.0 \
 	&& conda install -y  rseqc=3.0.1 \
 	#&& conda install -y  -c r r-essentials r-base \
 	&& conda install -y  htseq=0.11.3 \
-	&& conda install -y  bowtie2=2.3.5.1 \
+	#&& conda install -y  bowtie2=2.3.5.1 \
 	#&& conda install -y  bowtie=1.2.3 \
-	&& conda install -y  stringtie=2.1.1 \
+	#&& conda install -y  stringtie=2.1.1 \
 	&& conda install -y  fastqc=0.11.9 \
 	&& conda install -y  fastp=0.20.0 \
 	#&& conda install -y  cutadapt=2.9 \
