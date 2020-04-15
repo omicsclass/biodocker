@@ -23,10 +23,10 @@ RUN 	 cd /biosoft && wget -qO- https://download.asperasoft.com/download/sw/conne
 	&& chmod +x ibm-aspera-connect-3.9.9.177872-linux-g2.12-64.sh && ./ibm-aspera-connect-3.9.9.177872-linux-g2.12-64.sh && rm ibm-aspera-connect-3.9.9.177872-linux-g2.12-64.sh \
 	&& wget -qO- http://ccb.jhu.edu/software/stringtie/dl/gffread-0.11.8.Linux_x86_64.tar.gz|tar xvz \
 	&& wget -qO- http://ccb.jhu.edu/software/stringtie/dl/gffcompare-0.11.5.Linux_x86_64.tar.gz |tar xvz \
-	&& cd /biosoft/biotools && wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/gtfToGenePred && chmod a+x gtfToGenePred \
-	&& wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/gff3ToGenePred && chmod a+x gff3ToGenePred \
 	&& wget -qO- http://ccb.jhu.edu/software/stringtie/dl/stringtie-2.1.1.Linux_x86_64.tar.gz |tar zvx \
-	&& wget ftp://ftp.ccb.jhu.edu/pub/infphilo/hisat2/downloads/hisat2-2.1.0-Linux_x86_64.zip && unzip hisat2-2.1.0-Linux_x86_64.zip && rm hisat2-2.1.0-Linux_x86_64.zip 
+	&& wget ftp://ftp.ccb.jhu.edu/pub/infphilo/hisat2/downloads/hisat2-2.1.0-Linux_x86_64.zip && unzip hisat2-2.1.0-Linux_x86_64.zip && rm hisat2-2.1.0-Linux_x86_64.zip \
+	&& cd /biosoft/biotools && wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/gtfToGenePred && chmod a+x gtfToGenePred \
+	&& wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/gff3ToGenePred && chmod a+x gff3ToGenePred 
 
 RUN   yum -y install epel-release && \
     yum -y install R && \
@@ -36,6 +36,8 @@ RUN   yum -y install epel-release && \
 RUN     R -e "install.packages(c('BiocManager', 'ggplot2','devtools','dplyr','gplots','RColorBrewer', 'getopt','reshape2','pheatmap','cowplot','R.utils'),dependencies=TRUE,repos='http://cran.wustl.edu/')" \
         && R -e "BiocManager::install(c('DESeq2','GenomicRanges','genefilter','ballgown','biomaRt','rhdf5','clusterProfiler','EBSeq','edgeR','topGO','pathview'))"
 
+RUN	 echo "alias R=\"/usr/bin/R \"" >> ~/.bashrc \
+        && echo "alias Rscript=\"/usr/bin/Rscript \"" >> ~/.bashrc
 
 RUN	 conda update -y -n base -c defaults conda \
 	&& conda install -y  samtools=1.10 \
