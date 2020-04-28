@@ -34,7 +34,7 @@ RUN   yum -y install epel-release && \
     yum clean all
 #COPY .Rprofile /root
 RUN     R -e "install.packages(c('BiocManager', 'ggplot2','devtools','dplyr','gplots','RColorBrewer', 'getopt','reshape2','pheatmap','cowplot','R.utils'),dependencies=TRUE,repos='http://cran.wustl.edu/')" \
-        && R -e "BiocManager::install(c('DESeq2','GenomicRanges','genefilter','ballgown','biomaRt','rhdf5','clusterProfiler','EBSeq','edgeR','topGO','pathview'))"
+        && R -e "BiocManager::install(c('DESeq2','GenomicRanges','genefilter','ballgown','biomaRt','rhdf5','clusterProfiler','EBSeq','edgeR','topGO','pathview','org.Hs.eg.db','org.Mm.eg.db','AnnotationHub','GSEABase','enrichplot'))"
 
 RUN	 echo "alias R=\"/usr/bin/R \"" >> ~/.bashrc \
         && echo "alias Rscript=\"/usr/bin/Rscript \"" >> ~/.bashrc
