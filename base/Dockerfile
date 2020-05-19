@@ -22,8 +22,10 @@ ENV PATH /biosoft/miniconda/bin:/biosoft/biotools:$PATH
 RUN	ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && yum -y update && yum upgrade -y \
 	&& yum -y install autoconf automake perl-Data-Dumper  udunits2-devel bzip2 bzip2-devel curl-devel libxml2-devel ncurses-devel openssl openssl-devel openssh-clients readline-devel pcre-devel \
           libX11-devel libXt-devel blas blas-devel lapack  lapack-devel cmake make zlib zlib-devel libpng libpng12 libtiff  libjpeg boost boost-devel xz-devel xz libpng-devel libjpeg-devel libtiff-devel  cairo pbicu-devel  texinfo qpdf valgrind pango-devel gcc-gfortran \
-         texlive texlive-*.noarch  gsl gsl-devel wget   zip    which  less  tree unzip gcc-c++ gcc gdb java-1.8.0-openjdk-devel-debug.x86_64 zstd zstd-devel \
+         texlive texlive-*.noarch  gsl gsl-devel wget   zip    which  less  tree unzip gcc-c++ gcc gdb java-1.8.0-openjdk-devel-debug.x86_64 \
 	&& yum clean all 
+RUN	cd /biosoft && wget -qO- https://github.com/facebook/zstd/releases/download/v1.4.4/zstd-1.4.4.tar.gz|tar zvx \
+	&& cd zstd-1.4.4 && make && make install && cd /biosoft && rm -rf zstd-1.4.4
 COPY welcome.sh  /root/.welcome.sh
 COPY Rprofile /root/.Rprofile
 
