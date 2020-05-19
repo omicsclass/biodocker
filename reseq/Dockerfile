@@ -28,7 +28,7 @@ RUN 	 cd /biosoft && wget -qO- https://download.asperasoft.com/download/sw/conne
 
 RUN	cd /biosoft && wget -qO- https://root.cern/download/root_v6.20.04.Linux-centos7-x86_64-gcc4.8.tar.gz |tar xvz \
 	&&wget https://github.com/samtools/samtools/releases/download/1.9/samtools-1.9.tar.bz2 && \
-	tar jxf samtools-1.9.tar.bz2 && rm samtools-1.9.tar.bz2 && cd samtools-1.9 && 	./configure --prefix $(pwd) && 	make && \
+	tar jxf samtools-1.9.tar.bz2 && rm samtools-1.9.tar.bz2 && cd samtools-1.9 && 	./configure --prefix $(pwd) && 	make \
 	&& rm -rf /biosoft/samtools-1.9/test &&cd /biosoft && wget -qO- https://github.com/abyzovlab/CNVnator/archive/v0.4.1.tar.gz  |tar xvz && cd CNVnator-0.4.1 && ln -s /biosoft/samtools-1.9 samtools \
 	&& make && rm -rf ExampleData
 	
