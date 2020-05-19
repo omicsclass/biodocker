@@ -18,7 +18,7 @@ MAINTAINER huangls <huang2002003@qq.com>
 #COPY Miniconda3-latest-Linux-x86_64.sh /tmp/miniconda.sh
 #ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 
-ENV PATH /biosoft/CNVnator-0.4.1:/biosoft/samtools-1.10:/biosoft/root/bin:/biosoft/annovar:~/.aspera/connect/bin/:/biosoft/gatk-4.1.6.0:$PATH
+ENV PATH /biosoft/CNVnator-0.4.1:/biosoft/samtools-1.9:/biosoft/root/bin:/biosoft/annovar:~/.aspera/connect/bin/:/biosoft/gatk-4.1.6.0:$PATH
 ENV ROOTSYS=/biosoft/root
 ENV LD_LIBRARY_PATH=/biosoft/root/lib:$LD_LIBRARY_PATH
 RUN 	 cd /biosoft && wget -qO- https://download.asperasoft.com/download/sw/connect/3.9.9/ibm-aspera-connect-3.9.9.177872-linux-g2.12-64.tar.gz |tar xvz \
@@ -27,8 +27,9 @@ RUN 	 cd /biosoft && wget -qO- https://download.asperasoft.com/download/sw/conne
 	&& cd /biosoft && unzip gatk-4.1.6.0.zip && rm gatk-4.1.6.0.zip 
 
 RUN	cd /biosoft && wget -qO- https://root.cern/download/root_v6.20.04.Linux-centos7-x86_64-gcc4.8.tar.gz |tar xvz \
-	&& wget -qO- https://github.com/samtools/samtools/archive/1.10.tar.gz  |tar xvz && cd samtools-1.10 &&   ./configure --prefix $(pwd) && make \
-	&& cd /biosoft && wget -qO- https://github.com/abyzovlab/CNVnator/archive/v0.4.1.tar.gz  |tar xvz && cd CNVnator-0.4.1 && ln -s /biosoft/samtools-1.10 samtools \
+	&&wget https://github.com/samtools/samtools/releases/download/1.9/samtools-1.9.tar.bz2 && \
+	tar jxf samtools-1.9.tar.bz2 && rm samtools-1.9.tar.bz2 && cd samtools-1.9 && 	./configure --prefix $(pwd) && 	make && \
+	&& rm -rf /biosoft/samtools-1.9/test &&cd /biosoft && wget -qO- https://github.com/abyzovlab/CNVnator/archive/v0.4.1.tar.gz  |tar xvz && cd CNVnator-0.4.1 && ln -s /biosoft/samtools-1.9 samtools \
 	&& make && rm -rf ExampleData
 	
 COPY annovar /biosoft/annovar
