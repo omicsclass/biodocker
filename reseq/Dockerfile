@@ -50,6 +50,16 @@ RUN	 conda update -y -n base -c defaults conda \
 	&& conda install -y breakdancer=1.4.5 \
 	&& conda install -y r-ggplot2 \
 	&& conda install -y r-getopt \
+	&& conda install -y bioconductor-multtest \
+	&& conda install -y bioconductor-snpstats \
+	&& conda install -y r-scatterplot3d \
+	&& conda install -y r-genetics \
+	&& conda install -y r-ape \
+	&& conda install -y r-genetics \
+	&& conda install -y r-gplots \
+	&& conda install -y r-ldheatmap \
+	&& conda install -y r-compiler \
+	&& conda install -y r-emmreml \
 	&& conda clean --all --yes 
 
 WORKDIR /work
