@@ -57,10 +57,10 @@ RUN	 conda update -y -n base -c defaults conda \
 	&& conda install -y r-ape \
 	&& conda install -y r-genetics \
 	&& conda install -y r-gplots \
-	&& conda install -y r-ldheatmap \
-	&& conda install -y r-compiler \
+	#&& conda install -y r-ldheatmap \
+	#&& conda install -y r-compiler \
 	&& conda install -y r-emmreml \
 	&& conda clean --all --yes 
-
+RUN R -e "install.packages(c('LDheatmap','compiler'),dependencies=TRUE,repos='http://cran.wustl.edu/')"
 WORKDIR /work
 
