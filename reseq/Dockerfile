@@ -41,12 +41,12 @@ RUN	 conda update -y -n base -c defaults conda \
 	&& conda install -y  vcftools=0.1.16 \
 	#&& conda install -y  samtools=1.10 \
 	&& conda install -y  plink=1.90b6.12 \
-	&& conda install -y  sra-tools=2.10.3 \
+	#&& conda install -y  sra-tools=2.10.3 \
 	#&& conda install -y  cnvnator=0.4.1 \
 	&& conda install -y  fastqc=0.11.9 \
 	&& conda install -y  fastp=0.20.0 \
 	&& conda install -y  picard=2.22.1 \
-	&& conda install -y snpeff=4.5covid19 \
+	#&& conda install -y snpeff=4.5covid19 \
 	&& conda install -y breakdancer=1.4.5 \
 	&& conda install -y r-ggplot2 \
 	&& conda install -y r-getopt \
