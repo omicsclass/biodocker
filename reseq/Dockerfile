@@ -33,6 +33,16 @@ RUN	cd /biosoft && wget -qO- https://root.cern/download/root_v6.20.04.Linux-cent
 	&& make && rm -rf ExampleData
 	
 COPY annovar /biosoft/annovar
+
+RUN   yum -y install epel-release && \
+    yum -y install R && \
+    yum -y remove epel-release && \
+    yum clean all
+#COPY .Rprofile /root
+RUN     R -e "install.packages(c('BiocManager', 'LDheatmap','compiler','ggplot2','devtools','dplyr','gplots','RColorBrewer', 'getopt','reshape2','pheatmap','cowplot','R.utils','genetics','gplots','emmreml','scatterplot3d','genetics','ape'),dependencies=TRUE,repos='http://cran.wustl.edu/')" \
+        && R -e "BiocManager::install(c('GenomicRanges','genefilter','biomaRt','rhdf5','clusterProfiler','AnnotationHub','multtest','snpstats'))"
+        RUN     R -e "BiocManager::install(c('org.Hs.eg.db','org.Mm.eg.db','org.At.tair.db','org.Dr.eg.db'))"
+
 RUN	 conda update -y -n base -c defaults conda \
 	&& conda install -y  circos=0.69.8 \
 	&& conda install -y   bwa=0.7.17 \
@@ -48,19 +58,18 @@ RUN	 conda update -y -n base -c defaults conda \
 	&& conda install -y  picard=2.22.1 \
 	#&& conda install -y snpeff=4.5covid19 \
 	&& conda install -y breakdancer=1.4.5 \
-	&& conda install -y r-ggplot2 \
-	&& conda install -y r-getopt \
-	&& conda install -y bioconductor-multtest \
-	&& conda install -y bioconductor-snpstats \
-	&& conda install -y r-scatterplot3d \
-	&& conda install -y r-genetics \
-	&& conda install -y r-ape \
-	&& conda install -y r-genetics \
-	&& conda install -y r-gplots \
+	#&& conda install -y r-ggplot2 \
+	#&& conda install -y r-getopt \
+	#&& conda install -y bioconductor-multtest \
+	#&& conda install -y bioconductor-snpstats \
+	#&& conda install -y r-scatterplot3d \
+	#&& conda install -y r-genetics \
+	#&& conda install -y r-ape \
+	#&& conda install -y r-genetics \
+	#&& conda install -y r-gplots \
 	#&& conda install -y r-ldheatmap \
 	#&& conda install -y r-compiler \
-	&& conda install -y r-emmreml \
+	#&& conda install -y r-emmreml \
 	&& conda clean --all --yes 
-RUN R -e "install.packages(c('LDheatmap','compiler'),dependencies=TRUE,repos='http://cran.wustl.edu/')"
 WORKDIR /work
 
