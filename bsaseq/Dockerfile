@@ -20,7 +20,7 @@ MAINTAINER huangls <huang2002003@qq.com>
 
 #ENV PATH $PATH
 
-RUN     R -e "devtools::install_github('bmansfeld/QTLseqr')"
+RUN     /usr/bin/R -e "devtools::install_github('bmansfeld/QTLseqr')"
 
 WORKDIR /work
 
