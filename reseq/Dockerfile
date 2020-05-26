@@ -20,14 +20,14 @@ MAINTAINER huangls <huang2002003@qq.com>
 
 ENV PATH /biosoft/annovar/:/biosoft/qualimap_v2.2.1:/biosoft/CNVnator-0.4.1:/biosoft/samtools-1.9:/biosoft/root/bin:/biosoft/gffread-0.11.8.Linux_x86_64:/biosoft/annovar:~/.aspera/connect/bin/:/biosoft/gatk-4.1.6.0:$PATH
 ENV ROOTSYS=/biosoft/root
-ENV LD_LIBRARY_PATH=/biosoft/root/lib:$LD_LIBRARY_PATH
+ENV LD_LIBRARY_PATH=/biosoft/root/lib:/biosoft/miniconda/lib/:/usr/local/lib/:$LD_LIBRARY_PATH
 RUN 	 cd /biosoft && wget -qO- https://download.asperasoft.com/download/sw/connect/3.9.9/ibm-aspera-connect-3.9.9.177872-linux-g2.12-64.tar.gz |tar xvz \
 	&& chmod +x ibm-aspera-connect-3.9.9.177872-linux-g2.12-64.sh && ./ibm-aspera-connect-3.9.9.177872-linux-g2.12-64.sh && rm ibm-aspera-connect-3.9.9.177872-linux-g2.12-64.sh \
 	&& wget https://github.com/broadinstitute/gatk/releases/download/4.1.6.0/gatk-4.1.6.0.zip  -O /biosoft/gatk-4.1.6.0.zip \
 	&& cd /biosoft && unzip gatk-4.1.6.0.zip && rm gatk-4.1.6.0.zip \
 	 && cd /biosoft/biotools && wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/gtfToGenePred && chmod a+x gtfToGenePred
 
-RUN	cd /biosoft && wget -qO- https://root.cern/download/root_v6.20.04.Linux-centos7-x86_64-gcc4.8.tar.gz |tar xvz \
+RUN	cd /biosoft && wget -qO- https://root.cern/download/root_v6.20.04.Linux-centos7-aarch64-gcc4.8.tar.gz |tar xvz && source /biosoft/root/bin/thisroot.sh \
 	&& wget -qO- http://ccb.jhu.edu/software/stringtie/dl/gffread-0.11.8.Linux_x86_64.tar.gz|tar xvz \
 	&&wget https://github.com/samtools/samtools/releases/download/1.9/samtools-1.9.tar.bz2 && \
 	tar jxf samtools-1.9.tar.bz2 && rm samtools-1.9.tar.bz2 && cd samtools-1.9 && 	./configure --prefix $(pwd) && 	make \
@@ -65,6 +65,13 @@ RUN	 conda update -y -n base -c defaults conda \
 	&& conda install -y  picard=2.22.1 \
 	#&& conda install -y snpeff=4.5covid19 \
 	&& conda install -y breakdancer=1.4.5 \
+	&& conda install -y perl-set-intervaltree=0.12 \
+        && conda install -y  root \
+        #&& conda install -y  cnvpytor=1.0b3 \
+        && conda install -y  pandas \
+        && conda install -y  numpy \
+        && conda install -y  scipy \
+        && conda install -y  matplotlib \
 	#&& conda install -y r-ggplot2 \
 	#&& conda install -y r-getopt \
 	#&& conda install -y bioconductor-multtest \
