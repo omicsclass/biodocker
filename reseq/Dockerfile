@@ -27,7 +27,7 @@ RUN 	 cd /biosoft && wget -qO- https://download.asperasoft.com/download/sw/conne
 	&& cd /biosoft && unzip gatk-4.1.6.0.zip && rm gatk-4.1.6.0.zip \
 	 && cd /biosoft/biotools && wget http://hgdownload.soe.ucsc.edu/admin/exe/linux.x86_64/gtfToGenePred && chmod a+x gtfToGenePred
 
-RUN	cd /biosoft && wget -qO- https://root.cern/download/root_v6.20.04.Linux-centos7-aarch64-gcc4.8.tar.gz |tar xvz && source /biosoft/root/bin/thisroot.sh \
+RUN	cd /biosoft && wget -qO- https://root.cern/download/root_v6.20.04.Linux-centos7-aarch64-gcc4.8.tar.gz |tar xvz && echo "source /biosoft/root/bin/thisroot.sh" >>~/.bashrc \
 	&& wget -qO- http://ccb.jhu.edu/software/stringtie/dl/gffread-0.11.8.Linux_x86_64.tar.gz|tar xvz \
 	&&wget https://github.com/samtools/samtools/releases/download/1.9/samtools-1.9.tar.bz2 && \
 	tar jxf samtools-1.9.tar.bz2 && rm samtools-1.9.tar.bz2 && cd samtools-1.9 && 	./configure --prefix $(pwd) && 	make \
@@ -41,7 +41,7 @@ RUN  chmod a+x /biosoft/annovar/* && echo "alias R=\"/usr/bin/R \"" >> ~/.bashrc
 
 
 RUN   yum -y install epel-release && \
-    yum -y install R && \
+    yum -y install R R-devel && \
     yum -y remove epel-release && \
     yum clean all
 #COPY .Rprofile /root
@@ -49,29 +49,28 @@ RUN     R -e "install.packages(c('BiocManager', 'LDheatmap','compiler','ggplot2'
         && R -e "BiocManager::install(c('GenomicRanges','genefilter','biomaRt','rhdf5','clusterProfiler','AnnotationHub','multtest','snpstats'))"
         RUN     R -e "BiocManager::install(c('org.Hs.eg.db','org.Mm.eg.db','org.At.tair.db','org.Dr.eg.db'))"
 
-RUN	 conda update -y -n base -c defaults conda \
-	&& conda install -y  circos=0.69.8 \
-	&& conda install -y   bwa=0.7.17 \
-	&& conda install -y  perl-bioperl=1.7.2 \
-	&& conda install -y  bcftools=1.10.2 \
-	&& conda install -y  bedtools=2.29.2 \
-	&& conda install -y  vcftools=0.1.16 \
+RUN	 conda create -y -n reseq python=2.7 && source activate genefamilyenv 
+	&& conda install -y -n reseq circos=0.69.8 \
+	&& conda install -y -n reseq  bwa=0.7.17 \
+	&& conda install -y -n reseq perl-bioperl=1.7.2 \
+	&& conda install -y -n reseq bcftools=1.10.2 \
+	&& conda install -y -n reseq bedtools=2.29.2 \
+	&& conda install -y -n reseq vcftools=0.1.16 \
 	#&& conda install -y  samtools=1.10 \
-	&& conda install -y  plink=1.90b6.12 \
+	&& conda install -y -n reseq plink=1.90b6.12 \
 	#&& conda install -y  sra-tools=2.10.3 \
 	#&& conda install -y  cnvnator=0.4.1 \
-	&& conda install -y  fastqc=0.11.9 \
-	&& conda install -y  fastp=0.20.0 \
-	&& conda install -y  picard=2.22.1 \
+	&& conda install -y -n reseq fastqc=0.11.9 \
+	&& conda install -y -n reseq fastp=0.20.0 \
+	&& conda install -y -n reseq picard=2.22.1 \
 	#&& conda install -y snpeff=4.5covid19 \
-	&& conda install -y breakdancer=1.4.5 \
-	&& conda install -y perl-set-intervaltree=0.12 \
-        && conda install -y  root \
+	&& conda install -y -n reseq breakdancer=1.4.5 \
+	&& conda install -y -n reseq perl-set-intervaltree=0.12 \
         #&& conda install -y  cnvpytor=1.0b3 \
-        && conda install -y  pandas \
-        && conda install -y  numpy \
-        && conda install -y  scipy \
-        && conda install -y  matplotlib \
+        && conda install -y  -n reseq pandas \
+        && conda install -y -n reseq numpy \
+        && conda install -y -n reseq scipy \
+        && conda install -y -n reseq matplotlib \
 	#&& conda install -y r-ggplot2 \
 	#&& conda install -y r-getopt \
 	#&& conda install -y bioconductor-multtest \
@@ -84,6 +83,7 @@ RUN	 conda update -y -n base -c defaults conda \
 	#&& conda install -y r-ldheatmap \
 	#&& conda install -y r-compiler \
 	#&& conda install -y r-emmreml \
-	&& conda clean --all --yes 
+	&& conda clean --all --yes \
+	&& echo "conda activate reseq" >>/biosoft/miniconda/etc/profile.d/conda.sh
 WORKDIR /work
 
