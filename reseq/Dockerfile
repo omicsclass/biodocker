@@ -49,7 +49,7 @@ RUN     R -e "install.packages(c('BiocManager', 'LDheatmap','compiler','ggplot2'
         && R -e "BiocManager::install(c('GenomicRanges','genefilter','biomaRt','rhdf5','clusterProfiler','AnnotationHub','multtest','snpstats'))"
         RUN     R -e "BiocManager::install(c('org.Hs.eg.db','org.Mm.eg.db','org.At.tair.db','org.Dr.eg.db'))"
 
-RUN	 conda create -y -n reseq python=2.7 && source activate genefamilyenv 
+RUN	 conda create -y -n reseq python=2.7 && source activate genefamilyenv \
 	&& conda install -y -n reseq circos=0.69.8 \
 	&& conda install -y -n reseq  bwa=0.7.17 \
 	&& conda install -y -n reseq perl-bioperl=1.7.2 \
@@ -71,6 +71,9 @@ RUN	 conda create -y -n reseq python=2.7 && source activate genefamilyenv
         && conda install -y -n reseq numpy \
         && conda install -y -n reseq scipy \
         && conda install -y -n reseq matplotlib \
+        && conda install -y -n reseq primer3 \
+        && conda install -y -n reseq primer3-py \
+        && conda install -y -n reseq biopython \
 	#&& conda install -y r-ggplot2 \
 	#&& conda install -y r-getopt \
 	#&& conda install -y bioconductor-multtest \
