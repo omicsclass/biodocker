@@ -1,8 +1,8 @@
 # Base image
-FROM omicsclass/reseq:latest
+FROM omicsclass/gwas:latest
 
 ################## METADATA ######################
-LABEL base.image="omicsclass/reseq:latest" \
+LABEL base.image="omicsclass/gwas:latest" \
       version="v0.0.1" \
       software="gwas" \
       software.version="20200401" \
