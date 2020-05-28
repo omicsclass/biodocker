@@ -20,7 +20,7 @@ MAINTAINER huangls <huang2002003@qq.com>
 
 ENV PATH /biosoft/annovar/:/biosoft/qualimap_v2.2.1:/biosoft/CNVnator-0.4.1:/biosoft/samtools-1.9:/biosoft/root/bin:/biosoft/gffread-0.11.8.Linux_x86_64:/biosoft/annovar:~/.aspera/connect/bin/:/biosoft/gatk-4.1.6.0:$PATH
 ENV ROOTSYS=/biosoft/root
-ENV LD_LIBRARY_PATH=/biosoft/root/lib:/biosoft/miniconda/lib/:/usr/local/lib/:$LD_LIBRARY_PATH
+ENV LD_LIBRARY_PATH=/biosoft/root/lib:/biosoft/miniconda/envs/reseq/lib:/usr/local/lib/:$LD_LIBRARY_PATH
 RUN 	 cd /biosoft && wget -qO- https://download.asperasoft.com/download/sw/connect/3.9.9/ibm-aspera-connect-3.9.9.177872-linux-g2.12-64.tar.gz |tar xvz \
 	&& chmod +x ibm-aspera-connect-3.9.9.177872-linux-g2.12-64.sh && ./ibm-aspera-connect-3.9.9.177872-linux-g2.12-64.sh && rm ibm-aspera-connect-3.9.9.177872-linux-g2.12-64.sh \
 	&& wget https://github.com/broadinstitute/gatk/releases/download/4.1.6.0/gatk-4.1.6.0.zip  -O /biosoft/gatk-4.1.6.0.zip \
