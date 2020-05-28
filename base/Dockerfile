@@ -16,7 +16,7 @@ LABEL base.image="centos:7" \
 MAINTAINER huangls <huang2002003@qq.com>
 
 #COPY Miniconda3-latest-Linux-x86_64.sh /tmp/miniconda.sh
-#ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
+ENV LANG=en_US.utf8 LC_ALL=en_US.utf8
 ENV PATH /biosoft/miniconda/bin:/biosoft/biotools:$PATH
 
 RUN	ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && yum -y update && yum upgrade -y \
