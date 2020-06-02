@@ -15,16 +15,18 @@ LABEL base.image="omicsclass/biocontainer-base:latest" \
 ################## MAINTAINER ######################
 MAINTAINER huangls <huang2002003@qq.com>
 
-#COPY Miniconda3-latest-Linux-x86_64.sh /tmp/miniconda.sh
-#ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
-COPY environment.yml /work
-RUN conda env create -f /work/environment.yml && conda clean -a
-ENV PATH /biosoft/miniconda/envs/ampliseq-q1/bin:$PATH
+ENV PATH=/usr/bin:$PATH
+RUN   yum -y install epel-release && \
+    yum -y install R R-devel && \
+    yum -y install pip ant && \
+    yum -y remove epel-release && \
+    yum clean all
+RUN cd /biosoft && git clone git://github.com/qiime/qiime-deploy.git \
+	&& git clone git://github.com/qiime/qiime-deploy-conf.git \
+	&& cd qiime-deploy/ 
 ## Required to build the container properly
 RUN mkdir -p /root/.config/matplotlib
 RUN echo "backend : Agg" > /root/.config/matplotlib/matplotlibrc
-# Don't recache on each execution, do that once per build process
-RUN qiime dev refresh-cache
 
 	
 WORKDIR /work
