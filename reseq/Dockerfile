@@ -18,7 +18,7 @@ MAINTAINER huangls <huang2002003@qq.com>
 #COPY Miniconda3-latest-Linux-x86_64.sh /tmp/miniconda.sh
 #ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 
-ENV PATH=/biosoft/miniconda/envs/reseq/bin:/biosoft/annovar/:/biosoft/qualimap_v2.2.1:/biosoft/gffread-0.11.8.Linux_x86_64:/biosoft/annovar:~/.aspera/connect/bin/:/biosoft/gatk-4.1.6.0:$PATH
+ENV PATH=/biosoft/miniconda/envs/reseq/bin:/biosoft/SURVIVOR-master/Debug/:/biosoft/annovar/:/biosoft/qualimap_v2.2.1:/biosoft/gffread-0.11.8.Linux_x86_64:/biosoft/annovar:~/.aspera/connect/bin/:/biosoft/gatk-4.1.6.0:$PATH
 ENV LD_LIBRARY_PATH=/biosoft/miniconda/envs/reseq/lib:/usr/local/lib/:$LD_LIBRARY_PATH
 
 
@@ -34,7 +34,9 @@ RUN 	 cd /biosoft && wget -qO- https://download.asperasoft.com/download/sw/conne
 COPY annovar /biosoft/annovar 
 RUN  chmod a+x /biosoft/annovar/* && echo "alias R=\"/usr/bin/R \"" >> ~/.bashrc \
         && echo "alias Rscript=\"/usr/bin/Rscript \"" >> ~/.bashrc
-
+RUN	cd /biosoft && wget https://github.com/fritzsedlazeck/SURVIVOR/archive/master.tar.gz -O SURVIVOR.tar.gz \
+	&& tar xzvf SURVIVOR.tar.gz \
+	&& cd SURVIVOR-master/Debug/ && make && rm -f /biosoft/SURVIVOR.tar.gz 
 
 RUN   yum -y install epel-release && \
     yum -y install R R-devel && \
@@ -48,7 +50,7 @@ RUN     R -e "install.packages(c('BiocManager', 'LDheatmap','compiler','ggplot2'
 
 
 RUN	conda create -y -n reseq python=2.7 && source activate reseq \
-	&& conda install -y -n reseq cnvnator=0.4.1 \
+	&& conda install -y -n reseq root=6.20.0  cnvnator=0.4.1 \
 	&& conda install -y -n reseq circos=0.69.8 \
 	&& conda install -y -n reseq  bwa=0.7.17 \
 	&& conda install -y -n reseq perl-bioperl=1.7.2 \
