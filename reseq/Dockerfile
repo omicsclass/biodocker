@@ -54,13 +54,12 @@ RUN	conda create -y -n reseq python=2.7 && source activate reseq \
 	&& conda install -y -n reseq circos=0.69.8 \
 	&& conda install -y -n reseq  bwa=0.7.17 \
 	&& conda install -y -n reseq perl-bioperl=1.7.2 \
-	&& conda install -y -n reseq bcftools=1.10.2 \
+	&& conda install -y -n reseq bcftools \
 	&& conda install -y -n reseq bedtools=2.29.2 \
 	&& conda install -y -n reseq vcftools=0.1.16 \
-	#&& conda install -y  samtools=1.10 \
+	&& conda install -y  samtools=1.10 \
 	&& conda install -y -n reseq plink=1.90b6.12 \
-	#&& conda install -y  sra-tools=2.10.3 \
-	#&& conda install -y  cnvnator=0.4.1 \
+	&& conda install -y  sra-tools \
 	&& conda install -y -n reseq fastqc=0.11.9 \
 	&& conda install -y -n reseq fastp=0.20.0 \
 	&& conda install -y -n reseq picard=2.22.1 \
