@@ -43,7 +43,7 @@ RUN   yum -y install epel-release && \
     yum -y remove epel-release && \
     yum clean all
 #COPY .Rprofile /root
-RUN     R -e "install.packages(c('BiocManager', 'LDheatmap','compiler','ggplot2','devtools','dplyr','gplots','RColorBrewer', 'getopt','reshape2','pheatmap','cowplot','R.utils','genetics','gplots','emmreml','scatterplot3d','genetics','ape'),dependencies=TRUE,repos='http://cran.wustl.edu/')" \
+RUN     R -e "install.packages(c('BiocManager', 'compiler','ggplot2','devtools','dplyr','gplots','RColorBrewer', 'getopt','reshape2','pheatmap','cowplot','R.utils','genetics','gplots','emmreml','scatterplot3d','genetics','ape'),dependencies=TRUE,repos='http://cran.wustl.edu/')" \
         && R -e "BiocManager::install(c('GenomicRanges','genefilter','biomaRt','rhdf5','clusterProfiler','AnnotationHub','multtest','snpstats'))"
         RUN     R -e "BiocManager::install(c('org.Hs.eg.db','org.Mm.eg.db','org.At.tair.db','org.Dr.eg.db'))"
 
@@ -74,6 +74,7 @@ RUN	conda create -y -n reseq python=2.7 && source activate reseq \
 	&& conda install -y -n reseq primer3 \
 	&& conda install -y -n reseq primer3-py \
 	&& conda install -y -n reseq biopython \
+	&& conda install -y -n reseq pytools \
 	#&& conda install -y r-ggplot2 \
 	#&& conda install -y r-getopt \
 	#&& conda install -y bioconductor-multtest \
