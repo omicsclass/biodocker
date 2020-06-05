@@ -32,7 +32,8 @@ RUN 	 cd /biosoft && wget -qO- https://download.asperasoft.com/download/sw/conne
 	&& wget -qO- http://ccb.jhu.edu/software/stringtie/dl/gffread-0.11.8.Linux_x86_64.tar.gz|tar xvz 
 
 COPY annovar /biosoft/annovar 
-RUN  chmod a+x /biosoft/annovar/* && echo "alias R=\"/usr/bin/R \"" >> ~/.bashrc \
+CPPY e-PCR /biosoft/biotools/
+RUN  chmod a+x /biosoft/annovar/* /biosoft/biotools/e-PCR && echo "alias R=\"/usr/bin/R \"" >> ~/.bashrc \
         && echo "alias Rscript=\"/usr/bin/Rscript \"" >> ~/.bashrc
 RUN	cd /biosoft && wget https://github.com/fritzsedlazeck/SURVIVOR/archive/master.tar.gz -O SURVIVOR.tar.gz \
 	&& tar xzvf SURVIVOR.tar.gz \
