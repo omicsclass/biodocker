@@ -74,7 +74,7 @@ RUN	conda create -y -n reseq python=2.7 && source activate reseq \
 	&& conda install -y -n reseq primer3 \
 	&& conda install -y -n reseq primer3-py \
 	&& conda install -y -n reseq biopython \
-	&& conda install -y -n reseq pytools \
+	#&& conda install -y -n reseq pytools \
 	#&& conda install -y r-ggplot2 \
 	#&& conda install -y r-getopt \
 	#&& conda install -y bioconductor-multtest \
