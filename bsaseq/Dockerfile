@@ -20,7 +20,9 @@ MAINTAINER huangls <huang2002003@qq.com>
 
 #ENV PATH $PATH
 
-RUN     /usr/bin/R -e "install.packages(c('modeest','readr','locfit','rmutil','clue','fBasics','stable','statip'),INSTALL_opts=c('--no-help', '--no-html'))" && /usr/bin/R -e "devtools::install_github('bmansfeld/QTLseqr',build_opts=c('--no-help', '--no-html'))"
+RUN     /usr/bin/R -e "install.packages(c('modeest','readr','locfit','rmutil','clue','fBasics','stable','statip'),INSTALL_opts=c('--no-help', '--no-html'))" 
+
+RUN cd /biosoft && git clone  https://github.com/bmansfeld/QTLseqr.git && /usr/bin/R CMD INSTALL QTLseqr && rm -rf QTLseqr
 
 WORKDIR /work
 
