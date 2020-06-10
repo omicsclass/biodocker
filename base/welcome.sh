@@ -8,4 +8,7 @@ echo "      --> https://www.omicsclass.com/article/702"
 echo ""
 echo "         搭建实验室生信分析平台与docker使用详情见课程："
 echo "      --> https://www.omicsclass.com/article/1181"
+echo ""
+echo "           更多组学大讲堂生物信息分析课程："
+echo "      --> https://www.omicsclass.com/article/129"
 
