@@ -24,5 +24,6 @@ RUN     /usr/bin/R -e "install.packages(c('modeest','readr','locfit','rmutil','c
 
 RUN cd /biosoft && git clone  https://github.com/bmansfeld/QTLseqr.git && /usr/bin/R CMD INSTALL QTLseqr && rm -rf QTLseqr
 
+RUN conda install -y -n base pandas matplotlib scipy fisher && conda clean --all --yes
 WORKDIR /work
 
