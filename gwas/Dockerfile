@@ -22,8 +22,9 @@ ENV PATH /biosoft/tassel5:$PATH
 RUN 	 cd /biosoft && wget https://tassel.bitbucket.io/installer/TASSEL_5_unix.sh \
 	&& sh TASSEL_5_unix.sh -q -dir /biosoft/tassel5 && rm TASSEL_5_unix.sh
 
-	
-RUN	 conda update -y -n base -c defaults conda 
+COPY GAPIT3.0 /biosoft/GAPIT3.0
+
+
 
 WORKDIR /work
 
