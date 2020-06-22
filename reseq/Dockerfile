@@ -19,7 +19,7 @@ MAINTAINER huangls <huang2002003@qq.com>
 #ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 
 ENV PATH=/biosoft/miniconda/envs/reseq/bin:/biosoft/SURVIVOR-master/Debug/:/biosoft/annovar/:/biosoft/qualimap_v2.2.1:/biosoft/gffread-0.11.8.Linux_x86_64:/biosoft/annovar:~/.aspera/connect/bin/:/biosoft/gatk-4.1.6.0:$PATH
-ENV LD_LIBRARY_PATH=/biosoft/miniconda/envs/reseq/lib:/usr/local/lib/:$LD_LIBRARY_PATH
+ENV LD_LIBRARY_PATH=/biosoft/miniconda/envs/reseq/lib:/usr/local/lib/:/usr/lib:$LD_LIBRARY_PATH
 
 
 RUN 	 cd /biosoft && wget -qO- https://download.asperasoft.com/download/sw/connect/3.9.9/ibm-aspera-connect-3.9.9.177872-linux-g2.12-64.tar.gz |tar xvz \
@@ -44,8 +44,8 @@ RUN   yum -y install epel-release && \
     yum -y remove epel-release && \
     yum clean all
 #COPY .Rprofile /root
-RUN     R -e "install.packages(c('BiocManager', 'compiler','ggplot2','devtools','dplyr','gplots','RColorBrewer', 'getopt','reshape2','pheatmap','cowplot','R.utils','genetics','gplots','emmreml','scatterplot3d','genetics','ape'),dependencies=TRUE,repos='http://cran.wustl.edu/')" \
-        && R -e "BiocManager::install(c('GenomicRanges','genefilter','biomaRt','rhdf5','clusterProfiler','AnnotationHub','multtest','snpstats'))"
+RUN     R -e "install.packages(c('BiocManager', 'compiler','ggplot2','devtools','dplyr','gplots','RColorBrewer', 'getopt','reshape2','pheatmap','cowplot','R.utils','genetics','gplots','EMMREML','scatterplot3d','genetics','ape'),dependencies=TRUE,repos='http://cran.wustl.edu/')" \
+        && R -e "BiocManager::install(c('GenomicRanges','genefilter','biomaRt','rhdf5','clusterProfiler','AnnotationHub','multtest','snpstats','LDheatmap'))"
         RUN     R -e "BiocManager::install(c('org.Hs.eg.db','org.Mm.eg.db','org.At.tair.db','org.Dr.eg.db'))"
 
 
