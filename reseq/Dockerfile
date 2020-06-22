@@ -18,7 +18,7 @@ MAINTAINER huangls <huang2002003@qq.com>
 #COPY Miniconda3-latest-Linux-x86_64.sh /tmp/miniconda.sh
 #ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 
-ENV PATH=/biosoft/miniconda/envs/reseq/bin:/biosoft/SURVIVOR-master/Debug/:/biosoft/annovar/:/biosoft/qualimap_v2.2.1:/biosoft/gffread-0.11.8.Linux_x86_64:/biosoft/annovar:~/.aspera/connect/bin/:/biosoft/gatk-4.1.6.0:$PATH
+ENV PATH=/biosoft/miniconda/envs/reseq/bin:/biosoft/SURVIVOR-master/Debug/:/biosoft/annovar/2018Apr16:/biosoft/qualimap_v2.2.1:/biosoft/gffread-0.11.8.Linux_x86_64:/biosoft/annovar:~/.aspera/connect/bin/:/biosoft/gatk-4.1.6.0:$PATH
 ENV LD_LIBRARY_PATH=/biosoft/miniconda/envs/reseq/lib:/usr/local/lib/:/usr/lib:$LD_LIBRARY_PATH
 
 

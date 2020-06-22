@@ -674,7 +674,7 @@ sub translateDNA {
 			defined $codon1m{$1} or print "WARNING: invalid triplets found in DNA sequence to be translated: <$1> in <$seq>\n" and die;
 			$protein .= $codon1m{$1};
 		} else {
-			defined $codon1{$1} or print "WARNING: invalid triplets found in DNA sequence to be translated: <$1> in <$seq>\n" and die;
+			defined $codon1{$1} or print "WARNING: invalid triplets found in DNA sequence to be translated: <$1> in <$seq>\n" and die "WARNING: invalid triplets found in DNA sequence to be translated: <$1> in <$seq>\n"; #huangls 
 			$protein .= $codon1{$1};
 		}
 	}
