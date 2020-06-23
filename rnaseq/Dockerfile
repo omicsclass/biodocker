@@ -76,6 +76,6 @@ RUN	 conda update -y -n base -c defaults conda \
 	#&& pip install tmhmm.py \
 	&& conda clean --all --yes 
 
-
+COPY welcome.sh  /root/.welcome.sh
 WORKDIR /work
 
