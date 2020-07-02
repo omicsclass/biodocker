@@ -91,6 +91,6 @@ RUN	conda create -y -n reseq python=2.7 && source activate reseq \
 	&& conda clean --all --yes \
 	&& echo "conda activate reseq" >>/biosoft/miniconda/etc/profile.d/conda.sh
 
-
+COPY welcome.sh  /root/.welcome.sh
 WORKDIR /work
 
