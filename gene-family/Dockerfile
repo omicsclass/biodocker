@@ -40,5 +40,6 @@ RUN	conda update -y -n base -c defaults conda && conda create -y -n genefamilyen
 	&& conda install -y  -n genefamilyenv scipy \
 	&&  conda clean --all --yes \
 	&& echo "conda activate genefamilyenv" >>/biosoft/miniconda/etc/profile.d/conda.sh
+COPY welcome.sh  /root/.welcome.sh
 WORKDIR /work
 
