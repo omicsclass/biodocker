@@ -1,11 +1,11 @@
 # Base image
-FROM omicsclass/reseq:latest
+FROM omicsclass/bsaseq:latest
 
 ################## METADATA ######################
-LABEL base.image="omicsclass/reseq:latest" \
+LABEL base.image="omicsclass/bsaseq:latest" \
       version="v0.0.1" \
-      software="reseq" \
-      software.version="20200401" \
+      software="bsaseq" \
+      software.version="20200708" \
       about.summary="Bulked segregant analysis (BSA)" \
       about.home="www.omicsclass.com" \
       about.documentation="" \
