@@ -37,16 +37,16 @@ RUN mkdir -p /root/.config/matplotlib
 RUN echo "backend : Agg" > /root/.config/matplotlib/matplotlibrc
 
 RUN conda create -n qiime1 -y python=2.7 \
-	&& conda install -y  -n qiime1 pandas \
-	&& conda install -y -n qiime1 numpy \
-	&& conda install -y -n qiime1 scipy \
-	&& conda install -y -n qiime1 matplotlib \
-	&& conda install -y -n qiime1 biopython \
-	&& conda install -y -n qiime1 circos=0.69.8 \
-	&& conda install -y -n qiime1  bwa=0.7.17 \
-	&& conda install -y -n qiime1 perl-bioperl=1.7.2 \
-	&& conda install -y -n qiime1 fastqc=0.11.9 \
-	&& conda install -y -n qiime1 fastp=0.20.0 \
+	#&& conda install -y  -n qiime1 pandas \
+	#&& conda install -y -n qiime1 numpy \
+	#&& conda install -y -n qiime1 scipy \
+	#&& conda install -y -n qiime1 matplotlib \
+	#&& conda install -y -n qiime1 biopython \
+	#&& conda install -y -n qiime1 circos=0.69.8 \
+	#&& conda install -y -n qiime1  bwa=0.7.17 \
+	#&& conda install -y -n qiime1 perl-bioperl=1.7.2 \
+	#&& conda install -y -n qiime1 fastqc=0.11.9 \
+	#&& conda install -y -n qiime1 fastp=0.20.0 \
 	&& conda clean --all --yes \
 	&& echo "conda activate qiime1" >>/biosoft/miniconda/etc/profile.d/conda.sh \
 	&& /biosoft/miniconda/envs/qiime1/bin/pip install  qiime
