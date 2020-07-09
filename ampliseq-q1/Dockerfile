@@ -49,7 +49,7 @@ RUN conda create -n qiime1 -y python=2.7 \
 	&& conda install -y -n qiime1 fastp=0.20.0 \
 	&& conda clean --all --yes \
 	&& echo "conda activate qiime1" >>/biosoft/miniconda/etc/profile.d/conda.sh \
-	&& /biosoft/miniconda/envs/qiime1/bin/pip install -y qiime
+	&& /biosoft/miniconda/envs/qiime1/bin/pip install  qiime
 
 RUN     R -e "install.packages(c('BiocManager', 'compiler','ggplot2','devtools','dplyr','gplots','RColorBrewer', 'getopt','reshape2','pheatmap','cowplot','R.utils','biom','gplots','ape','scatterplot3d','randomForest','vegan'),dependencies=TRUE,repos='http://cran.wustl.edu/')" \
         && R -e "BiocManager::install(c('metagenomeSeq','DESeq2'))"
