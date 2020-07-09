@@ -25,9 +25,9 @@ RUN   yum -y install epel-release && \
     yum clean all
 RUN cd /biosoft && git clone git://github.com/qiime/qiime-deploy.git \
 	#&& git clone git://github.com/qiime/qiime-deploy-conf.git \
-	&& mkdir -p /biosoft/qiime-1.9.1/qiime_software/ \
-	&& cd qiime-deploy/ \
-	&& python qiime-deploy.py  -f /biosoft/qiime.conf --force-remove-failed-dirs /biosoft/qiime-1.9.1/qiime_software/ 
+	&& mkdir -p /biosoft/qiime-1.9.1/qiime_software/ 
+	#&& cd qiime-deploy/ \
+	#&& python qiime-deploy.py  -f /biosoft/qiime.conf --force-remove-failed-dirs /biosoft/qiime-1.9.1/qiime_software/ 
 
 RUN cd /biosoft && mkdir usearch && cd usearch && wget http://www.drive5.com/downloads/usearch11.0.667_i86linux32.gz \
 	&& gunzip usearch11.0.667_i86linux32.gz && mv usearch11.0.667_i86linux32.gz usearch \
