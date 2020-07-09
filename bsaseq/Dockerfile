@@ -1,8 +1,8 @@
 # Base image
-FROM omicsclass/bsaseq:latest
+FROM omicsclass/reseq:latest
 
 ################## METADATA ######################
-LABEL base.image="omicsclass/bsaseq:latest" \
+LABEL base.image="omicsclass/reseq:latest" \
       version="v0.0.1" \
       software="bsaseq" \
       software.version="20200708" \
