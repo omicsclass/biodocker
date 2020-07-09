@@ -30,8 +30,8 @@ RUN cd /biosoft && git clone git://github.com/qiime/qiime-deploy.git \
 	#&& python qiime-deploy.py  -f /biosoft/qiime.conf --force-remove-failed-dirs /biosoft/qiime-1.9.1/qiime_software/ 
 
 RUN cd /biosoft && mkdir usearch && cd usearch && wget http://www.drive5.com/downloads/usearch11.0.667_i86linux32.gz \
-	&& gunzip usearch11.0.667_i86linux32.gz && mv usearch11.0.667_i86linux32.gz usearch \
-	&& chmod a+x usearch
+	&& gunzip usearch11.0.667_i86linux32.gz && ln -s usearch11.0.667_i86linux32 usearch \
+	&& chmod a+x usearch11.0.667_i86linux32
 ## Required to build the container properly
 RUN mkdir -p /root/.config/matplotlib
 RUN echo "backend : Agg" > /root/.config/matplotlib/matplotlibrc
