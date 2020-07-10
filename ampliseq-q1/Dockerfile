@@ -15,7 +15,7 @@ LABEL base.image="omicsclass/biocontainer-base:latest" \
 ################## MAINTAINER ######################
 MAINTAINER huangls <huang2002003@qq.com>
 
-ENV PATH=/usr/bin:/biosoft/miniconda/envs/qiime1/bin:/biosoft/usearch:$PATH
+ENV PATH=/usr/bin:/biosoft/miniconda/envs/qiime1/bin:/biosoft/usearch:/biosoft/clearcut/:$PATH
 COPY qiime.conf /biosoft/ 
 RUN   yum -y install epel-release && \
     yum -y install R R-devel && \
@@ -25,28 +25,23 @@ RUN   yum -y install epel-release && \
     yum clean all
 RUN cd /biosoft && git clone git://github.com/qiime/qiime-deploy.git \
 	#&& git clone git://github.com/qiime/qiime-deploy-conf.git \
-	&& mkdir -p /biosoft/qiime-1.9.1/qiime_software/ 
-	#&& cd qiime-deploy/ \
-	#&& python qiime-deploy.py  -f /biosoft/qiime.conf --force-remove-failed-dirs /biosoft/qiime-1.9.1/qiime_software/ 
-
-RUN cd /biosoft && mkdir usearch && cd usearch && wget http://www.drive5.com/downloads/usearch11.0.667_i86linux32.gz \
+	&& mkdir -p /biosoft/qiime-1.9.1/qiime_software/ \
+	&& git clone https://github.com/ibest/clearcut.git && cd clearcut/ && make \
+	&& cd /biosoft/qiime-deploy/ \
+	&& python qiime-deploy.py  -f /biosoft/qiime.conf --force-remove-failed-dirs /biosoft/qiime-1.9.1/qiime_software/ \
+	&& echo "source /biosoft/qiime-1.9.1/qiime_software/activate.sh" >>/root/.bashrc \
+	&& cd /biosoft && mkdir usearch && cd usearch && wget http://www.drive5.com/downloads/usearch11.0.667_i86linux32.gz \
 	&& gunzip usearch11.0.667_i86linux32.gz && ln -s usearch11.0.667_i86linux32 usearch \
 	&& chmod a+x usearch11.0.667_i86linux32
 ## Required to build the container properly
-RUN mkdir -p /root/.config/matplotlib
-RUN echo "backend : Agg" > /root/.config/matplotlib/matplotlibrc
+RUN mkdir -p /root/.config/matplotlib && echo "backend : Agg" > /root/.config/matplotlib/matplotlibrc
 
 RUN conda create -n qiime1 -y python=2.7 \
-	#&& conda install -y -n qiime1 pandas \
-	#&& conda install -y -n qiime1 numpy \
-	#&& conda install -y -n qiime1 scipy \
-	#&& conda install -y -n qiime1 matplotlib \
-	#&& conda install -y -n qiime1 biopython \
-	#&& conda install -y -n qiime1 circos=0.69.8 \
-	#&& conda install -y -n qiime1 bwa=0.7.17 \
-	#&& conda install -y -n qiime1 perl-bioperl=1.7.2 \
-	#&& conda install -y -n qiime1 fastqc=0.11.9 \
-	#&& conda install -y -n qiime1 fastp=0.20.0 \
+	&& conda install -y -n base biopython \
+	&& conda install -y -n base circos=0.69.8 \
+	&& conda install -y -n base perl-bioperl=1.7.2 \
+	&& conda install -y -n base fastqc=0.11.9 \
+	&& conda install -y -n base fastp=0.20.0 \
 	&& conda clean --all --yes \
 	&& echo "conda activate qiime1" >>/biosoft/miniconda/etc/profile.d/conda.sh \
 	&& /biosoft/miniconda/envs/qiime1/bin/pip install  numpy scipy \
