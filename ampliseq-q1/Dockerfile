@@ -33,6 +33,7 @@ RUN cd /biosoft && git clone git://github.com/qiime/qiime-deploy.git \
 	&& cd /biosoft && mkdir usearch && cd usearch && wget http://www.drive5.com/downloads/usearch11.0.667_i86linux32.gz \
 	&& gunzip usearch11.0.667_i86linux32.gz && ln -s usearch11.0.667_i86linux32 usearch \
 	&& chmod a+x usearch11.0.667_i86linux32
+COPY uclust /biosoft/usearch
 ## Required to build the container properly
 RUN mkdir -p /root/.config/matplotlib && echo "backend : Agg" > /root/.config/matplotlib/matplotlibrc
 
@@ -44,10 +45,11 @@ RUN conda create -n qiime1 -y python=2.7 \
 	&& conda install -y -n base fastp=0.20.0 \
 	&& conda clean --all --yes \
 	&& echo "conda activate qiime1" >>/biosoft/miniconda/etc/profile.d/conda.sh \
-	&& /biosoft/miniconda/envs/qiime1/bin/pip install  numpy scipy \
+	&& /biosoft/miniconda/envs/qiime1/bin/pip install  numpy scipy matplotlib==1.5.2 \
 	&& /biosoft/miniconda/envs/qiime1/bin/pip install  cogent==1.5.3 \
 	&& /biosoft/miniconda/envs/qiime1/bin/pip install  biom-format==2.1.5 \
-	&& /biosoft/miniconda/envs/qiime1/bin/pip install   qiime
+	&& /biosoft/miniconda/envs/qiime1/bin/pip install  h5py \
+	&& /biosoft/miniconda/envs/qiime1/bin/pip install  qiime
 
 RUN     R -e "install.packages(c('BiocManager', 'compiler','ggplot2','devtools','dplyr','gplots','RColorBrewer', 'getopt','reshape2','pheatmap','cowplot','R.utils','biom','gplots','ape','scatterplot3d','randomForest','vegan'),dependencies=TRUE,repos='http://cran.wustl.edu/')" \
         && R -e "BiocManager::install(c('metagenomeSeq','DESeq2'))"
