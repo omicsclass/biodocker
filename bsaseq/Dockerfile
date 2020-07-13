@@ -27,6 +27,6 @@ RUN	conda install -y -n base pandas matplotlib scipy fisher && conda clean --all
 
 RUN	cd /biosoft && git clone https://github.com/omicsclass/QTL-seq.git && cd QTL-seq && /biosoft/miniconda/bin/pip install -e . \
         && cd /biosoft && git clone https://github.com/omicsclass/MutMap.git && cd MutMap && /biosoft/miniconda/bin/pip install -e . 
-
+COPY welcome.sh  /root/.welcome.sh
 WORKDIR /work
 
