@@ -15,7 +15,7 @@ LABEL base.image="omicsclass/biocontainer-base:latest" \
 ################## MAINTAINER ######################
 MAINTAINER huangls <huang2002003@qq.com>
 
-ENV PATH=/usr/bin:/biosoft/FLASH-1.2.11-Linux-x86_64:/biosoft/Krona-2.7.1/bin:/biosoft/miniconda/envs/qiime1/bin:/biosoft/usearch:/biosoft/clearcut/:$PATH
+ENV PATH=/usr/bin:/biosoft/FLASH-1.2.11-Linux-x86_64:/biosoft/Krona-2.7.1/KronaTools/scripts/:/biosoft/miniconda/envs/qiime1/bin:/biosoft/usearch:/biosoft/clearcut/:$PATH
 COPY qiime.conf /biosoft/ 
 RUN   yum -y install epel-release && \
     yum -y install R R-devel && \
@@ -47,19 +47,24 @@ RUN conda create -n qiime1 -y python=2.7 \
 	&& conda install -y -n base perl-bioperl=1.7.2 \
 	&& conda install -y -n base fastqc=0.11.9 \
 	&& conda install -y -n base fastp=0.20.0 \
+	&& conda install -y -n base multiqc=1.9 \
+	&& conda install -n qiime1 -y lefse \
+	#&& conda install -n qiime1 -y biopython=1.75 \
+	#&& conda install -n base -y koeken \
 	&& conda clean --all --yes \
 	&& echo "conda activate qiime1" >>/biosoft/miniconda/etc/profile.d/conda.sh \
 	&& /biosoft/miniconda/envs/qiime1/bin/pip install  numpy scipy matplotlib==1.5.2 \
 	&& /biosoft/miniconda/envs/qiime1/bin/pip install  cogent==1.5.3 \
 	&& /biosoft/miniconda/envs/qiime1/bin/pip install  biom-format==2.1.5 \
 	&& /biosoft/miniconda/envs/qiime1/bin/pip install  h5py \
-	&& /biosoft/miniconda/envs/qiime1/bin/pip install  qiime
+	&& /biosoft/miniconda/envs/qiime1/bin/pip install  qiime \
+	&& /biosoft/miniconda/envs/qiime1/bin/pip install  STAMP
 
 RUN     R -e "install.packages(c('BiocManager', 'compiler','ggplot2','devtools','dplyr','gplots','RColorBrewer', 'getopt','reshape2','pheatmap','cowplot','R.utils','biom','gplots','ape','scatterplot3d','randomForest','vegan','agricolae','ade4'),dependencies=TRUE,repos='http://cran.wustl.edu/')" \
         && R -e "BiocManager::install(c('metagenomeSeq','DESeq2'))"  \
 	&& cd /biosoft && wget https://cran.r-project.org/src/contrib/Archive/mnormt/mnormt_1.5-7.tar.gz \
 	&& R CMD INSTALL mnormt_1.5-7.tar.gz && rm -f mnormt_1.5-7.tar.gz \
-	&& R -e "install.packages(c('psych'),dependencies=TRUE,repos='http://cran.wustl.edu/')" 
+	&& R -e "install.packages(c('psych','vcd','Ternary'),dependencies=TRUE,repos='http://cran.wustl.edu/')" 
 
 WORKDIR /work
 
