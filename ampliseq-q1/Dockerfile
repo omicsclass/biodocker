@@ -15,7 +15,7 @@ LABEL base.image="omicsclass/biocontainer-base:latest" \
 ################## MAINTAINER ######################
 MAINTAINER huangls <huang2002003@qq.com>
 
-ENV PATH=/usr/bin:/biosoft/miniconda/envs/qiime1/bin:/biosoft/usearch:/biosoft/clearcut/:$PATH
+ENV PATH=/usr/bin:/biosoft/FLASH-1.2.11-Linux-x86_64:/biosoft/Krona-2.7.1/bin:/biosoft/miniconda/envs/qiime1/bin:/biosoft/usearch:/biosoft/clearcut/:$PATH
 COPY qiime.conf /biosoft/ 
 RUN   yum -y install epel-release && \
     yum -y install R R-devel && \
@@ -32,7 +32,11 @@ RUN cd /biosoft && git clone git://github.com/qiime/qiime-deploy.git \
 	&& echo "source /biosoft/qiime-1.9.1/qiime_software/activate.sh" >>/root/.bashrc \
 	&& cd /biosoft && mkdir usearch && cd usearch && wget http://www.drive5.com/downloads/usearch11.0.667_i86linux32.gz \
 	&& gunzip usearch11.0.667_i86linux32.gz && ln -s usearch11.0.667_i86linux32 usearch \
-	&& chmod a+x usearch11.0.667_i86linux32
+	&& chmod a+x usearch11.0.667_i86linux32 \
+	&& cd /biosoft && wget -qO- http://ccb.jhu.edu/software/FLASH/FLASH-1.2.11-Linux-x86_64.tar.gz |tar xvz \
+	&& wget https://github.com/torognes/vsearch/archive/v2.15.0.tar.gz && tar xzf v2.15.0.tar.gz && cd vsearch-2.15.0 \
+	&& ./autogen.sh && ./configure && make && make install && cd /biosoft && rm -rf vsearch-2.15.0 v2.15.0.tar.gz \
+	&&  cd /biosoft && wget -qO-  https://github.com/marbl/Krona/archive/v2.7.1.tar.gz  |tar xvz 
 COPY uclust /biosoft/usearch
 ## Required to build the container properly
 RUN mkdir -p /root/.config/matplotlib && echo "backend : Agg" > /root/.config/matplotlib/matplotlibrc
@@ -51,8 +55,11 @@ RUN conda create -n qiime1 -y python=2.7 \
 	&& /biosoft/miniconda/envs/qiime1/bin/pip install  h5py \
 	&& /biosoft/miniconda/envs/qiime1/bin/pip install  qiime
 
-RUN     R -e "install.packages(c('BiocManager', 'compiler','ggplot2','devtools','dplyr','gplots','RColorBrewer', 'getopt','reshape2','pheatmap','cowplot','R.utils','biom','gplots','ape','scatterplot3d','randomForest','vegan'),dependencies=TRUE,repos='http://cran.wustl.edu/')" \
-        && R -e "BiocManager::install(c('metagenomeSeq','DESeq2'))"
+RUN     R -e "install.packages(c('BiocManager', 'compiler','ggplot2','devtools','dplyr','gplots','RColorBrewer', 'getopt','reshape2','pheatmap','cowplot','R.utils','biom','gplots','ape','scatterplot3d','randomForest','vegan','agricolae','ade4'),dependencies=TRUE,repos='http://cran.wustl.edu/')" \
+        && R -e "BiocManager::install(c('metagenomeSeq','DESeq2'))"  \
+	&& cd /biosoft && wget https://cran.r-project.org/src/contrib/Archive/mnormt/mnormt_1.5-7.tar.gz \
+	&& R CMD INSTALL mnormt_1.5-7.tar.gz && rm -f mnormt_1.5-7.tar.gz \
+	&& R -e "install.packages(c('psych'),dependencies=TRUE,repos='http://cran.wustl.edu/')" 
 
 WORKDIR /work
 
