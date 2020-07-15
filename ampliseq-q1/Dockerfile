@@ -60,11 +60,17 @@ RUN conda create -n qiime1 -y python=2.7 \
 	&& /biosoft/miniconda/envs/qiime1/bin/pip install  qiime \
 	&& /biosoft/miniconda/envs/qiime1/bin/pip install  STAMP
 
-RUN     R -e "install.packages(c('BiocManager', 'compiler','ggplot2','devtools','dplyr','gplots','RColorBrewer', 'getopt','reshape2','pheatmap','cowplot','R.utils','biom','gplots','ape','scatterplot3d','randomForest','vegan','agricolae','ade4'),dependencies=TRUE,repos='http://cran.wustl.edu/')" \
-        && R -e "BiocManager::install(c('metagenomeSeq','DESeq2'))"  \
+RUN     /usr/bin/R -e "install.packages(c('BiocManager', 'compiler','ggplot2','devtools','dplyr','gplots','RColorBrewer', 'getopt','reshape2','pheatmap','cowplot','R.utils','biom','gplots','ape','scatterplot3d','randomForest','vegan','agricolae','ade4','RJSONIO','Matrix'),dependencies=TRUE,repos='http://cran.wustl.edu/')" \
+        && /usr/bin/R -e "BiocManager::install(c('metagenomeSeq','DESeq2'))"  \
 	&& cd /biosoft && wget https://cran.r-project.org/src/contrib/Archive/mnormt/mnormt_1.5-7.tar.gz \
-	&& R CMD INSTALL mnormt_1.5-7.tar.gz && rm -f mnormt_1.5-7.tar.gz \
-	&& R -e "install.packages(c('psych','vcd','Ternary'),dependencies=TRUE,repos='http://cran.wustl.edu/')" 
+	&& /usr/bin/R CMD INSTALL mnormt_1.5-7.tar.gz && rm -f mnormt_1.5-7.tar.gz \
+	&& cd /biosoft && wget wget https://cran.r-project.org/src/contrib/Archive/qiimer/qiimer_0.9.4.tar.gz \
+	&& cd /biosoft && wget https://cran.r-project.org/src/contrib/Archive/biom/biom_0.3.12.tar.gz \
+	&& cd /biosoft && wget http://tax4fun.gobics.de/Tax4Fun/Tax4Fun_0.3.1.tar.gz \
+	&& /usr/bin/R CMD INSTALL qiimer_0.9.4.tar.gz && rm -f qiimer_0.9.4.tar.gz \
+	&& /usr/bin/R CMD INSTALL biom_0.3.12.tar.gz && rm -f biom_0.3.12.tar.gz \
+	&& /usr/bin/R CMD INSTALL Tax4Fun_0.3.1.tar.gz && rm -f Tax4Fun_0.3.1.tar.gz \
+	&& /usr/bin/R -e "install.packages(c('psych','vcd','Ternary'),dependencies=TRUE,repos='http://cran.wustl.edu/')" 
 
 WORKDIR /work
 
