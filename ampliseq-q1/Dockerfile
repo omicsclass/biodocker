@@ -48,7 +48,7 @@ RUN conda create -n qiime1 -y python=2.7 \
 	&& conda install -y -n base fastqc=0.11.9 \
 	&& conda install -y -n base fastp=0.20.0 \
 	&& conda install -y -n base multiqc=1.9 \
-	&& conda install -n qiime1 -y lefse \
+	#&& conda install -n qiime1 -y lefse \
 	#&& conda install -n qiime1 -y biopython=1.75 \
 	#&& conda install -n base -y koeken \
 	&& conda clean --all --yes \
