@@ -53,18 +53,18 @@ RUN conda create -n qiime1 -y python=2.7 \
 	#&& conda install -n base -y koeken \
 	&& conda clean --all --yes \
 	&& echo "conda activate qiime1" >>/biosoft/miniconda/etc/profile.d/conda.sh \
-	&& /biosoft/miniconda/envs/qiime1/bin/pip install  numpy scipy matplotlib==1.5.2 \
+	&& /biosoft/miniconda/envs/qiime1/bin/pip install  numpy==1.11.1 scipy==0.18.0 matplotlib==1.5.2 \
 	&& /biosoft/miniconda/envs/qiime1/bin/pip install  cogent==1.5.3 \
 	&& /biosoft/miniconda/envs/qiime1/bin/pip install  biom-format==2.1.5 \
-	&& /biosoft/miniconda/envs/qiime1/bin/pip install  h5py \
-	&& /biosoft/miniconda/envs/qiime1/bin/pip install  qiime \
-	&& /biosoft/miniconda/envs/qiime1/bin/pip install  STAMP
+	#&& /biosoft/miniconda/envs/qiime1/bin/pip install  h5py \
+	&& /biosoft/miniconda/envs/qiime1/bin/pip install  qiime 
+	#&& /biosoft/miniconda/envs/qiime1/bin/pip install  STAMP
 
 RUN     /usr/bin/R -e "install.packages(c('BiocManager', 'compiler','ggplot2','devtools','dplyr','gplots','RColorBrewer', 'getopt','reshape2','pheatmap','cowplot','R.utils','biom','gplots','ape','scatterplot3d','randomForest','vegan','agricolae','ade4','RJSONIO','Matrix'),dependencies=TRUE,repos='http://cran.wustl.edu/')" \
         && /usr/bin/R -e "BiocManager::install(c('metagenomeSeq','DESeq2'))"  \
 	&& cd /biosoft && wget https://cran.r-project.org/src/contrib/Archive/mnormt/mnormt_1.5-7.tar.gz \
 	&& /usr/bin/R CMD INSTALL mnormt_1.5-7.tar.gz && rm -f mnormt_1.5-7.tar.gz \
-	&& cd /biosoft && wget wget https://cran.r-project.org/src/contrib/Archive/qiimer/qiimer_0.9.4.tar.gz \
+	&& cd /biosoft &&  wget https://cran.r-project.org/src/contrib/Archive/qiimer/qiimer_0.9.4.tar.gz \
 	&& cd /biosoft && wget https://cran.r-project.org/src/contrib/Archive/biom/biom_0.3.12.tar.gz \
 	&& cd /biosoft && wget http://tax4fun.gobics.de/Tax4Fun/Tax4Fun_0.3.1.tar.gz \
 	&& /usr/bin/R CMD INSTALL qiimer_0.9.4.tar.gz && rm -f qiimer_0.9.4.tar.gz \
