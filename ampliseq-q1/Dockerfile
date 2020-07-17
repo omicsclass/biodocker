@@ -15,7 +15,7 @@ LABEL base.image="omicsclass/biocontainer-base:latest" \
 ################## MAINTAINER ######################
 MAINTAINER huangls <huang2002003@qq.com>
 
-ENV PATH=/usr/bin:/biosoft/FLASH-1.2.11-Linux-x86_64:/biosoft/Krona-2.7.1/KronaTools/scripts/:/biosoft/miniconda/envs/qiime1/bin:/biosoft/usearch:/biosoft/clearcut/:$PATH
+ENV PATH=/biosoft/FLASH-1.2.11-Linux-x86_64:/biosoft/Krona-2.7.1/KronaTools/scripts/:/biosoft/miniconda/envs/qiime1/bin:/biosoft/usearch:/biosoft/clearcut/:$PATH
 COPY qiime.conf /biosoft/ 
 RUN   yum -y install epel-release && \
     yum -y install R R-devel && \
@@ -53,10 +53,10 @@ RUN conda create -n qiime1 -y python=2.7 \
 	#&& conda install -n base -y koeken \
 	&& conda clean --all --yes \
 	&& echo "conda activate qiime1" >>/biosoft/miniconda/etc/profile.d/conda.sh \
-	&& /biosoft/miniconda/envs/qiime1/bin/pip install  numpy==1.11.1 scipy==0.18.0 matplotlib==1.5.2 \
+	&& /biosoft/miniconda/envs/qiime1/bin/pip install  numpy==1.11.1 pandas==0.18.1 scipy==0.18.0 matplotlib==1.5.2 \
 	&& /biosoft/miniconda/envs/qiime1/bin/pip install  cogent==1.5.3 \
 	&& /biosoft/miniconda/envs/qiime1/bin/pip install  biom-format==2.1.5 \
-	#&& /biosoft/miniconda/envs/qiime1/bin/pip install  h5py \
+	&& /biosoft/miniconda/envs/qiime1/bin/pip install  h5py \
 	&& /biosoft/miniconda/envs/qiime1/bin/pip install  qiime 
 	#&& /biosoft/miniconda/envs/qiime1/bin/pip install  STAMP
 
