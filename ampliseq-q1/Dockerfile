@@ -28,7 +28,7 @@ RUN cd /biosoft && git clone git://github.com/qiime/qiime-deploy.git \
 	&& mkdir -p /biosoft/qiime-1.9.1/qiime_software/ \
 	&& git clone https://github.com/ibest/clearcut.git && cd clearcut/ && make \
 	&& cd /biosoft/qiime-deploy/ \
-	&& python qiime-deploy.py  -f /biosoft/qiime.conf --force-remove-failed-dirs /biosoft/qiime-1.9.1/qiime_software/ \
+	&& /usr/bin/python qiime-deploy.py  -f /biosoft/qiime.conf --force-remove-failed-dirs /biosoft/qiime-1.9.1/qiime_software/ \
 	&& echo "source /biosoft/qiime-1.9.1/qiime_software/activate.sh" >>/root/.bashrc \
 	&& cd /biosoft && mkdir usearch && cd usearch && wget http://www.drive5.com/downloads/usearch11.0.667_i86linux32.gz \
 	&& gunzip usearch11.0.667_i86linux32.gz && ln -s usearch11.0.667_i86linux32 usearch \
