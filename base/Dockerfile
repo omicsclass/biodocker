@@ -20,7 +20,7 @@ ENV LANG=en_US.utf8 LC_ALL=en_US.utf8
 ENV PATH /biosoft/miniconda/bin:/biosoft/biotools:$PATH
 
 RUN	ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && yum -y update && yum upgrade -y \
-	&& yum -y install git autoconf automake perl-Data-Dumper  udunits2-devel bzip2 bzip2-devel curl-devel libxml2-devel ncurses-devel openssl openssl-devel openssh-clients readline-devel pcre-devel \
+	&& yum -y install git autoconf automake perl-Data-Dumper  vim udunits2-devel bzip2 bzip2-devel curl-devel libxml2-devel ncurses-devel openssl openssl-devel openssh-clients readline-devel pcre-devel \
           libX11-devel libXt-devel blas blas-devel lapack  lapack-devel cmake make zlib zlib-devel libpng libpng12 libtiff  libjpeg boost boost-devel xz-devel xz libpng-devel libjpeg-devel libtiff-devel  cairo pbicu-devel  texinfo qpdf valgrind pango-devel gcc-gfortran \
          texlive texlive-*.noarch  gsl gsl-devel wget   zip    which  less  tree unzip gcc-c++ gcc gdb  java-1.8.0-openjdk  java-1.8.0-openjdk-devel \
 	&& yum clean all 
@@ -40,6 +40,7 @@ RUN	mkdir -p  /biosoft/miniconda  && mkdir -p  /biosoft/biotools \
         && echo "alias ee=\"less -SN \"" >> ~/.bashrc \
         && echo "alias l=\"ls -lhtr"\" >> ~/.bashrc \
         && echo "alias ll=\"ls -lh\"" >> ~/.bashrc \
+        && echo "alias vi=\"vim\"" >> ~/.bashrc \
         && echo "export LESSCHARSET=utf-8" >> ~/.bashrc \
         && echo -e "set fileencodings=ucs-bom,utf-8,gbk,gb2312,cp936,gb18030,big5,latin-1\nset encoding=utf-8\nset termencoding=utf-8\nset fileencoding=utf-8\n" >> /etc/virc \
         #&& echo "export PS1=\"\[\e[32m\][\[\e[35m\]\u\[\e[m\]@\[\e[36m\]\h \[\e[31m\] \t \w\[\e[32m\]]\[\e[36m\]#\[\e[m\]\"" >> ~/.bashrc \
