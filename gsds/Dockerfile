@@ -35,7 +35,7 @@ cp ./${NAME}/bin/bedtools /usr/local/bin/ && \
 strip /usr/local/bin/*; true && \
 rm -rf ./${NAME}/
 
-CPOY 	gsds_v2.tar.gz /app
+COPY 	gsds_v2.tar.gz /app
 
 RUN 	cd /app && tar -zxvf gsds_v2.tar.gz \
 	&& mv gsds_v2/* . \
