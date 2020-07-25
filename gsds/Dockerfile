@@ -18,7 +18,8 @@ MAINTAINER huangls <huang2002003@qq.com>
 #COPY Miniconda3-latest-Linux-x86_64.sh /tmp/miniconda.sh
 ENV LANG=en_US.utf8 LC_ALL=en_US.utf8
 
-RUN apt-get -qq update && apt-get -y upgrade && apt-get -y install make  librsvg2-dev  librsvg2-bin emboss=6.6.0+dfsg-6build1 && cpan install SVG 
+RUN apt-get -qq update && apt-get -y upgrade && apt-get -y install make  librsvg2-dev  librsvg2-bin emboss=6.6.0+dfsg-6build1 python2.7-dev && cpan install SVG Bio::Phylo
+RUN ln -s /usr/bin/python2.7 /usr/bin/python
 WORKDIR /tmp
 
 ### Installing bedtools2
