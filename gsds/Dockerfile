@@ -19,7 +19,7 @@ MAINTAINER huangls <huang2002003@qq.com>
 ENV LANG=en_US.utf8 LC_ALL=en_US.utf8
 
 RUN apt-get -qq update && apt-get -y upgrade && apt-get -y install make  librsvg2-dev  librsvg2-bin emboss=6.6.0+dfsg-6build1 python2.7-dev bioperl && cpan install SVG Bio::Phylo 
-RUN ln -s /usr/bin/python2.7 /usr/bin/python
+#RUN ln -s /usr/bin/python2.7 /usr/bin/python
 WORKDIR /tmp
 
 ### Installing bedtools2
