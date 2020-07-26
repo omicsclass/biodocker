@@ -36,19 +36,19 @@ cp ./${NAME}/bin/bedtools /usr/local/bin/ && \
 strip /usr/local/bin/*; true && \
 rm -rf ./${NAME}/
 
-COPY 	gsds_v2.tar.gz /app
+#COPY 	gsds_v2.tar.gz /app
 
-RUN 	cd /app && tar -zxvf gsds_v2.tar.gz \
-	&& mv gsds_v2/* . \
-	&& mkdir -p task/upload_file \
-	&& chmod 777 task/ \
-	&& chmod 777 task/upload_file/ \
-	&& chmod a+w gsds_log \
-	&& cd gcgi_bin \
-	&& ln -s -f /usr/bin/seqretsplit seqretsplit \
-	&& ln -s -f /usr/bin/est2genome est2genome \
-	&& ln -s -f /usr/bin/bedtools  bedtools \
-	&& ln -s -f /usr/bin/rsvg-convert rsvg-convert 
+#RUN 	cd /app && tar -zxvf gsds_v2.tar.gz \
+#	&& mv gsds_v2/* . \
+#	&& mkdir -p task/upload_file \
+#	&& chmod 777 task/ \
+#	&& chmod 777 task/upload_file/ \
+#	&& chmod a+w gsds_log \
+#	&& cd gcgi_bin \
+#	&& ln -s -f /usr/bin/seqretsplit seqretsplit \
+#	&& ln -s -f /usr/bin/est2genome est2genome \
+#	&& ln -s -f /usr/bin/bedtools  bedtools \
+#	&& ln -s -f /usr/bin/rsvg-convert rsvg-convert 
 
 CMD ["/run.sh"]
 
