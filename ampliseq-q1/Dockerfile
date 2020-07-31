@@ -35,7 +35,7 @@ RUN     /usr/bin/R -e "install.packages(c('BiocManager', 'compiler','ggplot2','d
         && /usr/bin/R CMD INSTALL qiimer_0.9.4.tar.gz && rm -f qiimer_0.9.4.tar.gz \
         && /usr/bin/R CMD INSTALL biom_0.3.12.tar.gz && rm -f biom_0.3.12.tar.gz \
         && /usr/bin/R CMD INSTALL Tax4Fun_0.3.1.tar.gz && rm -f Tax4Fun_0.3.1.tar.gz \
-        && /usr/bin/R -e "library(devtools);install_github('js229/Vennerable');install.packages(c('psych','vcd','Ternary','ggpubr','VennDiagram'),dependencies=TRUE,repos='http://cran.wustl.edu/')"
+        && /usr/bin/R -e "install.packages(c('psych','vcd','Ternary','ggpubr','VennDiagram'),dependencies=TRUE,repos='http://cran.wustl.edu/')"
 
 
 
