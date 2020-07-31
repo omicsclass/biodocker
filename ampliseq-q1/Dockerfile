@@ -24,8 +24,9 @@ RUN   yum -y install epel-release && \
     yum -y remove epel-release && \
     yum clean all
 
-RUN     /usr/bin/R -e "install.packages(c('BiocManager', 'compiler','ggplot2','devtools','dplyr','gplots','RColorBrewer', 'getopt','reshape2','pheatmap','cowplot','R.utils','biom','gplots','ape','scatterplot3d','randomForest','vegan','agricolae','ade4','RJSONIO','Matrix','devtools'),dependencies=TRUE,repos='http://cran.wustl.edu/')" \
+RUN     /usr/bin/R -e "install.packages(c('BiocManager', 'compiler','ggplot2','devtools','dplyr','gplots','RColorBrewer', 'getopt','reshape2','pheatmap','cowplot','R.utils','biom','gplots','ape','scatterplot3d','randomForest','vegan','agricolae','ade4','RJSONIO','Matrix','devtools','argparse','ggtern','reshape'),dependencies=TRUE,repos='http://cran.wustl.edu/')" \
         && /usr/bin/R -e "BiocManager::install(c('metagenomeSeq','DESeq2','RGBL','graph'))"  \
+        && /usr/bin/R -e "install.packages('Vennerable', repos='http://R-Forge.R-project.org')"  \
         && cd /biosoft && wget https://cran.r-project.org/src/contrib/Archive/mnormt/mnormt_1.5-7.tar.gz \
         && /usr/bin/R CMD INSTALL mnormt_1.5-7.tar.gz && rm -f mnormt_1.5-7.tar.gz \
         && cd /biosoft &&  wget https://cran.r-project.org/src/contrib/Archive/qiimer/qiimer_0.9.4.tar.gz \
