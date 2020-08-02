@@ -57,7 +57,7 @@ COPY uclust /biosoft/usearch
 ## Required to build the container properly
 RUN mkdir -p /root/.config/matplotlib && echo "backend : Agg" > /root/.config/matplotlib/matplotlibrc
 
-RUN	&& conda install -y -n base biopython \
+RUN	 conda install -y -n base biopython \
 	&& conda install -y -n base circos \
 	&& conda install -y -n base perl-bioperl \
 	&& conda install -y -n base fastqc \
