@@ -57,25 +57,24 @@ COPY uclust /biosoft/usearch
 ## Required to build the container properly
 RUN mkdir -p /root/.config/matplotlib && echo "backend : Agg" > /root/.config/matplotlib/matplotlibrc
 
-RUN conda create -n qiime1 -y python=2.7 \
-	&& conda install -y -n base biopython \
-	&& conda install -y -n base circos=0.69.8 \
-	&& conda install -y -n base perl-bioperl=1.7.2 \
-	&& conda install -y -n base fastqc=0.11.9 \
-	&& conda install -y -n base fastp=0.20.0 \
-	&& conda install -y -n base multiqc=1.9 \
+RUN	&& conda install -y -n base biopython \
+	&& conda install -y -n base circos \
+	&& conda install -y -n base perl-bioperl \
+	&& conda install -y -n base fastqc \
+	&& conda install -y -n base fastp \
+	&& conda install -y -n base multiqc \
 	#&& conda install -n qiime1 -y lefse \
 	#&& conda install -n qiime1 -y biopython=1.75 \
 	#&& conda install -n base -y koeken \
-	&& conda clean --all --yes \
+	&& conda create -n qiime1 -y python=2.7 \
 	&& echo "conda activate qiime1" >>/biosoft/miniconda/etc/profile.d/conda.sh \
 	&& /biosoft/miniconda/envs/qiime1/bin/pip install  numpy==1.11.1 pandas==0.18.1 scipy==0.18.0 matplotlib==1.5.2 \
 	&& /biosoft/miniconda/envs/qiime1/bin/pip install  cogent==1.5.3 \
 	&& /biosoft/miniconda/envs/qiime1/bin/pip install  biom-format==2.1.5 \
 	&& /biosoft/miniconda/envs/qiime1/bin/pip install  h5py \
-	&& /biosoft/miniconda/envs/qiime1/bin/pip install  qiime 
-	#&& /biosoft/miniconda/envs/qiime1/bin/pip install  STAMP
-
+	&& /biosoft/miniconda/envs/qiime1/bin/pip install  qiime \ 
+	&& conda clean --all --yes \
+	&& echo "conda activate qiime1" >>/biosoft/miniconda/etc/profile.d/conda.sh 
 
 WORKDIR /work
 
