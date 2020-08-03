@@ -26,17 +26,21 @@ RUN   yum -y install epel-release && \
     yum clean all
 
 RUN     /usr/bin/R -e "install.packages(c('BiocManager', 'compiler','ggplot2','devtools','dplyr','gplots','RColorBrewer', 'getopt','reshape2','pheatmap','cowplot','R.utils','biom','gplots','ape','scatterplot3d','randomForest','vegan','agricolae','ade4','RJSONIO','Matrix','devtools','argparse','ggtern','reshape'),dependencies=TRUE,repos='http://cran.wustl.edu/')" \
-        && /usr/bin/R -e "BiocManager::install(c('metagenomeSeq','DESeq2','RGBL','graph','ggtree'))"  \
+        && /usr/bin/R -e "BiocManager::install(c('metagenomeSeq','DESeq2','RGBL','graph'))"  \
         && /usr/bin/R -e "install.packages('Vennerable', repos='http://R-Forge.R-project.org')"  \
         && cd /biosoft && wget https://cran.r-project.org/src/contrib/Archive/mnormt/mnormt_1.5-7.tar.gz \
         && /usr/bin/R CMD INSTALL mnormt_1.5-7.tar.gz && rm -f mnormt_1.5-7.tar.gz \
         && cd /biosoft &&  wget https://cran.r-project.org/src/contrib/Archive/qiimer/qiimer_0.9.4.tar.gz \
         && cd /biosoft && wget https://cran.r-project.org/src/contrib/Archive/biom/biom_0.3.12.tar.gz \
         && cd /biosoft && wget http://tax4fun.gobics.de/Tax4Fun/Tax4Fun_0.3.1.tar.gz \
+        && cd /biosoft && wget  https://cran.r-project.org/src/contrib/Archive/nloptr/nloptr_1.2.1.tar.gz \
+        && cd /biosoft && wget  https://cran.r-project.org/src/contrib/Archive/tidyr/tidyr_1.0.0.tar.gz \
         && /usr/bin/R CMD INSTALL qiimer_0.9.4.tar.gz && rm -f qiimer_0.9.4.tar.gz \
         && /usr/bin/R CMD INSTALL biom_0.3.12.tar.gz && rm -f biom_0.3.12.tar.gz \
         && /usr/bin/R CMD INSTALL Tax4Fun_0.3.1.tar.gz && rm -f Tax4Fun_0.3.1.tar.gz \
-        && /usr/bin/R -e "install.packages(c('psych','vcd','Ternary','ggpubr','VennDiagram'),dependencies=TRUE,repos='http://cran.wustl.edu/')"
+        && /usr/bin/R CMD INSTALL nloptr_1.2.1.tar.gz && rm -f nloptr_1.2.1.tar.gz \
+_       && /usr/bin/R CMD INSTALL tidyr_1.0.0.tar.gz && rm -f tidyr_1.0.0.tar.gz \
+        && /usr/bin/R -e "install.packages(c('psych','vcd','Ternary','ggpubr','ggalluvial','ggtree','VennDiagram'),dependencies=TRUE,repos='http://cran.wustl.edu/')"
 
 
 
