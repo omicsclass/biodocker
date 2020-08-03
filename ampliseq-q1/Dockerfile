@@ -16,6 +16,7 @@ LABEL base.image="omicsclass/biocontainer-base:latest" \
 MAINTAINER huangls <huang2002003@qq.com>
 
 ENV PATH=/biosoft/FLASH-1.2.11-Linux-x86_64:/biosoft/Krona-2.7.1/KronaTools/scripts/:/biosoft/miniconda/envs/qiime1/bin:/biosoft/usearch:/biosoft/clearcut/:$PATH
+ENV PERL5LIB=/biosoft/miniconda/pkgs/perl-bioperl-1.6.924-4/lib/perl5/site_perl/5.22.0/:$PERL5LIB
 COPY qiime.conf /biosoft/ 
 RUN   yum -y install epel-release && \
     yum -y install R R-devel && \
@@ -25,7 +26,7 @@ RUN   yum -y install epel-release && \
     yum clean all
 
 RUN     /usr/bin/R -e "install.packages(c('BiocManager', 'compiler','ggplot2','devtools','dplyr','gplots','RColorBrewer', 'getopt','reshape2','pheatmap','cowplot','R.utils','biom','gplots','ape','scatterplot3d','randomForest','vegan','agricolae','ade4','RJSONIO','Matrix','devtools','argparse','ggtern','reshape'),dependencies=TRUE,repos='http://cran.wustl.edu/')" \
-        && /usr/bin/R -e "BiocManager::install(c('metagenomeSeq','DESeq2','RGBL','graph'))"  \
+        && /usr/bin/R -e "BiocManager::install(c('metagenomeSeq','DESeq2','RGBL','graph','ggtree'))"  \
         && /usr/bin/R -e "install.packages('Vennerable', repos='http://R-Forge.R-project.org')"  \
         && cd /biosoft && wget https://cran.r-project.org/src/contrib/Archive/mnormt/mnormt_1.5-7.tar.gz \
         && /usr/bin/R CMD INSTALL mnormt_1.5-7.tar.gz && rm -f mnormt_1.5-7.tar.gz \
