@@ -17,7 +17,7 @@ MAINTAINER huangls <huang2002003@qq.com>
 
 ENV PATH=/biosoft/FLASH-1.2.11-Linux-x86_64:/biosoft/Krona-2.7.1/KronaTools/scripts/:/biosoft/miniconda/envs/qiime1/bin:/biosoft/usearch:/biosoft/clearcut/:$PATH
 ENV PERL5LIB=/biosoft/miniconda/pkgs/perl-bioperl-1.6.924-4/lib/perl5/site_perl/5.22.0/:$PERL5LIB
-COPY qiime.conf /biosoft/ 
+COPY qiime.conf picrust2-env.yaml /biosoft/ 
 RUN   yum -y install epel-release && \
     yum -y install R R-devel && \
     yum -y install ant mpich2 mpich2-devel ghc zeromq python-devel freetype freetype-devel\
@@ -25,8 +25,9 @@ RUN   yum -y install epel-release && \
     yum -y remove epel-release && \
     yum clean all
 
-RUN     /usr/bin/R -e "install.packages(c('BiocManager', 'compiler','ggplot2','devtools','dplyr','gplots','RColorBrewer', 'getopt','reshape2','pheatmap','cowplot','R.utils','biom','gplots','ape','scatterplot3d','randomForest','vegan','agricolae','ade4','RJSONIO','Matrix','devtools','argparse','ggtern','reshape'),dependencies=TRUE,repos='http://cran.wustl.edu/')" \
-        && /usr/bin/R -e "BiocManager::install(c('metagenomeSeq','DESeq2','RGBL','graph'))"  \
+RUN     PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin \
+	&&/usr/bin/R -e "install.packages(c('BiocManager', 'compiler','ggplot2','devtools','dplyr','gplots','RColorBrewer', 'getopt','reshape2','pheatmap','cowplot','R.utils','biom','gplots','ape','scatterplot3d','randomForest','vegan','agricolae','ade4','RJSONIO','Matrix','devtools','argparse','optparse','ggtern','reshape'),dependencies=TRUE,repos='http://cran.wustl.edu/')" \
+        && /usr/bin/R -e "BiocManager::install(c('metagenomeSeq','RGBL','graph','ggtree'))"  \
         && /usr/bin/R -e "install.packages('Vennerable', repos='http://R-Forge.R-project.org')"  \
         && cd /biosoft && wget https://cran.r-project.org/src/contrib/Archive/mnormt/mnormt_1.5-7.tar.gz \
         && /usr/bin/R CMD INSTALL mnormt_1.5-7.tar.gz && rm -f mnormt_1.5-7.tar.gz \
@@ -35,12 +36,14 @@ RUN     /usr/bin/R -e "install.packages(c('BiocManager', 'compiler','ggplot2','d
         && cd /biosoft && wget http://tax4fun.gobics.de/Tax4Fun/Tax4Fun_0.3.1.tar.gz \
         && cd /biosoft && wget  https://cran.r-project.org/src/contrib/Archive/nloptr/nloptr_1.2.1.tar.gz \
         && cd /biosoft && wget  https://cran.r-project.org/src/contrib/Archive/tidyr/tidyr_1.0.0.tar.gz \
+        && cd /biosoft && wget  https://cran.r-project.org/src/contrib/Archive/XML/XML_3.98-1.20.tar.gz \
         && /usr/bin/R CMD INSTALL qiimer_0.9.4.tar.gz && rm -f qiimer_0.9.4.tar.gz \
         && /usr/bin/R CMD INSTALL biom_0.3.12.tar.gz && rm -f biom_0.3.12.tar.gz \
         && /usr/bin/R CMD INSTALL Tax4Fun_0.3.1.tar.gz && rm -f Tax4Fun_0.3.1.tar.gz \
         && /usr/bin/R CMD INSTALL nloptr_1.2.1.tar.gz && rm -f nloptr_1.2.1.tar.gz \
-_       && /usr/bin/R CMD INSTALL tidyr_1.0.0.tar.gz && rm -f tidyr_1.0.0.tar.gz \
-        && /usr/bin/R -e "install.packages(c('psych','vcd','Ternary','ggpubr','ggalluvial','ggtree','VennDiagram'),dependencies=TRUE,repos='http://cran.wustl.edu/')"
+_       && /usr/bin/R CMD INSTALL XML_3.98-1.20.tar.gz && rm -f XML_3.98-1.20.tar.gz \
+        && /usr/bin/R -e "install.packages(c('psych','vcd','Ternary','ggpubr','ggalluvial','VennDiagram'),dependencies=TRUE,repos='http://cran.wustl.edu/')" \
+	&& /usr/bin/R -e "BiocManager::install(c('DESeq2'))" 
 
 
 
@@ -68,6 +71,7 @@ RUN	 conda install -y -n base biopython \
 	&& conda install -y -n base fastqc \
 	&& conda install -y -n base fastp \
 	&& conda install -y -n base multiqc \
+	&& cd /biosoft && conda env update -f picrust2-env.yaml \
 	#&& conda install -n qiime1 -y lefse \
 	#&& conda install -n qiime1 -y biopython=1.75 \
 	#&& conda install -n base -y koeken \
