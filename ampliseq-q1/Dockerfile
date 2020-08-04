@@ -72,6 +72,7 @@ RUN	 conda install -y -n base biopython \
 	&& conda install -y -n base fastp \
 	&& conda install -y -n base multiqc \
 	&& cd /biosoft && conda env update -f picrust2-env.yaml \
+	&& conda create -n lefse -y python=2.7 lefse \
 	#&& conda install -n qiime1 -y lefse \
 	#&& conda install -n qiime1 -y biopython=1.75 \
 	#&& conda install -n base -y koeken \
