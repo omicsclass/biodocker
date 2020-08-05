@@ -74,22 +74,20 @@ RUN	 conda install -y -n base biopython \
 	&& conda install -y -n base fastqc \
 	&& conda install -y -n base fastp \
 	&& conda install -y -n base multiqc \
-	&& cd /biosoft && conda env update -f picrust2-env.yaml \
-	&& conda create -n lefse -y python=2.7 lefse \
-	&& cd /biosoft && git clone  https://github.com/twbattaglia/koeken.git \
-	&& cd /biosoft/koeken && /biosoft/miniconda/envs/lefse/bin/pip install biopython==1.69 . \
-	#&& conda install -n qiime1 -y lefse \
-	#&& conda install -n qiime1 -y biopython=1.75 \
-	#&& conda install -n base -y koeken \
-	&& conda create -n qiime1 -y python=2.7 \
+	&& cd /biosoft && conda env update -f picrust2-env.yaml 
+
+RUN 	 conda create -n qiime1 -y python=2.7 \
 	&& echo "conda activate qiime1" >>/biosoft/miniconda/etc/profile.d/conda.sh \
 	&& /biosoft/miniconda/envs/qiime1/bin/pip install  numpy==1.11.1 pandas==0.18.1 scipy==0.18.0 matplotlib==1.5.2 \
 	&& /biosoft/miniconda/envs/qiime1/bin/pip install  cogent==1.5.3 \
 	&& /biosoft/miniconda/envs/qiime1/bin/pip install  biom-format==2.1.5 \
 	&& /biosoft/miniconda/envs/qiime1/bin/pip install  h5py \
-	&& /biosoft/miniconda/envs/qiime1/bin/pip install  qiime \ 
-	&& conda clean --all --yes \
-	&& echo "conda activate qiime1" >>/biosoft/miniconda/etc/profile.d/conda.sh 
+	&& /biosoft/miniconda/envs/qiime1/bin/pip install  qiime  
+
+RUN	 conda create -n lefse -y python=2.7 lefse \
+	&& cd /biosoft && git clone  https://github.com/twbattaglia/koeken.git \
+	&& cd /biosoft/koeken && /biosoft/miniconda/envs/lefse/bin/pip install biopython==1.69 . \
+	&& conda clean --all --yes 
 
 WORKDIR /work
 
