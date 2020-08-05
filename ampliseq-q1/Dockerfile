@@ -84,9 +84,9 @@ RUN 	 conda create -n qiime1 -y python=2.7 \
 	&& /biosoft/miniconda/envs/qiime1/bin/pip install  h5py \
 	&& /biosoft/miniconda/envs/qiime1/bin/pip install  qiime  
 
-RUN	 conda create -n lefse -y python=2.7 lefse \
+RUN	conda create -n lefse -y python=2.7 biopython=1.69 lefse \
 	&& cd /biosoft && git clone  https://github.com/twbattaglia/koeken.git \
-	&& cd /biosoft/koeken && /biosoft/miniconda/envs/lefse/bin/pip install biopython==1.69 . \
+	&& cd /biosoft/koeken && /biosoft/miniconda/envs/lefse/bin/pip install  . \
 	&& conda clean --all --yes 
 
 WORKDIR /work
