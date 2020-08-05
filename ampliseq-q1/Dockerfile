@@ -15,8 +15,10 @@ LABEL base.image="omicsclass/biocontainer-base:latest" \
 ################## MAINTAINER ######################
 MAINTAINER huangls <huang2002003@qq.com>
 
-ENV PATH=/biosoft/FLASH-1.2.11-Linux-x86_64:/biosoft/Krona-2.7.1/KronaTools/scripts/:/biosoft/miniconda/envs/qiime1/bin:/biosoft/usearch:/biosoft/clearcut/:$PATH
+ENV PATH=/usr/bin/:/biosoft/FLASH-1.2.11-Linux-x86_64:/biosoft/Krona-2.7.1/KronaTools/scripts/:/biosoft/miniconda/envs/qiime1/bin:/biosoft/usearch:/biosoft/clearcut/:$PATH:/biosoft/miniconda/envs/lefse/bin/
 ENV PERL5LIB=/biosoft/miniconda/pkgs/perl-bioperl-1.6.924-4/lib/perl5/site_perl/5.22.0/:$PERL5LIB
+ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
+ENV PYTHONPATH=/biosoft/miniconda/envs/qiime1/lib/python2.7/site-packages/:$PYTHONPATH
 COPY qiime.conf picrust2-env.yaml /biosoft/ 
 RUN   yum -y install epel-release && \
     yum -y install R R-devel && \
@@ -41,8 +43,9 @@ RUN     PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin \
         && /usr/bin/R CMD INSTALL biom_0.3.12.tar.gz && rm -f biom_0.3.12.tar.gz \
         && /usr/bin/R CMD INSTALL Tax4Fun_0.3.1.tar.gz && rm -f Tax4Fun_0.3.1.tar.gz \
         && /usr/bin/R CMD INSTALL nloptr_1.2.1.tar.gz && rm -f nloptr_1.2.1.tar.gz \
+        && /usr/bin/R CMD INSTALL tidyr_1.0.0.tar.gz && rm -f tidyr_1.0.0.tar.gz \
 _       && /usr/bin/R CMD INSTALL XML_3.98-1.20.tar.gz && rm -f XML_3.98-1.20.tar.gz \
-        && /usr/bin/R -e "install.packages(c('psych','vcd','Ternary','ggpubr','ggalluvial','VennDiagram'),dependencies=TRUE,repos='http://cran.wustl.edu/')" \
+        && /usr/bin/R -e "install.packages(c('psych','vcd','Ternary','ggpubr','ggalluvial','VennDiagram','beeswarm','robCompositions'),dependencies=TRUE,repos='http://cran.wustl.edu/')" \
 	&& /usr/bin/R -e "BiocManager::install(c('DESeq2'))" 
 
 
@@ -73,6 +76,8 @@ RUN	 conda install -y -n base biopython \
 	&& conda install -y -n base multiqc \
 	&& cd /biosoft && conda env update -f picrust2-env.yaml \
 	&& conda create -n lefse -y python=2.7 lefse \
+	&& cd /biosoft && git clone  https://github.com/twbattaglia/koeken.git \
+	&& cd /biosoft/koeken && /biosoft/miniconda/envs/lefse/bin/pip install biopython==1.69 . \
 	#&& conda install -n qiime1 -y lefse \
 	#&& conda install -n qiime1 -y biopython=1.75 \
 	#&& conda install -n base -y koeken \
