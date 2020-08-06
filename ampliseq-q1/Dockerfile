@@ -29,7 +29,7 @@ RUN   yum -y install epel-release && \
 
 RUN     PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin \
 	&&/usr/bin/R -e "install.packages(c('BiocManager', 'compiler','ggplot2','devtools','dplyr','gplots','RColorBrewer', 'getopt','reshape2','pheatmap','cowplot','R.utils','biom','gplots','ape','scatterplot3d','randomForest','vegan','agricolae','ade4','RJSONIO','Matrix','devtools','argparse','optparse','ggtern','reshape'),dependencies=TRUE,repos='http://cran.wustl.edu/')" \
-        && /usr/bin/R -e "BiocManager::install(c('metagenomeSeq','RGBL','graph','ggtree'))"  \
+        && /usr/bin/R -e "BiocManager::install(c('metagenomeSeq','RGBL','graph'))"  \
         && /usr/bin/R -e "install.packages('Vennerable', repos='http://R-Forge.R-project.org')"  \
         && cd /biosoft && wget https://cran.r-project.org/src/contrib/Archive/mnormt/mnormt_1.5-7.tar.gz \
         && /usr/bin/R CMD INSTALL mnormt_1.5-7.tar.gz && rm -f mnormt_1.5-7.tar.gz \
@@ -46,7 +46,7 @@ RUN     PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin \
         && /usr/bin/R CMD INSTALL tidyr_1.0.0.tar.gz && rm -f tidyr_1.0.0.tar.gz \
 _       && /usr/bin/R CMD INSTALL XML_3.98-1.20.tar.gz && rm -f XML_3.98-1.20.tar.gz \
         && /usr/bin/R -e "install.packages(c('psych','vcd','Ternary','ggpubr','ggalluvial','VennDiagram','beeswarm','robCompositions'),dependencies=TRUE,repos='http://cran.wustl.edu/')" \
-	&& /usr/bin/R -e "BiocManager::install(c('DESeq2'))" 
+	&& /usr/bin/R -e "BiocManager::install(c('DESeq2','ggtree'))" 
 
 
 
