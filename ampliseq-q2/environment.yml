@@ -208,3 +208,14 @@ dependencies:
 - tktable=2.10
 - unifrac=0.10.0
 - vsearch=2.7.0
+- epa-ng=0.3.6
+- gappa=0.5.1
+- glpk=4.65
+- jinja2 >=2.10.1
+- joblib >=0.13.1
+- pytest-cov >=2.6.1
+- r-castor=1.5.0
+- picrust2=2.3.0_b
+- biopython=1.77
+- bioperl=1.7.2
+- circos=0.69.8
