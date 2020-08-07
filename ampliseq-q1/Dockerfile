@@ -18,7 +18,7 @@ MAINTAINER huangls <huang2002003@qq.com>
 ENV PATH=/usr/bin/:/biosoft/FLASH-1.2.11-Linux-x86_64:/biosoft/Krona-2.7.1/KronaTools/scripts/:/biosoft/miniconda/envs/qiime1/bin:/biosoft/usearch:/biosoft/clearcut/:$PATH:/biosoft/miniconda/envs/lefse/bin/
 ENV PERL5LIB=/biosoft/miniconda/pkgs/perl-bioperl-1.6.924-4/lib/perl5/site_perl/5.22.0/:$PERL5LIB
 ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
-ENV PYTHONPATH=/biosoft/miniconda/envs/qiime1/lib/python2.7/site-packages/:$PYTHONPATH
+#ENV PYTHONPATH=.:/biosoft/miniconda/lib/python36.zip:/biosoft/miniconda/lib/python3.6:/biosoft/miniconda/lib/python3.6/lib-dynload:/biosoft/miniconda/lib/python3.6/site-packages:/biosoft/miniconda/envs/qiime1/lib/python2.7/site-packages/
 COPY qiime.conf picrust2-env.yaml /biosoft/ 
 RUN   yum -y install epel-release && \
     yum -y install R R-devel && \
@@ -77,17 +77,18 @@ RUN	 conda install -y -n base biopython \
 	&& cd /biosoft && conda env update -f picrust2-env.yaml 
 
 RUN 	 conda create -n qiime1 -y python=2.7 \
-	&& echo "conda activate qiime1" >>/biosoft/miniconda/etc/profile.d/conda.sh \
+	#&& echo "conda activate qiime1" >>/biosoft/miniconda/etc/profile.d/conda.sh \
 	&& /biosoft/miniconda/envs/qiime1/bin/pip install  numpy==1.11.1 pandas==0.18.1 scipy==0.18.0 matplotlib==1.5.2 \
 	&& /biosoft/miniconda/envs/qiime1/bin/pip install  cogent==1.5.3 \
 	&& /biosoft/miniconda/envs/qiime1/bin/pip install  biom-format==2.1.5 \
 	&& /biosoft/miniconda/envs/qiime1/bin/pip install  h5py \
 	&& /biosoft/miniconda/envs/qiime1/bin/pip install  qiime  
 
-#RUN	conda create -n lefse -y python=2.7 biopython=1.69 lefse \
-#	&& cd /biosoft && git clone  https://github.com/twbattaglia/koeken.git \
-#	&& cd /biosoft/koeken && /biosoft/miniconda/envs/lefse/bin/pip install  . \
-#	&& conda clean --all --yes 
+RUN	PYTHONPATH=.:/biosoft/miniconda/lib/python36.zip:/biosoft/miniconda/lib/python3.6:/biosoft/miniconda/lib/python3.6/lib-dynload:/biosoft/miniconda/lib/python3.6/site-packages:/biosoft/miniconda/envs/qiime1/lib/python2.7/site-packages/ \
+	&& conda create -n lefse -y python=2.7 biopython=1.69 lefse \
+	&& cd /biosoft && git clone  https://github.com/twbattaglia/koeken.git \
+	&& cd /biosoft/koeken && /biosoft/miniconda/envs/lefse/bin/pip install  . \
+	&& conda clean --all --yes 
 
 WORKDIR /work
 
