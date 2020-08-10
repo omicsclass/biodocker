@@ -35,7 +35,7 @@ cd .. && \
 cp ./${NAME}/bin/bedtools /usr/local/bin/ && \
 strip /usr/local/bin/*; true && \
 rm -rf ./${NAME}/
-
+RUN sed -i '189aLimitRequestLine 1000000000' /etc/apache2/apache2.conf
 #COPY 	gsds_v2.tar.gz /app
 
 #RUN 	cd /app && tar -zxvf gsds_v2.tar.gz \
