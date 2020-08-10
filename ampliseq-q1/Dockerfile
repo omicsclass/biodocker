@@ -85,7 +85,7 @@ RUN 	 conda create -n qiime1 -y python=2.7 \
 	&& /biosoft/miniconda/envs/qiime1/bin/pip install  qiime  
 
 RUN	 PYTHONPATH=.:/biosoft/miniconda/lib/python36.zip:/biosoft/miniconda/lib/python3.6:/biosoft/miniconda/lib/python3.6/lib-dynload:/biosoft/miniconda/lib/python3.6/site-packages:/biosoft/miniconda/envs/qiime1/lib/python2.7/site-packages/ \
-	&& conda create -n lefse -y python=2.7 biopython=1.69 matplotlib=2.0.0  lefse \
+	&& conda create -n lefse -y python=2.7 biopython=1.69 matplotlib=1.5.3  lefse \
 	&& cd /biosoft && git clone  https://github.com/twbattaglia/koeken.git \
 	&& cd /biosoft/koeken && /biosoft/miniconda/envs/lefse/bin/pip install  . \
 	&& conda clean --all --yes 
