@@ -217,5 +217,5 @@ dependencies:
 - r-castor=1.5.0
 - picrust2=2.3.0_b
 - biopython=1.77
-- bioperl=1.7.2
+- perl-bioperl=1.7.2
 - circos=0.69.8
