@@ -45,8 +45,8 @@ RUN     PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin \
         && /usr/bin/R CMD INSTALL nloptr_1.2.1.tar.gz && rm -f nloptr_1.2.1.tar.gz \
         && /usr/bin/R CMD INSTALL tidyr_1.0.0.tar.gz && rm -f tidyr_1.0.0.tar.gz \
 _       && /usr/bin/R CMD INSTALL XML_3.98-1.20.tar.gz && rm -f XML_3.98-1.20.tar.gz \
-        && /usr/bin/R -e "install.packages(c('psych','vcd','Ternary','ggpubr','ggalluvial','VennDiagram','beeswarm','robCompositions'),dependencies=TRUE,repos='http://cran.wustl.edu/')" \
-	&& /usr/bin/R -e "BiocManager::install(c('DESeq2','ggtree'))" 
+        && /usr/bin/R -e "install.packages(c('psych','vcd','Ternary','ggpubr','ggalluvial','VennDiagram','beeswarm','robCompositions','multcompView'),dependencies=TRUE,repos='http://cran.wustl.edu/')" \
+	&& /usr/bin/R -e "BiocManager::install(c('DESeq2','ggtree','biomformat'))" 
 
 
 
@@ -57,9 +57,15 @@ RUN cd /biosoft && git clone git://github.com/qiime/qiime-deploy.git \
 	&& cd /biosoft/qiime-deploy/ \
 	&& /usr/bin/python qiime-deploy.py  -f /biosoft/qiime.conf --force-remove-failed-dirs /biosoft/qiime-1.9.1/qiime_software/ \
 	&& echo "source /biosoft/qiime-1.9.1/qiime_software/activate.sh" >>/root/.bashrc \
-	&& cd /biosoft && mkdir usearch && cd usearch && wget http://www.drive5.com/downloads/usearch11.0.667_i86linux32.gz \
-	&& gunzip usearch11.0.667_i86linux32.gz && ln -s usearch11.0.667_i86linux32 usearch \
-	&& chmod a+x usearch11.0.667_i86linux32 \
+	#&& cd /biosoft && mkdir usearch && cd usearch && wget http://www.drive5.com/downloads/usearch11.0.667_i86linux32.gz \
+	#&& gunzip usearch11.0.667_i86linux32.gz && ln -s usearch11.0.667_i86linux32 usearch \
+	#&& chmod a+x usearch11.0.667_i86linux32 \
+	&& cd /biosoft && mkdir usearch && cd usearch && wget https://drive5.com/downloads/usearch10.0.240_i86linux32.gz \
+	&& gunzip usearch10.0.240_i86linux32.gz && ln -s usearch10.0.240_i86linux32 usearch \
+	&& chmod a+x usearch10.0.240_i86linux32 \
+	&& cd /biosoft && mkdir usearch && cd usearch && wget https://drive5.com/downloads/usearch6.1.544_i86linux32.gz \
+	&& gunzip usearch6.1.544_i86linux32.gz && ln -s usearch6.1.544_i86linux32 usearch61 \
+	&& chmod a+x usearch6.1.544_i86linux32 \
 	&& cd /biosoft && wget -qO- http://ccb.jhu.edu/software/FLASH/FLASH-1.2.11-Linux-x86_64.tar.gz |tar xvz \
 	&& wget https://github.com/torognes/vsearch/archive/v2.15.0.tar.gz && tar xzf v2.15.0.tar.gz && cd vsearch-2.15.0 \
 	&& ./autogen.sh && ./configure && make && make install && cd /biosoft && rm -rf vsearch-2.15.0 v2.15.0.tar.gz \
