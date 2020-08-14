@@ -46,7 +46,7 @@ RUN     PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin \
         && /usr/bin/R CMD INSTALL tidyr_1.0.0.tar.gz && rm -f tidyr_1.0.0.tar.gz \
 _       && /usr/bin/R CMD INSTALL XML_3.98-1.20.tar.gz && rm -f XML_3.98-1.20.tar.gz \
         && /usr/bin/R -e "install.packages(c('psych','vcd','Ternary','ggpubr','ggalluvial','VennDiagram','beeswarm','robCompositions','multcompView'),dependencies=TRUE,repos='http://cran.wustl.edu/')" \
-	&& /usr/bin/R -e "BiocManager::install(c('DESeq2','ggtree','biomformat'))" 
+	&& /usr/bin/R -e "BiocManager::install(c('DESeq2','edgeR','ggtree','biomformat'))" 
 
 
 
@@ -63,7 +63,7 @@ RUN cd /biosoft && git clone git://github.com/qiime/qiime-deploy.git \
 	&& cd /biosoft && mkdir usearch && cd usearch && wget https://drive5.com/downloads/usearch10.0.240_i86linux32.gz \
 	&& gunzip usearch10.0.240_i86linux32.gz && ln -s usearch10.0.240_i86linux32 usearch \
 	&& chmod a+x usearch10.0.240_i86linux32 \
-	&& cd /biosoft && mkdir usearch && cd usearch && wget https://drive5.com/downloads/usearch6.1.544_i86linux32.gz \
+	&& cd /biosoft/usearch && wget https://drive5.com/downloads/usearch6.1.544_i86linux32.gz \
 	&& gunzip usearch6.1.544_i86linux32.gz && ln -s usearch6.1.544_i86linux32 usearch61 \
 	&& chmod a+x usearch6.1.544_i86linux32 \
 	&& cd /biosoft && wget -qO- http://ccb.jhu.edu/software/FLASH/FLASH-1.2.11-Linux-x86_64.tar.gz |tar xvz \
