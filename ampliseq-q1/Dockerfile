@@ -80,6 +80,7 @@ RUN	 conda install -y -n base biopython \
 	&& conda install -y -n base fastqc \
 	&& conda install -y -n base fastp \
 	&& conda install -y -n base multiqc \
+	&& conda install -y -n base scikit-learn \
 	&& cd /biosoft && conda env update -f picrust2-env.yaml 
 
 RUN 	 conda create -n qiime1 -y python=2.7 \
@@ -92,9 +93,14 @@ RUN 	 conda create -n qiime1 -y python=2.7 \
 
 RUN	 PYTHONPATH=.:/biosoft/miniconda/lib/python36.zip:/biosoft/miniconda/lib/python3.6:/biosoft/miniconda/lib/python3.6/lib-dynload:/biosoft/miniconda/lib/python3.6/site-packages:/biosoft/miniconda/envs/qiime1/lib/python2.7/site-packages/ \
 	&& conda create -n lefse -y python=2.7 biopython=1.66 matplotlib=2.0.2  lefse \
+	&& cd /biosoft/&&  wget https://github.com/picrust/picrust/releases/download/v1.1.4/picrust-1.1.4.tar.gz \
+	&& tar -xzf picrust-1.1.4.tar.gz && cd picrust-1.1.4 && /biosoft/miniconda/envs/lefse/bin/pip install . \
+	&& cd  /biosoft/ && rm -rf picrust-1.1.4 \
 	#&& cd /biosoft && git clone  https://github.com/twbattaglia/koeken.git \
 	#&& cd /biosoft/koeken && /biosoft/miniconda/envs/lefse/bin/pip install  . \
 	&& conda clean --all --yes 
+RUN	cd /biosoft && git clone https://github.com/omicsclass/BugBase.git && echo 'export  BUGBASE_PATH=/biosoft/BugBase' >>~/.bashrc \
+	&& echo export 'PATH=$PATH:$BUGBASE_PATH/bin' >>~/.bashrc
 
 WORKDIR /work
 
