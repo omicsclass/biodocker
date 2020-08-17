@@ -15,7 +15,7 @@ LABEL base.image="omicsclass/biocontainer-base:latest" \
 ################## MAINTAINER ######################
 MAINTAINER huangls <huang2002003@qq.com>
 
-ENV PATH=/usr/bin/:/biosoft/FLASH-1.2.11-Linux-x86_64:/biosoft/Krona-2.7.1/KronaTools/scripts/:/biosoft/miniconda/envs/qiime1/bin:/biosoft/usearch:/biosoft/clearcut/:$PATH:/biosoft/miniconda/envs/lefse/bin/
+ENV PATH=/usr/bin/:/biosoft/iqtree-2.0.6-Linux/bin/:/biosoft/FLASH-1.2.11-Linux-x86_64:/biosoft/Krona-2.7.1/KronaTools/scripts/:/biosoft/miniconda/envs/qiime1/bin:/biosoft/usearch:/biosoft/clearcut/:$PATH:/biosoft/miniconda/envs/lefse/bin/
 ENV PERL5LIB=/biosoft/miniconda/pkgs/perl-bioperl-1.6.924-4/lib/perl5/site_perl/5.22.0/:$PERL5LIB
 ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 #ENV PYTHONPATH=.:/biosoft/miniconda/lib/python36.zip:/biosoft/miniconda/lib/python3.6:/biosoft/miniconda/lib/python3.6/lib-dynload:/biosoft/miniconda/lib/python3.6/site-packages:/biosoft/miniconda/envs/qiime1/lib/python2.7/site-packages/
@@ -45,7 +45,7 @@ RUN     PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin \
         && /usr/bin/R CMD INSTALL nloptr_1.2.1.tar.gz && rm -f nloptr_1.2.1.tar.gz \
         && /usr/bin/R CMD INSTALL tidyr_1.0.0.tar.gz && rm -f tidyr_1.0.0.tar.gz \
 _       && /usr/bin/R CMD INSTALL XML_3.98-1.20.tar.gz && rm -f XML_3.98-1.20.tar.gz \
-        && /usr/bin/R -e "install.packages(c('psych','vcd','Ternary','ggpubr','ggalluvial','VennDiagram','beeswarm','robCompositions','multcompView'),dependencies=TRUE,repos='http://cran.wustl.edu/')" \
+        && /usr/bin/R -e "install.packages(c('psych','vcd','Ternary','ggpubr','ggalluvial','VennDiagram','beeswarm','robCompositions','multcompView','aplot'),dependencies=TRUE,repos='http://cran.wustl.edu/')" \
 	&& /usr/bin/R -e "BiocManager::install(c('DESeq2','edgeR','ggtree','biomformat'))" 
 
 
@@ -69,7 +69,8 @@ RUN cd /biosoft && git clone git://github.com/qiime/qiime-deploy.git \
 	&& cd /biosoft && wget -qO- http://ccb.jhu.edu/software/FLASH/FLASH-1.2.11-Linux-x86_64.tar.gz |tar xvz \
 	&& wget https://github.com/torognes/vsearch/archive/v2.15.0.tar.gz && tar xzf v2.15.0.tar.gz && cd vsearch-2.15.0 \
 	&& ./autogen.sh && ./configure && make && make install && cd /biosoft && rm -rf vsearch-2.15.0 v2.15.0.tar.gz \
-	&&  cd /biosoft && wget -qO-  https://github.com/marbl/Krona/archive/v2.7.1.tar.gz  |tar xvz 
+	&&  cd /biosoft && wget -qO-  https://github.com/marbl/Krona/archive/v2.7.1.tar.gz  |tar xvz \
+	&&  cd /biosoft && wget -qO-   https://github.com/Cibiv/IQ-TREE/releases/download/v2.0.6/iqtree-2.0.6-Linux.tar.gz  |tar xvz 
 COPY uclust /biosoft/usearch
 ## Required to build the container properly
 RUN mkdir -p /root/.config/matplotlib && echo "backend : Agg" > /root/.config/matplotlib/matplotlibrc
@@ -101,6 +102,10 @@ RUN	 PYTHONPATH=.:/biosoft/miniconda/lib/python36.zip:/biosoft/miniconda/lib/pyt
 	&& conda clean --all --yes 
 RUN	cd /biosoft && git clone https://github.com/omicsclass/BugBase.git && echo 'export  BUGBASE_PATH=/biosoft/BugBase' >>~/.bashrc \
 	&& echo export 'PATH=$PATH:$BUGBASE_PATH/bin' >>~/.bashrc
+RUN	echo "alias R=\"/usr/bin/R \"" >> ~/.bashrc \
+        && echo "alias Rscript=\"/usr/bin/Rscript \"" >> ~/.bashrc
+        && echo "alias perl=\"/biosoft/miniconda/bin/perl \"" >> ~/.bashrc
+        && echo "alias python=\"/biosoft/miniconda/bin/python \"" >> ~/.bashrc
 
 WORKDIR /work
 
