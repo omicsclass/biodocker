@@ -103,8 +103,8 @@ RUN	 PYTHONPATH=.:/biosoft/miniconda/lib/python36.zip:/biosoft/miniconda/lib/pyt
 RUN	cd /biosoft && git clone https://github.com/omicsclass/BugBase.git && echo 'export  BUGBASE_PATH=/biosoft/BugBase' >>~/.bashrc \
 	&& echo export 'PATH=$PATH:$BUGBASE_PATH/bin' >>~/.bashrc
 RUN	echo "alias R=\"/usr/bin/R \"" >> ~/.bashrc \
-        && echo "alias Rscript=\"/usr/bin/Rscript \"" >> ~/.bashrc
-        && echo "alias perl=\"/biosoft/miniconda/bin/perl \"" >> ~/.bashrc
+        && echo "alias Rscript=\"/usr/bin/Rscript \"" >> ~/.bashrc \
+        && echo "alias perl=\"/biosoft/miniconda/bin/perl \"" >> ~/.bashrc \
         && echo "alias python=\"/biosoft/miniconda/bin/python \"" >> ~/.bashrc
 
 WORKDIR /work
