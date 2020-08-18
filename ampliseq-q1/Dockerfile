@@ -39,12 +39,14 @@ RUN     PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin \
         && cd /biosoft && wget  https://cran.r-project.org/src/contrib/Archive/nloptr/nloptr_1.2.1.tar.gz \
         && cd /biosoft && wget  https://cran.r-project.org/src/contrib/Archive/tidyr/tidyr_1.0.0.tar.gz \
         && cd /biosoft && wget  https://cran.r-project.org/src/contrib/Archive/XML/XML_3.98-1.20.tar.gz \
+        && cd /biosoft && wget  https://github.com/bwemheu/Tax4Fun2/releases/download/1.1.5/Tax4Fun2_1.1.5.tar.gz \
         && /usr/bin/R CMD INSTALL qiimer_0.9.4.tar.gz && rm -f qiimer_0.9.4.tar.gz \
         && /usr/bin/R CMD INSTALL biom_0.3.12.tar.gz && rm -f biom_0.3.12.tar.gz \
         && /usr/bin/R CMD INSTALL Tax4Fun_0.3.1.tar.gz && rm -f Tax4Fun_0.3.1.tar.gz \
         && /usr/bin/R CMD INSTALL nloptr_1.2.1.tar.gz && rm -f nloptr_1.2.1.tar.gz \
         && /usr/bin/R CMD INSTALL tidyr_1.0.0.tar.gz && rm -f tidyr_1.0.0.tar.gz \
-_       && /usr/bin/R CMD INSTALL XML_3.98-1.20.tar.gz && rm -f XML_3.98-1.20.tar.gz \
+	&& /usr/bin/R CMD INSTALL XML_3.98-1.20.tar.gz && rm -f XML_3.98-1.20.tar.gz \
+	&& /usr/bin/R CMD INSTALL Tax4Fun2_1.1.5.tar.gz && rm -f Tax4Fun2_1.1.5.tar.gz \ 
         && /usr/bin/R -e "install.packages(c('psych','vcd','Ternary','ggpubr','ggalluvial','VennDiagram','beeswarm','robCompositions','multcompView','aplot'),dependencies=TRUE,repos='http://cran.wustl.edu/')" \
 	&& /usr/bin/R -e "BiocManager::install(c('DESeq2','edgeR','ggtree','biomformat'))" 
 
@@ -105,7 +107,8 @@ RUN	cd /biosoft && git clone https://github.com/omicsclass/BugBase.git && echo '
 RUN	echo "alias R=\"/usr/bin/R \"" >> ~/.bashrc \
         && echo "alias Rscript=\"/usr/bin/Rscript \"" >> ~/.bashrc \
         && echo "alias perl=\"/biosoft/miniconda/bin/perl \"" >> ~/.bashrc \
-        && echo "alias python=\"/biosoft/miniconda/bin/python \"" >> ~/.bashrc
+        && echo "alias python=\"/biosoft/miniconda/bin/python \"" >> ~/.bashrc \
+	&& /usr/bin/Rscript /biosoft/BugBase/bin/run.bugbase.r -h 
 
 WORKDIR /work
 
