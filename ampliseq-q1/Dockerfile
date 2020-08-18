@@ -15,9 +15,12 @@ LABEL base.image="omicsclass/biocontainer-base:latest" \
 ################## MAINTAINER ######################
 MAINTAINER huangls <huang2002003@qq.com>
 
-ENV PATH=/usr/bin/:/biosoft/iqtree-2.0.6-Linux/bin/:/biosoft/FLASH-1.2.11-Linux-x86_64:/biosoft/Krona-2.7.1/KronaTools/scripts/:/biosoft/miniconda/envs/qiime1/bin:/biosoft/usearch:/biosoft/clearcut/:$PATH:/biosoft/miniconda/envs/lefse/bin/
+ENV PATH=/usr/bin/:/biosoft/iqtree-2.0.6-Linux/bin/:/biosoft/FLASH-1.2.11-Linux-x86_64:/biosoft/Krona-2.7.1/KronaTools/scripts/:/biosoft/miniconda/envs/qiime1/bin:/biosoft/usearch:/biosoft/clearcut/:$PATH:/biosoft/miniconda/envs/lefse/bin/:/biosoft/ncbi-blast-2.10.1+/bin
 ENV PERL5LIB=/biosoft/miniconda/pkgs/perl-bioperl-1.6.924-4/lib/perl5/site_perl/5.22.0/:$PERL5LIB
 ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
+ENV BUGBASE_PATH=/biosoft/BugBase
+ENV PATH=$PATH:$BUGBASE_PATH/bin
+
 #ENV PYTHONPATH=.:/biosoft/miniconda/lib/python36.zip:/biosoft/miniconda/lib/python3.6:/biosoft/miniconda/lib/python3.6/lib-dynload:/biosoft/miniconda/lib/python3.6/site-packages:/biosoft/miniconda/envs/qiime1/lib/python2.7/site-packages/
 COPY qiime.conf picrust2-env.yaml /biosoft/ 
 RUN   yum -y install epel-release && \
@@ -72,7 +75,8 @@ RUN cd /biosoft && git clone git://github.com/qiime/qiime-deploy.git \
 	&& wget https://github.com/torognes/vsearch/archive/v2.15.0.tar.gz && tar xzf v2.15.0.tar.gz && cd vsearch-2.15.0 \
 	&& ./autogen.sh && ./configure && make && make install && cd /biosoft && rm -rf vsearch-2.15.0 v2.15.0.tar.gz \
 	&&  cd /biosoft && wget -qO-  https://github.com/marbl/Krona/archive/v2.7.1.tar.gz  |tar xvz \
-	&&  cd /biosoft && wget -qO-   https://github.com/Cibiv/IQ-TREE/releases/download/v2.0.6/iqtree-2.0.6-Linux.tar.gz  |tar xvz 
+	&&  cd /biosoft && wget -qO-   https://github.com/Cibiv/IQ-TREE/releases/download/v2.0.6/iqtree-2.0.6-Linux.tar.gz  |tar xvz \
+	&&  cd /biosoft && wget -qO-   ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/ncbi-blast-2.10.1+-x64-linux.tar.gz |tar xvz 
 COPY uclust /biosoft/usearch
 ## Required to build the container properly
 RUN mkdir -p /root/.config/matplotlib && echo "backend : Agg" > /root/.config/matplotlib/matplotlibrc
