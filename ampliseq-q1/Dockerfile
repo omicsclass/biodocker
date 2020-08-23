@@ -22,7 +22,6 @@ ENV BUGBASE_PATH=/biosoft/BugBase
 ENV PATH=$PATH:$BUGBASE_PATH/bin
 
 #ENV PYTHONPATH=.:/biosoft/miniconda/lib/python36.zip:/biosoft/miniconda/lib/python3.6:/biosoft/miniconda/lib/python3.6/lib-dynload:/biosoft/miniconda/lib/python3.6/site-packages:/biosoft/miniconda/envs/qiime1/lib/python2.7/site-packages/
-COPY qiime.conf picrust2-env.yaml /biosoft/ 
 RUN   yum -y install epel-release && \
     yum -y install R R-devel && \
     yum -y install ant mpich2 mpich2-devel ghc zeromq python-devel freetype freetype-devel\
@@ -87,8 +86,7 @@ RUN	 conda install -y -n base biopython \
 	&& conda install -y -n base fastqc \
 	&& conda install -y -n base fastp \
 	&& conda install -y -n base multiqc \
-	&& conda install -y -n base scikit-learn \
-	&& cd /biosoft && conda env update -f picrust2-env.yaml 
+	&& conda install -y -n base scikit-learn 
 
 RUN 	 conda create -n qiime1 -y python=2.7 \
 	#&& echo "conda activate qiime1" >>/biosoft/miniconda/etc/profile.d/conda.sh \
