@@ -20,7 +20,7 @@ ENV PERL5LIB=/biosoft/miniconda/pkgs/perl-bioperl-1.6.924-4/lib/perl5/site_perl/
 ENV LD_LIBRARY_PATH=$LD_LIBRARY_PATH:/usr/local/lib
 ENV BUGBASE_PATH=/biosoft/BugBase
 ENV PATH=$PATH:$BUGBASE_PATH/bin
-
+COPY qiime.conf  /biosoft/ 
 #ENV PYTHONPATH=.:/biosoft/miniconda/lib/python36.zip:/biosoft/miniconda/lib/python3.6:/biosoft/miniconda/lib/python3.6/lib-dynload:/biosoft/miniconda/lib/python3.6/site-packages:/biosoft/miniconda/envs/qiime1/lib/python2.7/site-packages/
 RUN   yum -y install epel-release && \
     yum -y install R R-devel && \
