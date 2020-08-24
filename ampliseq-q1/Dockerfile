@@ -49,8 +49,8 @@ RUN     PATH=/usr/local/sbin:/usr/local/bin:/usr/sbin:/usr/bin:/sbin:/bin \
         && /usr/bin/R CMD INSTALL tidyr_1.0.0.tar.gz && rm -f tidyr_1.0.0.tar.gz \
 	&& /usr/bin/R CMD INSTALL XML_3.98-1.20.tar.gz && rm -f XML_3.98-1.20.tar.gz \
 	&& /usr/bin/R CMD INSTALL Tax4Fun2_1.1.5.tar.gz && rm -f Tax4Fun2_1.1.5.tar.gz \ 
-        && /usr/bin/R -e "install.packages(c('psych','vcd','Ternary','ggpubr','ggalluvial','VennDiagram','beeswarm','robCompositions','multcompView','aplot','caret','rfUtilities'),dependencies=TRUE,repos='http://cran.wustl.edu/')" \
-	&& /usr/bin/R -e "BiocManager::install(c('DESeq2','edgeR','ggtree','biomformat'))" 
+        && /usr/bin/R -e "install.packages(c('psych','vcd','Ternary','ggpubr','ggalluvial','VennDiagram','beeswarm','robCompositions','multcompView','aplot','caret','rfUtilities','UpSetR'),dependencies=TRUE,repos='http://cran.wustl.edu/')" \
+	&& /usr/bin/R -e "BiocManager::install(c('DESeq2','edgeR','ggtree','biomformat')))" 
 
 
 
