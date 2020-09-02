@@ -62,7 +62,9 @@ RUN	mkdir -p  /biosoft/miniconda  && mkdir -p  /biosoft/biotools \
         && conda update -y -n base -c defaults conda && conda clean --all --yes 
 
 
-
+RUN cd /biosoft/ && wget -O - pi.dk/3  > install.sh \
+	&& bash install.sh \
+	&& rm -rf parallel*  install.sh
 VOLUME ["/work"]
 
 # Overwrite this with 'CMD []' in a dependent Dockerfile
