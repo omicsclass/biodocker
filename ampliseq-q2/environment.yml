@@ -6,9 +6,6 @@ channels:
 - bioconda
 - defaults
 dependencies:
-- fastqc=0.11.8
-- font-ttf-dejavu-sans-mono=2.37 #for fastqc 
-- multiqc=1.6 #has to be 1.6 for now (python2-3(
 - r-rmarkdown=1.18
 - ncurses=6.1
 - alsa-lib=1.1.5
@@ -215,6 +212,3 @@ dependencies:
 - pytest-cov >=2.6.1
 - r-castor=1.5.0
 - picrust2=2.3.0_b
-- biopython=1.77
-- perl-bioperl=1.7.2
-- circos=0.69.8
