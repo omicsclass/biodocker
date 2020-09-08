@@ -23,6 +23,9 @@ ENV PATH /biosoft/miniconda/envs/ampliseq-q2/bin:$PATH
 ## Required to build the container properly
 RUN mkdir -p /root/.config/matplotlib
 RUN echo "backend : Agg" > /root/.config/matplotlib/matplotlibrc
+
+RUN cd /biosoft && https://github.com/gavinmdouglas/q2-picrust2.git \
+	&& cd q2-picrust2 && pip install -e . && cd /biosoft && rm -rf q2-picrust2
 # Don't recache on each execution, do that once per build process
 RUN qiime dev refresh-cache
 
