@@ -100,7 +100,7 @@ RUN	 PYTHONPATH=.:/biosoft/miniconda/lib/python36.zip:/biosoft/miniconda/lib/pyt
 	&& conda create -n lefse -y python=2.7 biopython=1.66 matplotlib=2.0.2  lefse \
 	&& cd /biosoft/&&  wget https://github.com/picrust/picrust/releases/download/v1.1.4/picrust-1.1.4.tar.gz \
 	&& tar -xzf picrust-1.1.4.tar.gz && cd picrust-1.1.4 && /biosoft/miniconda/envs/lefse/bin/pip install . \
-	&& cd  /biosoft/ && rm -rf picrust-1.1.4 \
+	&& cd  /biosoft/ && rm -rf picrust-1.1.4  picrust-1.1.4.tar.gz \
 	#&& cd /biosoft && git clone  https://github.com/twbattaglia/koeken.git \
 	#&& cd /biosoft/koeken && /biosoft/miniconda/envs/lefse/bin/pip install  . \
 	&& conda clean --all --yes 
