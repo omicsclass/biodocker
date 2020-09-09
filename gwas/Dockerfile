@@ -18,9 +18,10 @@ MAINTAINER huangls <huang2002003@qq.com>
 #COPY Miniconda3-latest-Linux-x86_64.sh /tmp/miniconda.sh
 #ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 
-ENV PATH /biosoft/tassel5:$PATH
+ENV PATH /biosoft/tassel5:/biosoft/emmax-beta-07Mar2010:$PATH
 RUN 	 cd /biosoft && wget https://tassel.bitbucket.io/installer/TASSEL_5_unix.sh \
-	&& sh TASSEL_5_unix.sh -q -dir /biosoft/tassel5 && rm TASSEL_5_unix.sh
+	&& sh TASSEL_5_unix.sh -q -dir /biosoft/tassel5 && rm TASSEL_5_unix.sh \
+	&& cd /biosoft && wget -qO-  http://genetics.cs.ucla.edu/emmax/emmax-beta-07Mar2010.tar.gz  |tar xvz
 
 COPY GAPIT3.0 /biosoft/GAPIT3.0
 
