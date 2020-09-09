@@ -111,6 +111,6 @@ RUN	echo "alias R=\"/usr/bin/R \"" >> ~/.bashrc \
         && echo "alias perl=\"/biosoft/miniconda/bin/perl \"" >> ~/.bashrc \
         && echo "alias python=\"/biosoft/miniconda/bin/python \"" >> ~/.bashrc \
 	&& /usr/bin/Rscript /biosoft/BugBase/bin/run.bugbase.r -h 
-
+COPY welcome.sh  /root/.welcome.sh
 WORKDIR /work
 
