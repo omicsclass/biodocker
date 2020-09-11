@@ -19,7 +19,7 @@ MAINTAINER huangls <huang2002003@qq.com>
 #ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 
 COPY environment.yml /work
-RUN conda env create -f /work/environment.yml && conda clean -a
+RUN conda env update -f /work/environment.yml && conda clean -a
 
 RUN mkdir -p /root/.config/matplotlib
 RUN echo "backend : Agg" > /root/.config/matplotlib/matplotlibrc
