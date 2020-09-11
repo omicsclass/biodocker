@@ -23,6 +23,8 @@ RUN conda env update -f /work/environment.yml && conda clean -a
 RUN cd /biosoft/biotools/ && wget https://www.broadinstitute.org/ftp/pub/mpg/haploview/Haploview.jar && chmod a+x Haploview.jar
 RUN cd /biosoft/ && wget -O - http://evolution.gs.washington.edu/phylip/download/phylip-3.697.tar.gz |tar zxv && cd phylip-3.697/src/ \
 	&& make -f Makefile.unx install 
+RUN /biosoft/miniconda/bin/R -e "install.packages('argparse')"
+
 RUN mkdir -p /root/.config/matplotlib
 RUN echo "backend : Agg" > /root/.config/matplotlib/matplotlibrc
 
