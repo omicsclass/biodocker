@@ -22,7 +22,7 @@ MAINTAINER huangls <huang2002003@qq.com>
 ENV PATH /biosoft/tassel5:/biosoft/emmax-beta-07Mar2010:$PATH
 COPY environment.yml /biosoft/environment.yml
 RUN conda env update -f /biosoft/environment.yml && conda clean -a
-RUN     /biosoft/miniconda/bin/R  -e "install.packages(c('BiocManager', 'compiler','devtools','dplyr','RColorBrewer', 'reshape2','pheatmap','cowplot','R.utils','scatterplot3d'),dependencies=TRUE,repos='http://cran.wustl.edu/')" 
+RUN     /biosoft/miniconda/bin/R  -e "install.packages(c('BiocManager', 'compiler','devtools','dplyr','RColorBrewer', 'reshape2','pheatmap','cowplot','R.utils','scatterplot3d','argparse'),dependencies=TRUE,repos='http://cran.wustl.edu/')" 
 
 
 RUN 	 cd /biosoft && wget https://tassel.bitbucket.io/installer/TASSEL_5_unix.sh \
