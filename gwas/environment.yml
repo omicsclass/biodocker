@@ -27,4 +27,5 @@ dependencies:
 - r-genetics 
 - r-ape 
 - r-gplots 
-- r-emmreml 
+- r-emmreml
+- r-rrblup
