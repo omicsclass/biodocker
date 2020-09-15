@@ -1,5 +1,5 @@
 # 说明
-这个是[组学大讲堂](https://www.omicsclass.com/)提供的群体遗传进化分析课程镜像。
+这个是[组学大讲堂](https://www.omicsclass.com/)提供的群体遗传进化和GWAS分析课程镜像。
 
 # 软件列表
 

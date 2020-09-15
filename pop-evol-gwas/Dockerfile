@@ -17,11 +17,11 @@ MAINTAINER huangls <huang2002003@qq.com>
 
 #COPY Miniconda3-latest-Linux-x86_64.sh /tmp/miniconda.sh
 #ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
-ENV PATH=/biosoft/tassel5:/biosoft/emmax-beta-07Mar2010:/biosoft/impute_v2.3.2_x86_64_dynamic:/biosoft/phylip-3.697/exe:/biosoft/psmc-0.6.5/utils:$PATH
+ENV PATH=/biosoft/tassel5:/biosoft/gcta_1.93.2beta:/biosoft/structure_kernel_src:/biosoft/emmax-beta-07Mar2010:/biosoft/impute_v2.3.2_x86_64_dynamic:/biosoft/phylip-3.697/exe:/biosoft/psmc-0.6.5/utils:/biosoft/PopLDdecay/bin:$PATH
 COPY environment.yml /biosoft/environment.yml
 RUN conda env update -f /biosoft/environment.yml && conda clean -a
-RUN cd /biosoft/biotools/ && wget https://www.broadinstitute.org/ftp/pub/mpg/haploview/Haploview.jar && chmod a+x Haploview.jar
-RUN cd /biosoft/ && wget -O - http://evolution.gs.washington.edu/phylip/download/phylip-3.697.tar.gz |tar zxv && cd phylip-3.697/src/ \
+RUN cd /biosoft/biotools/ && wget https://www.broadinstitute.org/ftp/pub/mpg/haploview/Haploview.jar && chmod a+x Haploview.jar \
+	&&cd /biosoft/ && wget -O - http://evolution.gs.washington.edu/phylip/download/phylip-3.697.tar.gz |tar zxv && cd phylip-3.697/src/ \
 	&& make -f Makefile.unx install \
 	&& cd /biosoft/ && wget -O - https://github.com/lh3/psmc/archive/0.6.5.tar.gz|tar zxv \
 	&& cd psmc-0.6.5/utils && make \
@@ -29,10 +29,15 @@ RUN cd /biosoft/ && wget -O - http://evolution.gs.washington.edu/phylip/download
         && sh TASSEL_5_unix.sh -q -dir /biosoft/tassel5 && rm TASSEL_5_unix.sh \
         && cd /biosoft && wget -qO-  http://genetics.cs.ucla.edu/emmax/emmax-beta-07Mar2010.tar.gz  |tar xvz \
         && wget -qO- https://mathgen.stats.ox.ac.uk/impute/impute_v2.3.2_x86_64_dynamic.tgz |tar xvz \
-        &&  wget -qO- https://github.com/reedacartwright/spagedi/archive/1.5d.tar.gz   |tar xvz \
-        && cd spagedi-1.5d/build/ && cmake .. && make &&  make install && cd /biosoft && rm -rf spagedi-1.5d
+        && wget -qO- https://github.com/reedacartwright/spagedi/archive/1.5d.tar.gz   |tar xvz \
+        && cd spagedi-1.5d/build/ && cmake .. && make &&  make install && cd /biosoft && rm -rf spagedi-1.5d \
+	&& git clone https://github.com/BGI-shenzhen/PopLDdecay.git \
+        && cd PopLDdecay && chmod 755 configure&& ./configure&&  make&&  mv -f PopLDdecay  bin/&& chmod 755 bin/* \
+	&& cd /biosoft/ && wget -O- https://web.stanford.edu/group/pritchardlab/structure_software/release_versions/v2.3.4/structure_kernel_source.tar.gz|tar zxv \
+	&& cd structure_kernel_src && make \
+	&& cd /biosoft/ && wget https://cnsgenomics.com/software/gcta/bin/gcta_1.93.2beta.zip && unzip gcta_1.93.2beta.zip && rm -f gcta_1.93.2beta.zip
+RUN     /biosoft/miniconda/bin/R  -e "install.packages(c('BiocManager', 'compiler','devtools','dplyr','RColorBrewer', 'reshape2','pheatmap','cowplot','R.utils','scatterplot3d','argparse','gridExtra','gtable','label.switching','tidyr','pophelper'),dependencies=TRUE,repos='http://cran.wustl.edu/')"
 
-RUN     /biosoft/miniconda/bin/R  -e "install.packages(c('BiocManager', 'compiler','devtools','dplyr','RColorBrewer', 'reshape2','pheatmap','cowplot','R.utils','scatterplot3d','argparse'),dependencies=TRUE,repos='http://cran.wustl.edu/')"
 COPY GAPIT3.0 /biosoft/GAPIT3.0
 
 RUN mkdir -p /root/.config/matplotlib
