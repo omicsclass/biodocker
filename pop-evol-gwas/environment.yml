@@ -39,3 +39,4 @@ dependencies:
 - muscle
 - raxml-ng=0.9.0
 - eigensoft=7.2.1
+- r-lme4=1.1_23

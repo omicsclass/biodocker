@@ -18,7 +18,7 @@ docker.io   docker.io/omicsclass/samtools            samtools v1.10 build by omi
 ```
 ## 2.下载镜像
 ```
-docker pull docker.io/omicsclass/pop-evol:latest
+docker pull docker.io/omicsclass/pop-evol-gwas:latest
 ```
 ## 
 
