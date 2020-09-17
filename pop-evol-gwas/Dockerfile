@@ -17,7 +17,7 @@ MAINTAINER huangls <huang2002003@qq.com>
 
 #COPY Miniconda3-latest-Linux-x86_64.sh /tmp/miniconda.sh
 #ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
-ENV PATH=/biosoft/tassel5:/biosoft/gcta_1.93.2beta:/biosoft/structure_kernel_src:/biosoft/impute_v2.3.2_x86_64_dynamic:/biosoft/phylip-3.697/exe:/biosoft/psmc-0.6.5/utils:/biosoft/PopLDdecay/bin:$PATH
+ENV PATH=/biosoft/tassel5:/biosoft/gcta_1.93.2beta:/biosoft/structure_kernel_src:/biosoft/impute_v2.3.2_x86_64_dynamic:/biosoft/phylip-3.697/exe:/biosoft/psmc-0.6.5/utils:/biosoft/PopLDdecay/bin:/biosoft/easySFS:/biosoft/fsc26_linux64:/biosoft/selscan-linux-1.3.0:/biosoft/SweeD_v3.2.1_Linux:$PATH
 COPY environment.yml /biosoft/environment.yml
 RUN conda env update -f /biosoft/environment.yml && conda clean -a
 RUN cd /biosoft/biotools/ && wget https://www.broadinstitute.org/ftp/pub/mpg/haploview/Haploview.jar && chmod a+x Haploview.jar \
@@ -38,6 +38,13 @@ RUN cd /biosoft/biotools/ && wget https://www.broadinstitute.org/ftp/pub/mpg/hap
 	&& cd /biosoft/ && wget -O- https://web.stanford.edu/group/pritchardlab/structure_software/release_versions/v2.3.4/structure_kernel_source.tar.gz|tar zxv \
 	&& cd structure_kernel_src && make \
 	&& cd /biosoft/ && wget https://cnsgenomics.com/software/gcta/bin/gcta_1.93.2beta.zip && unzip gcta_1.93.2beta.zip && rm -f gcta_1.93.2beta.zip
+
+RUN cd /biosoft/ && git clone https://github.com/isaacovercast/easySFS.git &&cd easySFS && chmod 777 easySFS.py \
+	&& cd /biosoft/ && wget http://cmpg.unibe.ch/software/fastsimcoal2/downloads/fsc26_linux64.zip \
+	&& unzip fsc26_linux64.zip && chmod 755 fsc26_linux64/fsc26  && rm -f fsc26_linux64.zip \
+	&& wget -O - https://github.com/szpiech/selscan/releases/download/v1.3.0/selscan-linux-1.3.0.tar.gz |tar zxv \
+	&& wget -O - https://cme.h-its.org/exelixis/resource/download/software/SweeD_v3.2.1_Linux.tar.gz |tar zxv
+
 RUN     /biosoft/miniconda/bin/R  -e "install.packages(c('BiocManager', 'compiler','devtools','dplyr','RColorBrewer', 'reshape2','pheatmap','cowplot','R.utils','scatterplot3d','argparse','gridExtra','gtable','label.switching','tidyr','pophelper','qqman'),dependencies=TRUE,repos='http://cran.wustl.edu/')"
 
 COPY GAPIT3.0 /biosoft/GAPIT3.0
