@@ -41,3 +41,4 @@ dependencies:
 - r-lme4=1.1_23
 - biopython
 - perl-bioperl
+- r-pophelper

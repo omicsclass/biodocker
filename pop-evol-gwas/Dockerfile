@@ -46,8 +46,7 @@ RUN cd /biosoft/ && git clone https://github.com/isaacovercast/easySFS.git &&cd 
 	&& wget -O - https://cme.h-its.org/exelixis/resource/download/software/SweeD_v3.2.1_Linux.tar.gz |tar zxv \
 	&& wget -O - https://github.com/Cibiv/IQ-TREE/releases/download/v2.0.6/iqtree-2.0.6-Linux.tar.gz |tar zxv
 
-RUN     /biosoft/miniconda/bin/R  -e "install.packages(c('BiocManager', 'compiler','devtools','dplyr','RColorBrewer', 'reshape2','pheatmap','cowplot','R.utils','scatterplot3d','argparse','gridExtra','gtable','label.switching','tidyr','pophelper','qqman'),dependencies=TRUE,repos='http://cran.wustl.edu/')"
-
+RUN     /biosoft/miniconda/bin/R  -e "install.packages(c('BiocManager', 'stringi','compiler','devtools','dplyr','RColorBrewer', 'reshape2','pheatmap','cowplot','R.utils','scatterplot3d','argparse','gridExtra','gtable','label.switching','tidyr','qqman'),dependencies=TRUE,repos='http://cran.wustl.edu/')"
 COPY GAPIT3.0 /biosoft/GAPIT3.0
 
 RUN mkdir -p /root/.config/matplotlib
