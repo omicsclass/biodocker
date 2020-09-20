@@ -23,6 +23,8 @@ RUN conda env update -f /biosoft/environment.yml && conda clean -a
 RUN cd /biosoft/biotools/ && wget https://www.broadinstitute.org/ftp/pub/mpg/haploview/Haploview.jar && chmod a+x Haploview.jar \
 	&& wget -O - http://csg.sph.umich.edu//kang/emmax/download/emmax-intel-binary-20120210.tar.gz|tar xzv \
 	&& wget https://faculty.washington.edu/browning/beagle/beagle.18May20.d20.jar \
+	&& wget https://github.com/genetics-statistics/GEMMA/releases/download/0.98.1/gemma-0.98.1-linux-static.gz \
+	&& gunzip gemma-0.98.1-linux-static.gz&& chmod a+x gemma-0.98.1-linux-static && ln -s gemma-0.98.1-linux-static gemma \ 
 	&& cd /biosoft/ && wget -O - http://evolution.gs.washington.edu/phylip/download/phylip-3.697.tar.gz |tar zxv \
 	&& cd phylip-3.697/src/ && make -f Makefile.unx install \
 	&& cd /biosoft/ && wget -O - https://github.com/lh3/psmc/archive/0.6.5.tar.gz|tar zxv \
@@ -46,7 +48,7 @@ RUN cd /biosoft/ && git clone https://github.com/isaacovercast/easySFS.git &&cd 
 	&& wget -O - https://cme.h-its.org/exelixis/resource/download/software/SweeD_v3.2.1_Linux.tar.gz |tar zxv \
 	&& wget -O - https://github.com/Cibiv/IQ-TREE/releases/download/v2.0.6/iqtree-2.0.6-Linux.tar.gz |tar zxv
 
-RUN     /biosoft/miniconda/bin/R  -e "install.packages(c('BiocManager', 'stringi','compiler','devtools','dplyr','RColorBrewer', 'reshape2','pheatmap','cowplot','R.utils','scatterplot3d','argparse','gridExtra','gtable','label.switching','tidyr','qqman'),dependencies=TRUE,repos='http://cran.wustl.edu/')"
+RUN     /biosoft/miniconda/bin/R  -e "install.packages(c('BiocManager', 'stringi','compiler','devtools','dplyr','RColorBrewer', 'reshape2','pheatmap','cowplot','R.utils','scatterplot3d','argparse','gridExtra','gtable','label.switching','tidyr','qqman','rworldmap','mrMLM'),dependencies=TRUE,repos='http://cran.wustl.edu/')"
 COPY GAPIT3.0 /biosoft/GAPIT3.0
 
 RUN mkdir -p /root/.config/matplotlib
