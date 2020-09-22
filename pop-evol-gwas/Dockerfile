@@ -17,7 +17,7 @@ MAINTAINER huangls <huang2002003@qq.com>
 
 #COPY Miniconda3-latest-Linux-x86_64.sh /tmp/miniconda.sh
 #ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
-ENV PATH=/biosoft/tassel5:/biosoft/gcta_1.93.2beta:/biosoft/structure_kernel_src:/biosoft/impute_v2.3.2_x86_64_dynamic:/biosoft/phylip-3.697/exe:/biosoft/psmc-0.6.5/utils:/biosoft/PopLDdecay/bin:/biosoft/easySFS:/biosoft/fsc26_linux64:/biosoft/selscan-linux-1.3.0:/biosoft/SweeD_v3.2.1_Linux:/biosoft/iqtree-2.0.6-Linux/bin/:$PATH
+ENV PATH=/biosoft/tassel5:/biosoft/gcta_1.93.2beta:/biosoft/LDBlockShow-1.35/bin:/biosoft/structure_kernel_src:/biosoft/impute_v2.3.2_x86_64_dynamic:/biosoft/phylip-3.697/exe:/biosoft/psmc-0.6.5/utils:/biosoft/PopLDdecay/bin:/biosoft/easySFS:/biosoft/fsc26_linux64:/biosoft/selscan-linux-1.3.0:/biosoft/SweeD_v3.2.1_Linux:/biosoft/iqtree-2.0.6-Linux/bin/:$PATH
 COPY environment.yml /biosoft/environment.yml
 RUN conda env update -f /biosoft/environment.yml && conda clean -a
 RUN cd /biosoft/biotools/ && wget https://www.broadinstitute.org/ftp/pub/mpg/haploview/Haploview.jar && chmod a+x Haploview.jar \
@@ -39,7 +39,9 @@ RUN cd /biosoft/biotools/ && wget https://www.broadinstitute.org/ftp/pub/mpg/hap
         && cd PopLDdecay && chmod 755 configure&& ./configure&&  make&&  mv -f PopLDdecay  bin/&& chmod 755 bin/* \
 	&& cd /biosoft/ && wget -O- https://web.stanford.edu/group/pritchardlab/structure_software/release_versions/v2.3.4/structure_kernel_source.tar.gz|tar zxv \
 	&& cd structure_kernel_src && make \
-	&& cd /biosoft/ && wget https://cnsgenomics.com/software/gcta/bin/gcta_1.93.2beta.zip && unzip gcta_1.93.2beta.zip && rm -f gcta_1.93.2beta.zip
+	&& cd /biosoft/ && wget https://cnsgenomics.com/software/gcta/bin/gcta_1.93.2beta.zip && unzip gcta_1.93.2beta.zip && rm -f gcta_1.93.2beta.zip\
+	&& wget -O - https://github.com/BGI-shenzhen/LDBlockShow/archive/v1.35.tar.gz |tar xzv  && cd LDBlockShow-1.35/src &&  make && make clean \
+	&& /biosoft/miniconda/bin/pip install  fastlmm
 
 RUN cd /biosoft/ && git clone https://github.com/isaacovercast/easySFS.git &&cd easySFS && chmod 777 easySFS.py \
 	&& cd /biosoft/ && wget http://cmpg.unibe.ch/software/fastsimcoal2/downloads/fsc26_linux64.zip \

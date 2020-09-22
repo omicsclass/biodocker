@@ -42,3 +42,4 @@ dependencies:
 - biopython
 - perl-bioperl
 - r-pophelper
+- mkl=2019.4
