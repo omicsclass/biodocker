@@ -17,7 +17,7 @@ MAINTAINER huangls <huang2002003@qq.com>
 
 #COPY Miniconda3-latest-Linux-x86_64.sh /tmp/miniconda.sh
 #ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
-ENV PATH=/biosoft/tassel5:/biosoft/gcta_1.93.2beta:/biosoft/LDBlockShow-1.35/bin:/biosoft/structure_kernel_src:/biosoft/impute_v2.3.2_x86_64_dynamic:/biosoft/phylip-3.697/exe:/biosoft/psmc-0.6.5/utils:/biosoft/PopLDdecay/bin:/biosoft/easySFS:/biosoft/fsc26_linux64:/biosoft/selscan-linux-1.3.0:/biosoft/SweeD_v3.2.1_Linux:/biosoft/iqtree-2.0.6-Linux/bin/:$PATH
+ENV PATH=/biosoft/XPCLR/bin:/biosoft/tassel5:/biosoft/gcta_1.93.2beta:/biosoft/LDBlockShow-1.35/bin:/biosoft/structure_kernel_src:/biosoft/impute_v2.3.2_x86_64_dynamic:/biosoft/phylip-3.697/exe:/biosoft/psmc-0.6.5/utils:/biosoft/PopLDdecay/bin:/biosoft/easySFS:/biosoft/fsc26_linux64:/biosoft/selscan-linux-1.3.0:/biosoft/sweed:/biosoft/iqtree-2.0.6-Linux/bin/:$PATH
 COPY environment.yml /biosoft/environment.yml
 RUN conda env update -f /biosoft/environment.yml && conda clean -a
 RUN cd /biosoft/biotools/ && wget https://www.broadinstitute.org/ftp/pub/mpg/haploview/Haploview.jar && chmod a+x Haploview.jar \
@@ -29,6 +29,8 @@ RUN cd /biosoft/biotools/ && wget https://www.broadinstitute.org/ftp/pub/mpg/hap
 	&& cd phylip-3.697/src/ && make -f Makefile.unx install \
 	&& cd /biosoft/ && wget -O - https://github.com/lh3/psmc/archive/0.6.5.tar.gz|tar zxv \
 	&& cd psmc-0.6.5/utils && make \
+	&& cd /biosoft/ && wget https://reich.hms.harvard.edu/sites/reich.hms.harvard.edu/files/inline-files/XPCLR.tar \
+	&& tar xvf XPCLR.tar && cd XPCLR/src && make && make install && cd /biosoft/ && rm -f XPCLR.tar \
 	&& cd /biosoft && wget https://tassel.bitbucket.io/installer/TASSEL_5_unix.sh \
         && sh TASSEL_5_unix.sh -q -dir /biosoft/tassel5 && rm TASSEL_5_unix.sh \
         && cd /biosoft && wget -qO-  http://genetics.cs.ucla.edu/emmax/emmax-beta-07Mar2010.tar.gz  |tar xvz \
@@ -47,8 +49,8 @@ RUN cd /biosoft/ && git clone https://github.com/isaacovercast/easySFS.git &&cd 
 	&& cd /biosoft/ && wget http://cmpg.unibe.ch/software/fastsimcoal2/downloads/fsc26_linux64.zip \
 	&& unzip fsc26_linux64.zip && chmod 755 fsc26_linux64/fsc26  && rm -f fsc26_linux64.zip \
 	&& wget -O - https://github.com/szpiech/selscan/releases/download/v1.3.0/selscan-linux-1.3.0.tar.gz |tar zxv \
-	&& wget -O - https://cme.h-its.org/exelixis/resource/download/software/SweeD_v3.2.1_Linux.tar.gz |tar zxv \
-	&& wget -O - https://github.com/Cibiv/IQ-TREE/releases/download/v2.0.6/iqtree-2.0.6-Linux.tar.gz |tar zxv
+	&& cd /biosoft/  && git clone https://github.com/alachins/sweed.git && cd sweed && make -f Makefile.gcc \
+	&& cd /biosoft/ && wget -O - https://github.com/Cibiv/IQ-TREE/releases/download/v2.0.6/iqtree-2.0.6-Linux.tar.gz |tar zxv
 
 RUN     /biosoft/miniconda/bin/R  -e "install.packages(c('BiocManager', 'stringi','compiler','devtools','dplyr','RColorBrewer', 'reshape2','pheatmap','cowplot','R.utils','scatterplot3d','argparse','gridExtra','gtable','label.switching','tidyr','qqman','rworldmap','mrMLM'),dependencies=TRUE,repos='http://cran.wustl.edu/')"
 COPY GAPIT3.0 /biosoft/GAPIT3.0
