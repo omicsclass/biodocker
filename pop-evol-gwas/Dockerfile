@@ -43,7 +43,7 @@ RUN cd /biosoft/biotools/ && wget https://www.broadinstitute.org/ftp/pub/mpg/hap
 	&& cd structure_kernel_src && make \
 	&& cd /biosoft/ && wget https://cnsgenomics.com/software/gcta/bin/gcta_1.93.2beta.zip && unzip gcta_1.93.2beta.zip && rm -f gcta_1.93.2beta.zip\
 	&& wget -O - https://github.com/BGI-shenzhen/LDBlockShow/archive/v1.35.tar.gz |tar xzv  && cd LDBlockShow-1.35/src &&  make && make clean \
-	&& /biosoft/miniconda/bin/pip install  fastlmm
+	&& /biosoft/miniconda/bin/pip install  fastlmm VCF-kit
 
 RUN cd /biosoft/ && git clone https://github.com/isaacovercast/easySFS.git &&cd easySFS && chmod 777 easySFS.py \
 	&& cd /biosoft/ && wget http://cmpg.unibe.ch/software/fastsimcoal2/downloads/fsc26_linux64.zip \
