@@ -19,7 +19,8 @@ MAINTAINER huangls <huang2002003@qq.com>
 #ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 COPY environment.yml /work
 RUN conda env create -f /work/environment.yml && conda clean -a
-ENV PATH /biosoft/miniconda/envs/picrust2/bin:/biosoft/miniconda/envs/ampliseq-q2/bin:$PATH
+#ENV PATH /biosoft/miniconda/envs/picrust2/bin:/biosoft/miniconda/envs/ampliseq-q2/bin:$PATH
+ENV PATH /biosoft/miniconda/envs/ampliseq-q2/bin:/biosoft/miniconda/envs/picrust2/bin:$PATH
 ## Required to build the container properly
 RUN mkdir -p /root/.config/matplotlib
 RUN echo "backend : Agg" > /root/.config/matplotlib/matplotlibrc
