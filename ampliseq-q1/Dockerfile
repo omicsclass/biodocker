@@ -74,7 +74,8 @@ RUN cd /biosoft && git clone git://github.com/qiime/qiime-deploy.git \
 	&& wget https://github.com/torognes/vsearch/archive/v2.15.0.tar.gz && tar xzf v2.15.0.tar.gz && cd vsearch-2.15.0 \
 	&& ./autogen.sh && ./configure && make && make install && cd /biosoft && rm -rf vsearch-2.15.0 v2.15.0.tar.gz \
 	&&  cd /biosoft && wget -qO-  https://github.com/marbl/Krona/archive/v2.7.1.tar.gz  |tar xvz \
-	&&  cd /biosoft && wget -qO-   https://github.com/Cibiv/IQ-TREE/releases/download/v2.0.6/iqtree-2.0.6-Linux.tar.gz  |tar xvz \
+	#&&  cd /biosoft && wget -qO-   https://github.com/Cibiv/IQ-TREE/releases/download/v2.0.6/iqtree-2.0.6-Linux.tar.gz  |tar xvz \
+	&&  cd /biosoft && wget -qO-  https://github.com/Cibiv/IQ-TREE/releases/download/v1.6.12/iqtree-1.6.12-Linux.tar.gz  |tar xvz \
 	&&  cd /biosoft && wget -qO-   ftp://ftp.ncbi.nlm.nih.gov/blast/executables/blast+/LATEST/ncbi-blast-2.10.1+-x64-linux.tar.gz |tar xvz 
 COPY uclust /biosoft/usearch
 ## Required to build the container properly
