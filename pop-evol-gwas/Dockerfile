@@ -62,4 +62,4 @@ RUN mkdir -p /root/.config/matplotlib
 RUN echo "backend : Agg" > /root/.config/matplotlib/matplotlibrc
 
 WORKDIR /work
-
+# wget https://cran.r-project.org/src/contrib/Archive/LDheatmap/LDheatmap_0.99-4.tar.gz
