@@ -26,6 +26,7 @@ RUN mkdir -p /root/.config/matplotlib
 RUN echo "backend : Agg" > /root/.config/matplotlib/matplotlibrc
 
 RUN conda create -n picrust2 -c bioconda -c conda-forge -y picrust2=2.3.0_b
-	
+RUN  conda install -c conda-forge -c bioconda -c qiime2 -c defaults -y -n ampliseq-q2 xmltodict \
+	&& /biosoft/miniconda/envs/ampliseq-q2/bin/pip install git+https://github.com/bokulich-lab/RESCRIPt.git	&& qiime dev refresh-cache
 WORKDIR /work
 
