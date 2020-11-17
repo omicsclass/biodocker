@@ -25,7 +25,11 @@ ENV PATH /biosoft/miniconda/envs/ampliseq-q2/bin:/biosoft/miniconda/envs/picrust
 RUN mkdir -p /root/.config/matplotlib
 RUN echo "backend : Agg" > /root/.config/matplotlib/matplotlibrc
 
-RUN conda create -n picrust2 -c bioconda -c conda-forge -y picrust2=2.3.0_b
+#RUN conda create -n picrust2 -c bioconda -c conda-forge -y picrust2=2.3.0_b
+RUN conda create -n ampliseq-q2 -c bioconda -c conda-forge -y picrust2=2.3.0_b  && \
+	cd /biosoft && wget  -qO-  https://github.com/gavinmdouglas/q2-picrust2/archive/2019.10_0.tar.gz | tar xvz &&\
+	cd q2-picrust2-2019.10_0/ && /biosoft/miniconda/envs/ampliseq-q2/bin/pip install -e . 
+
 RUN  conda install -c conda-forge -c bioconda -c qiime2 -c defaults -y -n ampliseq-q2 xmltodict \
 	&& /biosoft/miniconda/envs/ampliseq-q2/bin/pip install git+https://github.com/bokulich-lab/RESCRIPt.git	&& qiime dev refresh-cache
 WORKDIR /work
