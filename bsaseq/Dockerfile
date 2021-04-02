@@ -1,6 +1,6 @@
 # Base image
-FROM omicsclass/reseq:latest
-
+#FROM omicsclass/reseq:latest
+FROM omicsclass/biocontainer-base:latest
 ################## METADATA ######################
 LABEL base.image="omicsclass/reseq:latest" \
       version="v0.0.1" \
@@ -23,7 +23,8 @@ MAINTAINER huangls <huang2002003@qq.com>
 RUN     /usr/bin/R -e "install.packages(c('modeest','readr','locfit','rmutil','clue','fBasics','stable','statip'),INSTALL_opts=c('--no-help', '--no-html'))" 
 
 RUN	cd /biosoft && git clone  https://github.com/bmansfeld/QTLseqr.git && /usr/bin/R CMD INSTALL QTLseqr && rm -rf QTLseqr
-RUN	conda install -y -n base pandas matplotlib scipy fisher && conda clean --all --yes
+
+RUN	conda install -y -n base pandas matplotlib scipy fisher vcftools&& conda clean --all --yes
 
 RUN	cd /biosoft && git clone https://github.com/omicsclass/QTL-seq.git && cd QTL-seq && /biosoft/miniconda/bin/pip install -e . \
         && cd /biosoft && git clone https://github.com/omicsclass/MutMap.git && cd MutMap && /biosoft/miniconda/bin/pip install -e . 
