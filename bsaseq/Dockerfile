@@ -19,6 +19,13 @@ MAINTAINER huangls <huang2002003@qq.com>
 #ENV LANG=C.UTF-8 LC_ALL=C.UTF-8
 
 #ENV PATH $PATH
+RUN   yum -y install epel-release && \
+    yum -y install R R-devel && \
+    yum -y remove epel-release && \
+    yum clean all
+#COPY .Rprofile /root
+RUN     R -e "install.packages(c('BiocManager', 'compiler','ggplot2','devtools','dplyr','gplots','RColorBrewer', 'getopt','reshape2','pheatmap','cowplot','R.utils','genetics','gplots','EMMREML','scatterplot3d','genetics','ape'),dependencies=TRUE,repos='http://cran.wustl.edu/')" \
+        && R -e "BiocManager::install(c('GenomicRanges','genefilter','biomaRt','rhdf5','clusterProfiler','AnnotationHub','multtest','snpstats','LDheatmap'))"
 
 RUN     /usr/bin/R -e "install.packages(c('modeest','readr','locfit','rmutil','clue','fBasics','stable','statip'),INSTALL_opts=c('--no-help', '--no-html'))" 
 
