@@ -12,6 +12,6 @@ echo ""
 echo "           更多组学大讲堂生物信息分析课程："
 echo "      --> https://www.omicsclass.com/article/129"
 echo ""
-echo "本镜像用于BSA分析-继承自基因组重测序数据分析-学习使用课程推荐："
+echo "本镜像用于BSA分析-学习使用课程推荐："
 echo "--> https://study.163.com/course/introduction/1210221805.htm?share=1&shareId=1030291076"
 

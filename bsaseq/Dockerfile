@@ -24,14 +24,14 @@ RUN   yum -y install epel-release && \
     yum -y remove epel-release && \
     yum clean all
 #COPY .Rprofile /root
-RUN     R -e "install.packages(c('BiocManager', 'compiler','ggplot2','devtools','dplyr','gplots','RColorBrewer', 'getopt','reshape2','pheatmap','cowplot','R.utils','genetics','gplots','EMMREML','scatterplot3d','genetics','ape'),dependencies=TRUE,repos='http://cran.wustl.edu/')" \
+RUN     R -e "install.packages(c('BiocManager', 'compiler','ggplot2','devtools','dplyr','gplots','RColorBrewer', 'getopt','reshape2','pheatmap','cowplot','R.utils','genetics','gplots','argparse','EMMREML','scatterplot3d','genetics','ape'),dependencies=TRUE,repos='http://cran.wustl.edu/')" \
         && R -e "BiocManager::install(c('GenomicRanges','genefilter','biomaRt','rhdf5','clusterProfiler','AnnotationHub','multtest','snpstats','LDheatmap'))"
 
 RUN     /usr/bin/R -e "install.packages(c('modeest','readr','locfit','rmutil','clue','fBasics','stable','statip'),INSTALL_opts=c('--no-help', '--no-html'))" 
 
 RUN	cd /biosoft && git clone  https://github.com/bmansfeld/QTLseqr.git && /usr/bin/R CMD INSTALL QTLseqr && rm -rf QTLseqr
 
-RUN	conda install -y -n base pandas matplotlib scipy fisher vcftools&& conda clean --all --yes
+RUN	conda install -y -n base pandas matplotlib scipy fisher vcftools samtools && conda clean --all --yes
 
 RUN	cd /biosoft && git clone https://github.com/omicsclass/QTL-seq.git && cd QTL-seq && /biosoft/miniconda/bin/pip install -e . \
         && cd /biosoft && git clone https://github.com/omicsclass/MutMap.git && cd MutMap && /biosoft/miniconda/bin/pip install -e . 
