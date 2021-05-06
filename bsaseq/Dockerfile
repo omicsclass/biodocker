@@ -31,7 +31,7 @@ RUN     /usr/bin/R -e "install.packages(c('modeest','readr','locfit','rmutil','c
 
 RUN	cd /biosoft && git clone  https://github.com/bmansfeld/QTLseqr.git && /usr/bin/R CMD INSTALL QTLseqr && rm -rf QTLseqr
 
-RUN	conda install -y -n base pandas matplotlib scipy fisher vcftools samtools && conda clean --all --yes
+RUN	conda install -y -n base pandas matplotlib scipy fisher vcftools samtools=1.12 && conda clean --all --yes
 
 RUN	cd /biosoft && git clone https://github.com/omicsclass/QTL-seq.git && cd QTL-seq && /biosoft/miniconda/bin/pip install -e . \
         && cd /biosoft && git clone https://github.com/omicsclass/MutMap.git && cd MutMap && /biosoft/miniconda/bin/pip install -e . 
