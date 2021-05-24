@@ -25,9 +25,9 @@ RUN 	 mkdir /biosoft/MCScanX && wget http://chibba.pgml.uga.edu/mcscan2/MCScanX.
 	&& cd /biosoft/ && tar -zxvf KaKs_Calculator2.0.tar.gz && cd  /biosoft/KaKs_Calculator2.0/src && sed -i '/#include<time.h>/a#include<string.h>' base.h \
 	&& make && chmod a+x /biosoft/KaKs_Calculator2.0/src/AXTConvertor /biosoft/KaKs_Calculator2.0/bin/Linux/KaKs_Calculator \
 	&& rm -rf /biosoft/KaKs_Calculator2.0.tar.gz /biosoft/KaKs_Calculator2.0/examples /biosoft/KaKs_Calculator2.0/bin/Windows \
-	&& cd /biosoft && wget  -qO- https://ftp.ncbi.nlm.nih.gov/blast/executables/legacy.NOTSUPPORTED/2.2.26/blast-2.2.26-x64-linux.tar.gz  | tar xvz
-
-ENV PATH /biosoft/miniconda/envs/genefamilyenv/bin:/biosoft/MCScanX/MCScanX:/biosoft/KaKs_Calculator2.0/src/:/biosoft/KaKs_Calculator2.0/bin/Linux/:/biosoft/blast-2.2.26/bin:$PATH
+	&& cd /biosoft && wget  -qO- https://ftp.ncbi.nlm.nih.gov/blast/executables/legacy.NOTSUPPORTED/2.2.26/blast-2.2.26-x64-linux.tar.gz  | tar xvz \
+	&& cd /biosoft && wget  -qO- http://cb.csail.mit.edu/cb/paircoil2/bin/paircoil2-linux-amd64.tar.gz | tar xvz 
+ENV PATH /biosoft/paircoil2:/biosoft/miniconda/envs/genefamilyenv/bin:/biosoft/MCScanX/MCScanX:/biosoft/KaKs_Calculator2.0/src/:/biosoft/KaKs_Calculator2.0/bin/Linux/:/biosoft/blast-2.2.26/bin:$PATH
 
 RUN	conda update -y -n base -c defaults conda && conda create -y -n genefamilyenv python=2.7 && source activate genefamilyenv && conda install -y -n genefamilyenv jcvi=1.0.5  \
 	&& conda install -y  -n genefamilyenv circos=0.69.8 &&  conda install  -n genefamilyenv -y perl-bioperl=1.7.2 \
