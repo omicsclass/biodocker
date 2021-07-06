@@ -33,7 +33,7 @@ RUN   yum -y install epel-release && \
     yum -y remove epel-release && \
     yum clean all
 #COPY .Rprofile /root
-RUN     R -e "install.packages(c('BiocManager', 'ggplot2','devtools','dplyr','gplots','RColorBrewer', 'getopt','reshape2','pheatmap','cowplot','R.utils'),dependencies=TRUE,repos='http://cran.wustl.edu/')" \
+RUN     R -e "install.packages(c('BiocManager', 'ggplot2','devtools','dplyr','gplots','RColorBrewer','argparse', 'getopt','reshape2','pheatmap','cowplot','R.utils'),dependencies=TRUE,repos='http://cran.wustl.edu/')" \
         && R -e "BiocManager::install(c('DESeq2','GenomicRanges','genefilter','ballgown','biomaRt','rhdf5','clusterProfiler','EBSeq','edgeR','topGO','pathview','AnnotationHub','GSEABase','enrichplot'))"
 RUN	R -e "BiocManager::install(c('org.Hs.eg.db','org.Mm.eg.db','org.Rn.eg.db','org.Sc.sgd.db','org.Dm.eg.db','org.At.tair.db','org.Dr.eg.db','org.Ce.eg.db','org.Bt.eg.db','org.Gg.eg.db','org.Cf.eg.db','org.Ss.eg.db','org.Mmu.eg.db','org.EcK12.eg.db','org.Xl.eg.db','org.Ag.eg.db','org.Pt.eg.db','org.Pf.plasmo.db','org.EcSakai.eg.db','org.Mxanthus.db'))"
 RUN	 echo "alias R=\"/usr/bin/R \"" >> ~/.bashrc \
@@ -48,7 +48,8 @@ RUN	 conda update -y -n base -c defaults conda \
 	#&& conda install -y  hisat2=2.2.0 \
 	&& conda install -y  rseqc=3.0.1 \
 	#&& conda install -y  -c r r-essentials r-base \
-	&& conda install -y  htseq=0.11.3 \
+	#&& conda install -y  htseq=0.11.3 \
+	&& conda install -y  htseq \
 	#&& conda install -y  bowtie2=2.3.5.1 \
 	#&& conda install -y  bowtie=1.2.3 \
 	#&& conda install -y  stringtie=2.1.1 \
