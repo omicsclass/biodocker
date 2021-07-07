@@ -56,7 +56,7 @@ RUN	 conda update -y -n base -c defaults conda \
 	&& conda install -y  fastqc=0.11.9 \
 	&& conda install -y  fastp=0.20.0 \
 	&& conda install -y eggnog-mapper=2.1.3 diamond=2.0.9 hmmer \
-	#&& conda install -y  cutadapt=2.9 \
+	&& conda install -y  perl-bioperl blast \
 	#&& conda install -y  trim-galore=0.6.5 \
 	#&& conda install -y  gffcompare=0.11.2 \
 	#&& conda install -y  gffread=0.11.7 \
