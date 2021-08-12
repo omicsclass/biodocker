@@ -32,6 +32,9 @@ COPY rstudio-server-rhel-1.4.1106-x86_64.rpm /biosoft
 RUN cd /biosoft && yum install -y rstudio-server-rhel-1.4.1106-x86_64.rpm && rm rstudio-server-rhel-1.4.1106-x86_64.rpm
 COPY rserver.conf /etc/rstudio/rserver.conf
 
+RUN conda install -y pip 
+RUN pip install tidepy
+
 RUN groupadd rstudio \
 	&& useradd -g rstudio rstudio \
 	&& echo rstudio | passwd rstudio --stdin \
