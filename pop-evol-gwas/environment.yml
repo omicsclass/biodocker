@@ -28,7 +28,8 @@ dependencies:
 - bcftools=1.10.2
 - r-getopt 
 - bioconductor-multtest 
-- bioconductor-snpstats 
+- bioconductor-snpstats
+- bioconductor-ggtree
 - r-scatterplot3d 
 - r-genetics 
 - r-ape 
