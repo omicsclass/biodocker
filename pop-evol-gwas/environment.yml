@@ -30,6 +30,8 @@ dependencies:
 - bioconductor-multtest 
 - bioconductor-snpstats
 - bioconductor-ggtree
+- bioconductor-phyloseq
+- r-tidyverse
 - r-scatterplot3d 
 - r-genetics 
 - r-ape 
