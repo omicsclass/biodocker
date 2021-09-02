@@ -1,8 +1,7 @@
-local({r <- getOption("repos")
-      r["CRAN"] <- "http://cran.wustl.edu/" 
-      options(repos=r)})
-options(BioC_mirror="http://bioconductor.statistik.tu-dortmund.de/")
-
+ local({r <- getOption("repos")  
+ r["CRAN"] <- "https://mirrors.tuna.tsinghua.edu.cn/CRAN/"   
+options(repos=r)}) 
+options(BioC_mirror="https://mirrors.tuna.tsinghua.edu.cn/bioconductor")
 options(stringsAsFactors=FALSE)
  
 options(max.print=100)

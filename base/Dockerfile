@@ -26,10 +26,10 @@ RUN	ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && yum -y update && 
 	&& yum clean all 
 COPY welcome.sh  /root/.welcome.sh
 COPY Rprofile /root/.Rprofile
-
-RUN	mkdir -p  /biosoft/miniconda  && mkdir -p  /biosoft/biotools \
-	&& cd /biosoft && wget -qO- https://github.com/facebook/zstd/releases/download/v1.4.4/zstd-1.4.4.tar.gz|tar zvx \
-        && cd zstd-1.4.4 && make && make install && cd /biosoft && rm -rf zstd-1.4.4 \
+COPY condarc /root/.condarc
+RUN	mkdir -p  /biosoft/miniconda  && mkdir -p  /biosoft/biotools 
+COPY zstd-1.4.4 /biosoft/zstd-1.4.4
+RUN	 cd /biosoft/zstd-1.4.4 && make && make install && cd /biosoft && rm -rf zstd-1.4.4 \
         #&& wget https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /tmp/miniconda.sh \
         && wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /tmp/miniconda.sh \
     	&& bash /tmp/miniconda.sh -bfp /biosoft/miniconda \
@@ -46,19 +46,19 @@ RUN	mkdir -p  /biosoft/miniconda  && mkdir -p  /biosoft/biotools \
         #&& echo "export PS1=\"\[\e[32m\][\[\e[35m\]\u\[\e[m\]@\[\e[36m\]\h \[\e[31m\] \t \w\[\e[32m\]]\[\e[36m\]#\[\e[m\]\"" >> ~/.bashrc \
         && echo "export PS1='\[\e[32;1m\][\[\e[35;1m\]\u\[\e[31;1m\]@\[\e[35;1m\]\h \[\e[31m\] \t \[\e[31;1m\]\w\[\e[32;1m\]]\[\e[35;1m\]# \[\e[0m\]'" >> ~/.bashrc \
         && echo "sh ~/.welcome.sh" >> ~/.bashrc \
-	&& conda config --add channels defaults \
-        && conda config --add channels genomedk \
-        && conda config --add channels r \
-        && conda config --add channels conda-forge \
-	&& conda config --add channels bioconda \
+	#&& conda config --add channels defaults \
+        #&& conda config --add channels genomedk \
+        #&& conda config --add channels r \
+        #&& conda config --add channels conda-forge \
+	#&& conda config --add channels bioconda \
         #&& conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/free/  \
         #&& conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/r/  \
         #&& conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/mro/  \
         #&& conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/pkgs/main/  \
         #&& conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/conda-forge/  \
         #&& conda config --add channels https://mirrors.tuna.tsinghua.edu.cn/anaconda/cloud/bioconda/  \
-        && conda config --set show_channel_urls yes \
-        && conda config --set ssl_verify no \
+        #&& conda config --set show_channel_urls yes \
+        #&& conda config --set ssl_verify no \
         && conda update -y -n base -c defaults conda && conda clean --all --yes 
 
 
