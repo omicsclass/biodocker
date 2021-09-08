@@ -22,7 +22,7 @@ ENV PATH /biosoft/miniconda/bin:/biosoft/biotools:$PATH
 RUN	ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && yum -y update && yum upgrade -y \
 	&& yum -y install git autoconf automake perl-Data-Dumper  vim udunits2-devel bzip2 bzip2-devel curl-devel libxml2-devel ncurses-devel openssl openssl-devel openssh-clients readline-devel pcre-devel \
           libX11-devel libXt-devel blas blas-devel lapack  lapack-devel cmake make zlib zlib-devel libpng libpng12 libtiff  libjpeg boost boost-devel xz-devel xz libpng-devel libjpeg-devel libtiff-devel  cairo pbicu-devel  texinfo qpdf valgrind pango-devel gcc-gfortran \
-         texlive texlive-*.noarch  gsl gsl-devel wget   zip    which  less  tree unzip gcc-c++ gcc gdb  java-1.8.0-openjdk  java-1.8.0-openjdk-devel  ImageMagick \
+         texlive texlive-*.noarch ghostscript  gsl gsl-devel wget   zip    which  less  tree unzip gcc-c++ gcc gdb  java-1.8.0-openjdk  java-1.8.0-openjdk-devel  ImageMagick \
 	&& yum clean all 
 COPY welcome.sh  /root/.welcome.sh
 COPY Rprofile /root/.Rprofile
@@ -31,7 +31,7 @@ RUN	mkdir -p  /biosoft/miniconda  && mkdir -p  /biosoft/biotools
 COPY zstd-1.4.4 /biosoft/zstd-1.4.4
 RUN	 cd /biosoft/zstd-1.4.4 && make && make install && cd /biosoft && rm -rf zstd-1.4.4 \
         #&& wget https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /tmp/miniconda.sh \
-        && wget https://repo.anaconda.com/miniconda/Miniconda3-latest-Linux-x86_64.sh -O /tmp/miniconda.sh \
+        && wget https://mirrors.tuna.tsinghua.edu.cn/anaconda/miniconda/Miniconda3-py38_4.9.2-Linux-x86_64.sh -O /tmp/miniconda.sh \
     	&& bash /tmp/miniconda.sh -bfp /biosoft/miniconda \
     	&& rm -rf /tmp/miniconda.sh \
         && ln -s /biosoft/miniconda/etc/profile.d/conda.sh /etc/profile.d/conda.sh  \
@@ -61,8 +61,8 @@ RUN	 cd /biosoft/zstd-1.4.4 && make && make install && cd /biosoft && rm -rf zst
         #&& conda config --set ssl_verify no \
         && conda update -y -n base -c defaults conda && conda clean --all --yes 
 
-
-RUN cd /biosoft/ && wget -O - pi.dk/3  > install.sh \
+COPY install.sh /biosoft/
+RUN cd /biosoft/  \
 	&& bash install.sh \
 	&& rm -rf parallel*  install.sh
 VOLUME ["/work"]
