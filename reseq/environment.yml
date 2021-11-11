@@ -1,0 +1,29 @@
+name: reseq
+channels:
+- bioconda
+- defaults
+- conda-forge
+dependencies:
+- python=2.7
+- root=6.20.0
+- cnvnator=0.4.1
+- circos
+- bwa
+- perl-bioperl
+- bcftools
+- bedtools
+- vcftools
+- samtools
+- plink
+- fastqc
+- fastp
+- picard
+- breakdancer
+- perl-set-intervaltree
+- pandas
+- numpy
+- scipy
+- matplotlib
+- primer3
+- primer3-py
+- biopython
