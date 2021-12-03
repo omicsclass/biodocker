@@ -1,8 +1,8 @@
 name: base
 channels:
-- conda-forge
 - bioconda
 - defaults
+- conda-forge
 dependencies:
 - python=3.7
 - blast=2.9.0
@@ -45,3 +45,4 @@ dependencies:
 - perl-bioperl
 - r-pophelper
 - mkl=2019.4
+- treemix

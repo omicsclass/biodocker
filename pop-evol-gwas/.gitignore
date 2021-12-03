@@ -30,7 +30,12 @@ vignettes/*.pdf
 # knitr and R markdown default cache directories
 *_cache/
 /cache/
-
+easySFS
+GAPIT3.0
+PopLDdecay
+popsoft
+sweed
+LDheatmap_0.99-8.tar.gz
 # Temporary files created by R markdown
 *.utf8.md
 *.knit.md
@@ -55,5 +60,4 @@ curl/
 pcre/
 xz/
 zlib/
-zstd-1.4.4
-install.sh
+
