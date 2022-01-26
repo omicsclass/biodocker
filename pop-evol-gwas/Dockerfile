@@ -26,7 +26,7 @@ COPY sweed /biosoft/sweed
 COPY PopLDdecay /biosoft/PopLDdecay
 COPY easySFS /biosoft/easySFS
 RUN  cd /biosoft/ && tar zxvf emmax-intel-binary-20120210.tar.gz \
-	&& gunzip gemma-0.98.1-linux-static.gz&& chmod a+x gemma-0.98.1-linux-static && ln -s gemma-0.98.1-linux-static gemma \ 
+	&& gunzip gemma-0.98.5-linux-static.gz&& chmod a+x gemma-0.98.5-linux-static && ln -s gemma-0.98.5-linux-static gemma \ 
 	&& tar zxvf phylip-3.697.tar.gz  \
 	&& cd phylip-3.697/src/ && make -f Makefile.unx install \
 	&& cd /biosoft/ && tar zxvf 0.6.5.tar.gz \
@@ -57,13 +57,16 @@ RUN cd /biosoft/ && cd easySFS && chmod 777 easySFS.py \
 	&& cd ../angsd && make HTSSRC=../htslib 
 
 RUN     /biosoft/miniconda/bin/R  -e "install.packages(c('BiocManager', 'stringi','compiler','devtools','dplyr','RColorBrewer', 'reshape2','pheatmap','cowplot','R.utils','scatterplot3d','argparse','gridExtra','gtable','label.switching','tidyr','qqman','rworldmap','mrMLM','bigmemory','biganalytics','biglm','plotly','rgl'),dependencies=TRUE)"
-
-RUN  cd /biosoft/ && /biosoft/miniconda/bin/R CMD INSTALL LDheatmap_0.99-8.tar.gz && rm -f *.gz
+#RUN      cd /biosoft/ && tar zxvf vcf2gwas.tar.gz && cd vcf2gwas && python setup.py install && cd /biosoft/ && rm -rf vcf2gwas
+RUN  cd /biosoft/ && /biosoft/miniconda/bin/R CMD INSTALL LDheatmap_0.99-8.tar.gz && rm -f *.gz *tgz
 
 COPY GAPIT3.0 /biosoft/GAPIT3.0
 RUN yum -y install  gnuplot &&  yum clean all
 RUN mkdir -p /root/.config/matplotlib
 RUN echo "backend : Agg" > /root/.config/matplotlib/matplotlibrc
+
+
+COPY welcome.sh  /root/.welcome.sh
 
 WORKDIR /work
 # wget https://cran.r-project.org/src/contrib/Archive/LDheatmap/LDheatmap_0.99-4.tar.gz

@@ -46,3 +46,8 @@ dependencies:
 - r-pophelper
 - mkl=2019.4
 - treemix
+#- adjusttext
+#- scikit-learn
+#- scikit-allel
+#- umap-learn
+
