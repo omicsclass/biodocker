@@ -49,7 +49,8 @@ cp.sh
 rstudio-server-rhel-1.4.1106-x86_64.rpm
 shiny-server-1.5.16.958-x86_64.rpm
 *.o
-
+hdf5
+JAGS-v4.3.0
 bzip2/
 curl/
 pcre/
