@@ -1,0 +1,13 @@
+# File for pkg-config
+#
+prefix=/share/work/biosoft/JAGS/JAGS-v4.3.0
+exec_prefix=${prefix}
+libdir=${exec_prefix}/lib
+jagsincludedir=${prefix}/include/JAGS
+moduledir=${exec_prefix}/lib/JAGS/modules-4
+
+Name: libjags
+Version: 4.3.0
+Description: JAGS library for Bayesian modelling using MCMC
+Libs: -L${libdir} -ljags
+Cflags: -I${jagsincludedir}

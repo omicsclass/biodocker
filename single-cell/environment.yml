@@ -1,0 +1,32 @@
+name: base
+channels:
+- bioconda
+- defaults
+- conda-forge
+dependencies:
+- python=3.7
+- matplotlib
+#- perl=5.26.2
+#- r-base=3.6
+#- r-ggplot2=3.2.1
+#- r-utf8=1.1.4
+- bedtools
+#- r-cmplot=3.6.2
+#- r-optparse=1.6.4
+- samtools
+#- r-getopt 
+#- r-tidyverse
+- biopython
+#- perl-bioperl
+- seaborn
+- scikit-learn
+- statsmodels
+- numba
+- pytables
+- python-igraph
+- leidenalg
+- scanpy
+
+
+#scater,monocle,Seurat,scran,M3Drop
+

@@ -21,7 +21,7 @@ ENV PATH /biosoft/miniconda/bin:/biosoft/biotools:$PATH
 
 RUN	ln -sf /usr/share/zoneinfo/Asia/Shanghai /etc/localtime && yum -y update && yum upgrade -y \
 	&& yum -y install git autoconf automake perl-Data-Dumper  vim udunits2-devel bzip2 bzip2-devel curl-devel libxml2-devel ncurses-devel libcurl-devel openssl openssl-devel openssh-clients readline-devel pcre-devel \
-          libX11-devel libXt-devel blas blas-devel lapack  lapack-devel cmake make zlib zlib-devel libpng libpng12 libtiff  libjpeg boost boost-devel xz-devel xz libpng-devel libjpeg-devel libtiff-devel  cairo pbicu-devel  texinfo qpdf valgrind pango-devel gcc-gfortran \
+         xorg-x11-server-devel libX11-devel libXt-devel blas blas-devel lapack  lapack-devel cmake make zlib zlib-devel libpng libpng12 libtiff  libjpeg boost boost-devel xz-devel xz libpng-devel libjpeg-devel libtiff-devel  cairo pbicu-devel  texinfo qpdf valgrind pango-devel gcc-gfortran \
          texlive texlive-*.noarch ghostscript  gsl gsl-devel wget   zip    which  less  tree unzip gcc-c++ gcc gdb  java-1.8.0-openjdk  java-1.8.0-openjdk-devel  ImageMagick \
 	&& yum clean all 
 COPY welcome.sh  /root/.welcome.sh

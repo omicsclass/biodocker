@@ -1,0 +1,29 @@
+.\" Man page contributed by Dirk Eddelbuettel <edd@debian.org> and GPL'ed
+.TH JAGS 1 "June 2010" "IARC"
+.SH NAME
+jags - just another gibbs sampler
+.SH SYNOPSIS
+.BR jags\  [options]\ [scriptfile]
+.SH DESCRIPTION
+.PP
+\fIjags\fP is a program for analysis of Bayesian hierarchical models using
+Markov Chain Monte Carlo (MCMC) simulation not wholly unlike BUGS. If given
+a scriptfile argument, jags will be started in batch mode. Otherwise it will be
+started in interactive mode. 
+.SH OPTIONS
+\fIjags\fP accepts the following options:
+.TP
+\fB\-d\fR, \fB\-\-debugger\fR=\fINAME\fR
+Run jags through debugger NAME
+.TP
+\fB\-\-debugger\-args\fR=\fIARGS\fR
+Pass ARGS as arguments to the debugger
+.RE
+.SH SEE ALSO
+.IR http://mcmc-jags.sourceforge.net
+.SH AUTHORS
+Martyn Plummer <martyn_plummer@sourceforge.net>
+
+This manual page was contributed by Dirk Eddelbuettel
+<edd@debian.org> for the Debian GNU/Linux distribution but 
+may be used by others.
