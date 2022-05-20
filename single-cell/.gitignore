@@ -1,7 +1,6 @@
 # History files
 .Rhistory
 .Rapp.history
-nohup.out
 
 # Session Data files
 .RData
@@ -31,12 +30,7 @@ vignettes/*.pdf
 # knitr and R markdown default cache directories
 *_cache/
 /cache/
-easySFS
-GAPIT3.0
-PopLDdecay
-soft
-sweed
-LDheatmap_0.99-8.tar.gz
+
 # Temporary files created by R markdown
 *.utf8.md
 *.knit.md
@@ -55,10 +49,14 @@ cp.sh
 rstudio-server-rhel-1.4.1106-x86_64.rpm
 shiny-server-1.5.16.958-x86_64.rpm
 *.o
-
+hdf5
+JAGS-v4.3.0
 bzip2/
 curl/
 pcre/
 xz/
 zlib/
-
+soft/
+cuda
+samtools
+Python-v3.8.12/
