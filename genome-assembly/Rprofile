@@ -1,0 +1,30 @@
+ local({r <- getOption("repos")  
+ r["CRAN"] <- "https://mirrors.tuna.tsinghua.edu.cn/CRAN/"   
+options(repos=r)}) 
+options(BioC_mirror="https://mirrors.tuna.tsinghua.edu.cn/bioconductor")
+options(stringsAsFactors=FALSE)
+ 
+options(max.print=100)
+ 
+options(scipen=10)
+ 
+options(editor="vi")
+ 
+# options(show.signif.stars=FALSE)
+ 
+options(menu.graphics=FALSE)
+ 
+options(prompt="> ")
+options(continue="... ")
+ 
+options(width = 80)
+ 
+q <- function (save="no", ...) {
+  quit(save=save, ...)
+}
+ 
+auto.loads <-c("dplyr", "ggplot2")
+
+message("--> Q&A for bioinformatics, please visit the website: https://www.omicsclass.com/")
+message("--> R beginners ? I suggest your  learning  R language: https://study.omicsclass.com/index")
+
